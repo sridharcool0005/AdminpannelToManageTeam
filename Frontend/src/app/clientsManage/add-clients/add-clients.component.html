@@ -1,0 +1,22 @@
+<form    (ngSubmit)="add(regform.form.value)" #regform="ngForm">
+  <div class="medias mymedia text-center border border-light p-5 " >
+
+
+      <img src="assets/img/newagenticon.png" width="25%">
+
+
+        <input type="text"  class="form-control mb-4" placeholder="Authkey" name="name" ngModel>
+        <input type="text"  class="form-control mb-4" placeholder="SenderId" name="email" ngModel >
+
+          <input type="text"   class="form-control mb-4" placeholder="Route" name="mobilenumber" ngModel>
+
+
+      <input type="text"   class="form-control mb-4" placeholder="PID" name="city" ngModel>
+
+      <input type="text"   class="form-control mb-4" placeholder="Unicode" name="notes" ngModel>
+      <input type="text"   class="form-control mb-4" placeholder="AccountType" name="notes" ngModel>
+
+      <!-- Sign up button -->
+      <button mdbBtn color="info" block="true" class="my-4" type="submit">Add</button>
+  </div>
+  </form>

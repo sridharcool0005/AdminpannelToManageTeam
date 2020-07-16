@@ -1,0 +1,36 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <div class="header">
+            <h2>{{userDetails.fullName}}</h2>
+            <h4>{{userDetails.email}}</h4>
+        </div>
+        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Soufiane FADIL">
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Pages</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home"><i class="fas fa-chart-line"></i> &nbsp; Dashboard</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/client/viewclient"><i class="fas fa-users"></i> &nbsp; Client Management</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/attedance/attendanceReport"><i class="fas fa-chart-area"></i>&nbsp; Users Mangement</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/manage"> <i class="fas fa-tasks"></i>&nbsp; Package Management</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/manage"> <i class="fas fa-tasks"></i>&nbsp; Billing</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/articles">HelpDesk</a>
+
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Tools</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
+        <mat-icon>import_contacts</mat-icon>
+        Contacts
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
+        <mat-icon>contact_phone</mat-icon>
+        Leads
+    </a>
+
+</mat-nav-list>

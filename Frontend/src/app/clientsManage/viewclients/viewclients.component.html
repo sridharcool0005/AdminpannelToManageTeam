@@ -1,0 +1,83 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">View Clients</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 search">
+        <form class="form-inline md-form mr-auto mb-4">
+          <input class="form-control mr-sm-2" type="text" name="searchkey"   placeholder=" Search By Name" aria-label="Search"><i class="fas fa-search"></i>
+
+        </form>
+
+      </div>
+
+      <div class="col-md-4 mubutn">
+        <button mat-stroked-button color="primary" routerLink="/client/addclient">
+          Add
+          <span class="material-icons">
+          add
+          </span></button>
+
+        <img class="xlicon media " src="assets/img/xlicon.png">
+        </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media" >
+        <tr style="background-color: darkblue;color:white" >
+          <th class="text-center">Client Id</th>
+          <th class="text-center">FullName</th>
+          <th class="text-center">Phone Number</th>
+          <th class="text-center">City</th>
+          <th class="text-center">Email Id</th>
+          <th class="text-center">AuthKey</th>
+
+          <th colspan="3" class="text-center">Action</th>
+
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td >
+         11111
+          </td>
+          <td name="name">
+            {{person.name}}
+          </td>
+          <td name="mobile">
+           9858858858
+          </td>
+          <td name="address1">
+          Hyderabad
+          </td>
+          <td name="city">
+            sridhar@gmail.com
+          </td>
+          <td name="state">
+           5645646dsff
+          </td>
+
+
+          <td>
+            <span class="table-Add">
+              <button type="Submit" mdbBtn color="blue" rounded="true" size="sm" class="my-0" ><i class="far fa-eye"></i></button>
+            </span>
+          </td>
+
+          <td>
+            <span class="table-Add">
+              <button type="Submit" mdbBtn color="green" rounded="true" size="sm" class="my-0" routerLink="/client/editclient" ><i class="fas fa-user-edit"></i></button>
+            </span>
+          </td>
+          <td>
+            <span class="table-remove">
+              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)"><i class="fas fa-trash-alt"></i></button>
+            </span>
+          </td>
+
+
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
