@@ -11,5 +11,7 @@ export class AddPackageComponent implements OnInit {
 
   ngOnInit() {
   }
+  add(data) {
 
+  }
 }

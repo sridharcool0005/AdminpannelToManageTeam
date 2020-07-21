@@ -31,6 +31,7 @@ import { ClientComponent } from './clientsManage/client/client.component';
 import { UserManageComponent } from './userManage/user-manage/user-manage.component';
 import { PackManageComponent } from './PackageManage/pack-manage/pack-manage.component';
 import { MDBBootstrapModule,WavesModule, TableModule ,IconsModule  } from 'angular-bootstrap-md';
+import { ViewDetailComponent } from './clientsManage/view-detail/view-detail.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MDBBootstrapModule,WavesModule, TableModule ,IconsModule  } from 'angul
     ClientComponent,
     UserManageComponent,
     PackManageComponent,
+    ViewDetailComponent,
 
 
   ],

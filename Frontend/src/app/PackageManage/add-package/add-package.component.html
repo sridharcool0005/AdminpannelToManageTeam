@@ -1,1 +1,22 @@
-<p>add-package works!</p>
+<form    (ngSubmit)="add(regform.form.value)" #regform="ngForm">
+  <div class="medias mymedia text-center border border-light p-5 " >
+
+
+      <img src="assets/img/addsmspack.jpg" width="25%">
+
+
+        <input type="text"  class="form-control mb-4" placeholder="SMS Credits	" name="name" ngModel>
+        <input type="text"  class="form-control mb-4" placeholder="Price/SMS	" name="email" ngModel >
+
+          <input type="text"   class="form-control mb-4" placeholder="Amount" name="mobilenumber" ngModel>
+
+
+      <input type="text"   class="form-control mb-4" placeholder="GST " name="city" ngModel>
+
+      <input type="text"   class="form-control mb-4" placeholder="Total Amount	" name="notes" ngModel>
+      <input type="date"   class="form-control mb-4" placeholder="Validity" name="notes" ngModel>
+
+      <!-- Sign up button -->
+      <button mdbBtn color="info" block="true" class="my-4" type="submit">Add</button>
+  </div>
+  </form>

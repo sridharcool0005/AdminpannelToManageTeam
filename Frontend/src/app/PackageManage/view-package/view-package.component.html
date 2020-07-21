@@ -1,1 +1,82 @@
-<p>view-package works!</p>
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">View Packages</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 search">
+        <form class="form-inline md-form mr-auto mb-4">
+          <input class="form-control mr-sm-2" type="text" name="searchkey"   placeholder=" Search By Name" aria-label="Search"><i class="fas fa-search"></i>
+
+        </form>
+
+      </div>
+
+      <div class="col-md-4 mubutn">
+        <button mat-stroked-button color="primary" routerLink="/packageMange/addPacks">
+          Add
+          <span class="material-icons">
+          add
+          </span></button>
+
+        <img class="xlicon media " src="assets/img/xlicon.png">
+        </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media" >
+        <tr style="background-color: darkblue;color:white" >
+          <th class="text-center">
+            ID</th>
+          <th class="text-center">
+            SMS Credits</th>
+          <th class="text-center">Price/SMS	</th>
+          <th class="text-center">Amount</th>
+          <th class="text-center">GST </th>
+          <th class="text-center">Total Amount	</th>
+          <th class="text-center">Validity</th>
+          <th colspan="2" class="text-center">Action
+          </th>
+
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td >
+         11111
+          </td>
+          <td >
+         1000
+             </td>
+          <td name="name">
+           100
+          </td>
+          <td name="mobile">
+          100
+          </td>
+          <td name="address1">
+       18%
+          </td>
+          <td name="city">
+            200
+          </td>
+          <td name="state">
+       12/12/2020
+          </td>
+
+          <td>
+            <span class="table-Add">
+              <button type="Submit" mdbBtn color="green" rounded="true" size="sm" class="my-0" routerLink="/packageMange/editPacks" ><i class="fas fa-user-edit"></i></button>
+            </span>
+          </td>
+          <td>
+            <span class="table-remove">
+              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)"><i class="fas fa-trash-alt"></i></button>
+            </span>
+          </td>
+
+
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

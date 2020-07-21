@@ -20,12 +20,13 @@ import { PackManageComponent } from './PackageManage/pack-manage/pack-manage.com
 import { AddPackageComponent } from './PackageManage/add-package/add-package.component';
 import { UpdatePackageComponent } from './PackageManage/update-package/update-package.component';
 import { ViewPackageComponent } from './PackageManage/view-package/view-package.component';
+import { ViewDetailComponent } from './clientsManage/view-detail/view-detail.component';
 
 
 const routes: Routes = [{
 
   path: '',
-  component: DefaultComponent, canActivate: [AuthGuard],
+  component: DefaultComponent,
   children: [{
     path: 'home',
     component: DashboardComponent
@@ -38,7 +39,8 @@ const routes: Routes = [{
 {path:'client',component:ClientComponent,children:[
   {path:'addclient',component:AddClientsComponent},
   {path:'editclient',component:EditClientsComponent},
-  {path:'viewclient',component:ViewclientsComponent}
+  {path:'viewclient',component:ViewclientsComponent},
+  {path:'viewDetail',component:ViewDetailComponent}
 ]},
 {path:'user',component:UserManageComponent,children:[
   {path:'adduser',component:AddUsersComponent},
