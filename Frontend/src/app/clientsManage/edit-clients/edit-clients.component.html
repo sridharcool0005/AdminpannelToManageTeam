@@ -1,20 +1,21 @@
-<form    (ngSubmit)="add(regform.form.value)" #regform="ngForm">
-  <div class="medias mymedia text-center border border-light p-5 " >
+<form    (ngSubmit)="updateclientData(regform.form.value)" #regform="ngForm">
+  <div class="medias mymedia text-center border border-light p-5 " *ngFor="let user of userdata">
 
 
-      <img src="assets/img/edit-user.png" width="25%">
+    <h4>ClientId:  {{user.client_id}} </h4> <img src="assets/img/edit-user.png" width="25%">
 
 
-      <input type="text"  class="form-control mb-4" placeholder="Authkey" name="name" ngModel>
-      <input type="text"  class="form-control mb-4" placeholder="SenderId" name="email" ngModel >
+      <input type="text"  class="form-control mb-4" placeholder="user_smsgateway_authkey" name="user_smsgateway_authkey" [(ngModel)]="user.user_smsgateway_authkey">
+      <input type="text"  class="form-control mb-4" placeholder="SenderId" name="	user_smsgateway_sender_id" [(ngModel)]="user.user_smsgateway_sender_id" >
 
-        <input type="text"   class="form-control mb-4" placeholder="Route" name="mobilenumber" ngModel>
+        <input type="text"   class="form-control mb-4" placeholder="Route" name="user_smsgateway_route" [(ngModel)]="user.user_smsgateway_route">
 
 
-    <input type="text"   class="form-control mb-4" placeholder="PID" name="city" ngModel>
+    <input type="text"   class="form-control mb-4" placeholder="PID" name="user_smsgateway_pid" [(ngModel)]="user.user_smsgateway_pid">
 
-    <input type="text"   class="form-control mb-4" placeholder="Unicode" name="notes" ngModel>
-    <input type="text"   class="form-control mb-4" placeholder="AccountType" name="notes" ngModel>
+    <input type="text"   class="form-control mb-4" placeholder="Unicode" name="user_smsgateway_unicode" [(ngModel)]="user.user_smsgateway_unicode">
+    <input type="text"   class="form-control mb-4" placeholder="AccountType" name="account_type" [(ngModel)]="user.account_type">
+    <input type="text"   class="form-control mb-4" placeholder="AccountStatus" name="account_status" [(ngModel)]="user.account_status">
 
 
       <!-- Sign up button -->

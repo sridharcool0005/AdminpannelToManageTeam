@@ -30,25 +30,22 @@ export class ApiCallService {
     return this.http.get(environment.apiBaseUrl + '/userProfile');
   }
 
-  getEmployeeDetails(data) {
-    return this.http.post(environment.apiBaseUrl + '/getEmployess', data);
+  getuserdata() {
+    return this.http.get(environment.apiBaseUrl + '/getuserdata');
   }
 
-createEmployee(data) {
-  return this.http.post(environment.apiBaseUrl + '/createEmployee', data);
-}
+  getClients(){
+    return this.http.get(environment.apiBaseUrl + '/getClients');
+  }
 
-editEmployee(data) {
-  return this.http.put(environment.apiBaseUrl + '/updateEmployee', data);
-}
+  getuserDetails(data){
+    return this.http.post(environment.apiBaseUrl + '/getuserDetails',data);
+  }
 
-employeeDetails(data) {
-  return this.http.post(environment.apiBaseUrl + '/employeeDetails', data);
-}
+  updateclientData(data){
+    return this.http.put(environment.apiBaseUrl + '/updateclientData',data);
+  }
 
-deleteEmployee(data) {
-  return this.http.post(environment.apiBaseUrl + '/deleteEmployee', data);
-}
 
   // Helper Methods
 

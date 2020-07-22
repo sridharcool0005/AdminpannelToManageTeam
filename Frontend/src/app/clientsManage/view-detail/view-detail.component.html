@@ -6,7 +6,7 @@
   <!-- Card image -->
   <div class="view overlay rounded-top">
     <div class="card text-center">
-      <div class="conatiner">
+      <div class="conatiner" >
         <div class="row">
           <div class="col-md-6">
             <ul class="list-group list-group-flush">
@@ -14,7 +14,7 @@
               <li class="list-group-item" >
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">ClientId</strong>:
-                  <span class="list-group-right">124555</span>
+                  <span class="list-group-right">{{personList.client_id}}</span>
                 </div>
               </li>
               <li class="list-group-item" >
@@ -26,13 +26,13 @@
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">Email</strong>:
-                  <span class="list-group-right">dhoni@gmail.com</span>
+                  <span class="list-group-right">{{personList.user_email}}</span>
                 </div>
               </li>
               <li class="list-group-item" >
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">MobileNumber</strong>:
-                  <span class="list-group-right">9858858585</span>
+                  <span class="list-group-right">{{personList.user_mobile_number}}</span>
                 </div>
               </li>
               <li class="list-group-item" >
@@ -51,7 +51,7 @@
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">Cross-RegStatus</strong>:
-                  <span class="list-group-right">pending</span>
+                  <span class="list-group-right">{{personList.user_cross_regn_status}}</span>
                 </div>
               </li>
 
@@ -60,6 +60,14 @@
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">Client-CompanyName</strong>:
                   <span class="list-group-right">Client-CompanyName</span>
+                </div>
+              </li>
+
+
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">smsgateway_regn_status</strong>:
+                  <span class="list-group-right">{{personList.user_smsgateway_regn_status}}</span>
                 </div>
               </li>
             </ul>
@@ -73,19 +81,19 @@
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">PID</strong>:
-        <span class="list-group-right">125</span>
+        <span class="list-group-right">{{personList.user_smsgateway_pid}}</span>
       </div>
     </li>
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
-        <strong class="list-group-left">Authkey</strong>:
-        <span class="list-group-right">65689899derds</span>
+        <strong class="list-group-left">smsgateway_authkey</strong>:
+        <span class="list-group-right">{{personList.user_smsgateway_authkey}}</span>
       </div>
     </li>
     <li class="list-group-item">
       <div class="list-group-item-fixed">
         <strong class="list-group-left">SenderId</strong>:
-        <span class="list-group-right">MSDhoin</span>
+        <span class="list-group-right">{{personList.user_smsgateway_sender_id}}</span>
       </div>
     </li>
     <li class="list-group-item" >
@@ -97,20 +105,20 @@
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">Reg-Channel</strong>:
-        <span class="list-group-right">data</span>
+        <span class="list-group-right">{{personList.user_regn_channel}}</span>
       </div>
     </li>
     <li class="list-group-item">
       <div class="list-group-item-fixed">
         <strong class="list-group-left">Account-Type</strong>:
-        <span class="list-group-right">Star</span>
+        <span class="list-group-right">{{personList.account_type}}</span>
       </div>
     </li>
 
     <li class="list-group-item">
       <div class="list-group-item-fixed">
         <strong class="list-group-left">UserExpiry</strong>:
-        <span class="list-group-right">data</span>
+        <span class="list-group-right">{{personList.user_expiry}}</span>
       </div>
     </li>
 
@@ -118,6 +126,14 @@
       <div class="list-group-item-fixed">
         <strong class="list-group-left">ClientIndustry</strong>:
         <span class="list-group-right">Insurance</span>
+      </div>
+    </li>
+
+
+    <li class="list-group-item">
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">Account Status</strong>:
+        <span class="list-group-right">{{personList.account_status}}</span>
       </div>
     </li>
   </ul>

@@ -10,7 +10,7 @@ var db = mysql.createConnection({
 
 });
 
-exports.getclients = async function (req, res) {
+module.exports.getclients = async function (req, res) {
     query = "SELECT * FROM clients_master"
     await db.query(query, function (err, result, fields) {
         if (err) throw err;
@@ -24,7 +24,7 @@ exports.getclients = async function (req, res) {
 
 }
 
-exports.getuserdata = async function (req, res) {
+module.exports.getuserdata = async function (req, res) {
     query = "SELECT * FROM users"
     await db.query(query, function (err, result, fields) {
         if (err) throw err;
@@ -36,7 +36,7 @@ exports.getuserdata = async function (req, res) {
     });
 }
 
-exports.getuserDetails = async function (req, res) {
+module.exports.getuserDetails = async function (req, res) {
     const client_id=req.body.client_id;
     query = "SELECT * FROM users WHERE client_id=?"
     await db.query(query,[client_id] ,function (err, result, fields) {
@@ -49,7 +49,7 @@ exports.getuserDetails = async function (req, res) {
     });
 }
 
-exports.updateclientData = async function (req, res) {
+module.exports.updateclientData = async function (req, res) {
     
     const {client_id,user_smsgateway_authkey,user_smsgateway_sender_id,user_smsgateway_unicode,account_type,account_status }=req.body
     var sql = "UPDATE users SET  user_smsgateway_authkey =?,user_smsgateway_sender_id =?,user_smsgateway_unicode =?,account_type =?,account_status =? WHERE  client_id =?";
@@ -58,13 +58,13 @@ exports.updateclientData = async function (req, res) {
         if (err) throw err;
         res.send({
             "code": 200,
-            "success": "Data updated Sucessfully",
+            "message": "Data updated Sucessfully",
         });
     });
 }
 
 
-exports.deleteclient = (req, res) => {
+module.exports.deleteclient = (req, res) => {
     const client_id=req.body.client_id;
     db.query('DELETE FROM `users` WHERE `client_id`=?', 
         [client_id], function (error, results, fields) {
@@ -76,14 +76,3 @@ exports.deleteclient = (req, res) => {
     });
 };
 
-exports.getsmsCreditHistory = async function (req, res) {
-    query = "SELECT * FROM clients_sms_credits_history"
-    await db.query(query, function (err, result, fields) {
-        if (err) throw err;
-        res.send({
-            "code": 200,
-            "success": "users data ",
-            "data": result
-        });
-    });
-}

@@ -1,24 +1,42 @@
 {
-  "name": "loginbackend",
+  "name": "james-auth",
   "version": "1.0.0",
-  "description": "A simple server for handling user login",
-  "main": "index.js",
+  "description": "An authentication system using JWTs, Angular, MySQL, Express and the Sequelize ORM.",
+  "main": "app/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hisk/james-auth.git"
+  },
   "keywords": [
-    "node.js"
+    "express",
+    "jwt-authentication",
+    "jwt",
+    "mysql",
+    "angular",
+    "sequelize",
+    "authentication"
   ],
-  "author": "Saurabh Mhatre",
-  "license": "ISC",
+  "author": "Nick C. Vasile",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hisk/james-auth/issues"
+  },
+  "homepage": "https://github.com/hisk/james-auth#readme",
   "dependencies": {
-    "bcrypt": "4.0.1",
-    "body-parser": "1.19.0",
-    "cors": "2.8.5",
-    "dotenv": "8.2.0",
-    "express": "4.17.1",
-    "jsonfile": "6.0.1",
-    "jsonwebtoken": "^8.5.1",
-    "mysql": "2.18.1"
+    "angular": "^1.6.2",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.5",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.3.0",
+    "morgan": "^1.8.1",
+    "mysql": "^2.13.0",
+    "order-id": "^1.1.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "sequelize": "^3.30.2"
   }
 }

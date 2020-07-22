@@ -29,7 +29,7 @@ const routes: Routes = [{
   component: DefaultComponent,
   children: [{
     path: 'home',
-    component: DashboardComponent
+    component: DashboardComponent,canActivate: [AuthGuard]
   }, {
     path: 'posts',
     component: PostsComponent
@@ -38,9 +38,9 @@ const routes: Routes = [{
 
 {path:'client',component:ClientComponent,children:[
   {path:'addclient',component:AddClientsComponent},
-  {path:'editclient',component:EditClientsComponent},
+  {path:'editclient/:client_id',component:EditClientsComponent},
   {path:'viewclient',component:ViewclientsComponent},
-  {path:'viewDetail',component:ViewDetailComponent}
+  {path:'viewDetail/:client_id',component:ViewDetailComponent}
 ]},
 {path:'user',component:UserManageComponent,children:[
   {path:'adduser',component:AddUsersComponent},
