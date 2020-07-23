@@ -8,7 +8,7 @@ import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 })
 export class ViewclientsComponent implements OnInit {
   editField: string;
-  personList: Array<any> = [ ];
+  personList: Array<any> = [];
 
   awaitingPersonList: Array<any> = [];
   clientsdata: any;
@@ -44,11 +44,20 @@ export class ViewclientsComponent implements OnInit {
 
 
 
-  getClients(){
+  getClients() {
     this.apiCall.getClients().subscribe((res: any) => {
       console.log(res)
-      this.personList=res.data;
+      this.personList = res.data;
       console.log(this.personList)
+    })
+  }
+
+  deleteclient(client_id, id) {
+    const data={client_id:client_id}
+    this.apiCall.deleteclient(data).subscribe((res: any) => {
+      console.log(res);
+      alert('User Deleted Sucessfully')
+      this.remove(id);
     })
   }
 }

@@ -50,7 +50,7 @@ const routes: Routes = [{
 
 {path:'packageMange',component:PackManageComponent,children:[
   {path:'addPacks',component:AddPackageComponent},
-  {path:'editPacks',component:UpdatePackageComponent},
+  {path:'editPacks/:package_id',component:UpdatePackageComponent},
   {path:'ViewPacks',component:ViewPackageComponent}
 ]},
 

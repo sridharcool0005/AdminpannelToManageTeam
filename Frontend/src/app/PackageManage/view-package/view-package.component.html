@@ -27,49 +27,51 @@
       <table class="table table-bordered table-responsive-md table-striped text-center table-media" >
         <tr style="background-color: darkblue;color:white" >
           <th class="text-center">
-            ID</th>
+            PackageID</th>
           <th class="text-center">
-            SMS Credits</th>
-          <th class="text-center">Price/SMS	</th>
-          <th class="text-center">Amount</th>
-          <th class="text-center">GST </th>
-          <th class="text-center">Total Amount	</th>
+            PackageName</th>
+          <th class="text-center">PackageRoute	</th>
+          <th class="text-center">UnitPrice</th>
+          <th class="text-center">Credits </th>
+          <th class="text-center">packagePrice</th>
           <th class="text-center">Validity</th>
-          <th colspan="2" class="text-center">Action
-          </th>
+          <th class="text-center">status</th>
+          <th colspan="2" class="text-center">Action</th>
 
         </tr>
         <tr *ngFor="let person of personList; let id = index">
           <td >
-         11111
+       {{person.package_id}}
           </td>
           <td >
-         1000
+         {{person.package_name}}
              </td>
           <td name="name">
-           100
+          {{person.package_route}}
           </td>
           <td name="mobile">
-          100
+      {{person.	package_unit_price}}
           </td>
           <td name="address1">
-       18%
+       {{person.package_sms_credits}}
           </td>
           <td name="city">
-            200
+            {{person.	package_price}}
           </td>
           <td name="state">
-       12/12/2020
+       {{person.package_validity_in_months	}}
           </td>
-
+          <td name="state">
+            {{person.package_status}}
+               </td>
           <td>
             <span class="table-Add">
-              <button type="Submit" mdbBtn color="green" rounded="true" size="sm" class="my-0" routerLink="/packageMange/editPacks" ><i class="fas fa-user-edit"></i></button>
+              <button type="Submit" mdbBtn color="green" rounded="true" size="sm" class="my-0" [routerLink]="['/packageMange/editPacks/',person.package_id]" ><i class="fas fa-user-edit"></i></button>
             </span>
           </td>
           <td>
             <span class="table-remove">
-              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)"><i class="fas fa-trash-alt"></i></button>
+              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="deletePackage(person.package_id)"><i class="fas fa-trash-alt"></i></button>
             </span>
           </td>
 

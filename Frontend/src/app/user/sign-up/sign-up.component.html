@@ -2,12 +2,12 @@
   <img src="/assets/img/users.png" id="icon" alt="User Icon" />
 </div>
 <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
-  <input type="text" #fullName="ngModel" [(ngModel)]="userService.selectedUser.fullName" name="fullName" placeholder="Full Name"
-  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
-  <div *ngIf="signUpForm.submitted && !fullName.valid">
+  <input type="text" #MobileNumber="ngModel" [(ngModel)]="userService.selectedUser.mobile_number" name="mobile_number" placeholder="MobileNumber"
+  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !MobileNumber.valid }">
+  <div *ngIf="signUpForm.submitted && !MobileNumber.valid">
     <label class="validation-message">This field is required.</label>
   </div>
-  <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email_id" placeholder="Email"
+  <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email_id" name="email_id" placeholder="Email"
   required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
   <div *ngIf="signUpForm.submitted && email.errors">
     <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>

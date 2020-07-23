@@ -22,7 +22,10 @@ var APIRoutes = function (passport) {
     router.post('/addPackages', packageController.addPackage);
     router.put('/updatePackage', packageController.updatePackage);
     router.get('/getAllPackages', packageController.getAllPackages);
-  
+    router.post('/getPackageDetails', packageController.getPackageDetails);
+    router.post('/deletePackage', packageController.deletePackage);
+    
+    
 
     // GET Routes.
     router.get('/profile', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.user, UserController.index));

@@ -51,9 +51,9 @@ module.exports.getuserDetails = async function (req, res) {
 
 module.exports.updateclientData = async function (req, res) {
     
-    const {client_id,user_smsgateway_authkey,user_smsgateway_sender_id,user_smsgateway_unicode,account_type,account_status }=req.body
-    var sql = "UPDATE users SET  user_smsgateway_authkey =?,user_smsgateway_sender_id =?,user_smsgateway_unicode =?,account_type =?,account_status =? WHERE  client_id =?";
-    await db.query(sql,[user_smsgateway_authkey,user_smsgateway_sender_id,user_smsgateway_unicode,account_type,account_status,client_id] ,function (err, result, fields) {
+    const {client_id,user_smsgateway_authkey,user_smsgateway_sender_id,user_smsgateway_unicode,account_type,account_status,user_smsgateway_pid }=req.body
+    var sql = "UPDATE users SET  user_smsgateway_authkey =?,user_smsgateway_sender_id =?,user_smsgateway_unicode =?,account_type =?,account_status =?,user_smsgateway_pid =? WHERE  client_id =?";
+    await db.query(sql,[user_smsgateway_authkey,user_smsgateway_sender_id,user_smsgateway_unicode,account_type,account_status,user_smsgateway_pid,client_id] ,function (err, result, fields) {
        
         if (err) throw err;
         res.send({

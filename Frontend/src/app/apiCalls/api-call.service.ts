@@ -7,8 +7,8 @@ import { User } from './user.model';
 })
 export class ApiCallService {
   selectedUser: User = {
-    fullName: '',
-    email: '',
+    mobile_number: '',
+    email_id: '',
     password: ''
   };
 
@@ -19,7 +19,7 @@ export class ApiCallService {
   // HttpMethods
 
   postUser(user: User) {
-    return this.http.post(environment.apiBaseUrl + '/register', user, this.noAuthHeader);
+    return this.http.post(environment.apiBaseUrl + '/signup', user, this.noAuthHeader);
   }
 
   login(authCredentials) {
@@ -46,7 +46,28 @@ export class ApiCallService {
     return this.http.put(environment.apiBaseUrl + '/updateclientData',data);
   }
 
+  deleteclient(data){
+    return this.http.post(environment.apiBaseUrl + '/deleteclient',data);
+  }
 
+  getAllPackages(){
+    return this.http.get(environment.apiBaseUrl + '/getAllPackages');
+  }
+
+  addPackages(data){
+    return this.http.post(environment.apiBaseUrl + '/addPackages',data);
+  }
+
+  getPackageDetails(data){
+    return this.http.post(environment.apiBaseUrl + '/getPackageDetails',data);
+  }
+  updatePackage(data){
+    return this.http.put(environment.apiBaseUrl + '/updatePackage',data);
+  }
+
+  deletePackage(data){
+    return this.http.post(environment.apiBaseUrl + '/deletePackage',data);
+  }
   // Helper Methods
 
   setToken(token: string) {

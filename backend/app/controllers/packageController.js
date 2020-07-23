@@ -116,21 +116,29 @@ module.exports.updatePackage = async function (req, res) {
 }
 
 
-
-module.exports.newitem = async function (req, res) {
-    query = "SELECT 	last_package_id  FROM counter"
-    await database.query(query, function (err, result, fields) {
+module.exports.getPackageDetails = async function (req, res) {
+    const package_id =req.body.package_id ;
+    console.log(package_id)
+    query = "SELECT * FROM smspackage_masters WHERE package_id =?"
+    await database.query(query,[package_id ] ,function (err, result, fields) {
         if (err) throw err;
-        var tempPackageId = result[0].last_package_id
-        tempPackageId++
-        console.log(tempPackageId)
         res.send({
             "code": 200,
-            "success": "All Packages",
+            "success": "users data ",
             "data": result
-
         });
     });
+}
+
+
+module.exports.deletePackage = (req, res) => {
+    const package_id=req.body.package_id;
+    database.query('DELETE FROM `smspackage_masters` WHERE `package_id`=?', 
+        [package_id], function (error, results, fields) {
+            if (error) throw error;
+            res.send({
+                "code": 200,
+                "success": "Data updated Sucessfully",
+            });
+    });
 };
-
-

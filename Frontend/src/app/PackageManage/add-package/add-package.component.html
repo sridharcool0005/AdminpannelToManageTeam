@@ -1,22 +1,15 @@
-<form    (ngSubmit)="add(regform.form.value)" #regform="ngForm">
+<form (ngSubmit)="regform.form.valid&&add(regform.form.value)" #regform="ngForm">
   <div class="medias mymedia text-center border border-light p-5 " >
-
-
       <img src="assets/img/addsmspack.jpg" width="25%">
-
-
-        <input type="text"  class="form-control mb-4" placeholder="SMS Credits	" name="name" ngModel>
-        <input type="text"  class="form-control mb-4" placeholder="Price/SMS	" name="email" ngModel >
-
-          <input type="text"   class="form-control mb-4" placeholder="Amount" name="mobilenumber" ngModel>
-
-
-      <input type="text"   class="form-control mb-4" placeholder="GST " name="city" ngModel>
-
-      <input type="text"   class="form-control mb-4" placeholder="Total Amount	" name="notes" ngModel>
-      <input type="date"   class="form-control mb-4" placeholder="Validity" name="notes" ngModel>
-
-      <!-- Sign up button -->
-      <button mdbBtn color="info" block="true" class="my-4" type="submit">Add</button>
+      <input type="text"  class="form-control mb-4" placeholder="	package_icon" name="package_icon" value="package_icon" ngModel>
+        <input type="text"  class="form-control mb-4" placeholder="	package_name" name="package_name" ngModel>
+        <input type="text"  class="form-control mb-4" placeholder="	package_route	" name="package_route" ngModel >
+       <input type="text"   class="form-control mb-4" placeholder="package_unit_price" name="package_unit_price" ngModel>
+      <input type="text"   class="form-control mb-4" placeholder="	package_sms_credits " name="package_sms_credits" ngModel>
+      <input type="text"   class="form-control mb-4" placeholder="package_price	" name="package_price" ngModel>
+      <input type="text"   class="form-control mb-4" placeholder="package_details" name="package_details" ngModel>
+      <input type="text"   class="form-control mb-4" placeholder="	package_status" name="package_status" ngModel>
+      <input type="date"   class="form-control mb-4" placeholder="Validity" name="package_validity_in_months" ngModel>
+      <button mdbBtn color="info" block="true"  class="my-4" type="submit">Add</button>
   </div>
   </form>
