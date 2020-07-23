@@ -17,8 +17,9 @@ var hookJWTStrategy = require('./services/passportStrategy');
 var app = express();
 
 // Parse as urlencoded and json.
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 
 // Hook up the HTTP logger.
 app.use(morgan('dev'));

@@ -1,5 +1,5 @@
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">View Packages</h3>
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">View Clients</h3>
   <div class="container">
     <div class="row">
       <div class="col-md-6 search">
@@ -9,13 +9,13 @@
         </form>
       </div>
       <div class="col-md-4 mubutn">
-        <button mat-stroked-button color="primary" routerLink="/packageMange/addPacks">
+        <button mat-stroked-button color="primary" routerLink="/client/addclient">
           Add
           <span class="material-icons">
             add
           </span></button>
 
-        <img class="xlicon media " src="assets/img/xlicon.png">
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
       </div>
     </div>
   </div>

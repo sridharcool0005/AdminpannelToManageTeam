@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { Router } from '@angular/router';
+import { ExcelService } from 'src/app/apiCalls/excel.service';
 
 @Component({
   selector: 'app-view-package',
@@ -13,7 +14,7 @@ export class ViewPackageComponent implements OnInit {
 
   awaitingPersonList: Array<any> = [];
 
-  constructor(private apiCall: ApiCallService,private router: Router) { }
+  constructor(private apiCall: ApiCallService,private router: Router, private excelservice: ExcelService) { }
 
   ngOnInit() {
     this.getAllPackages();
@@ -55,5 +56,9 @@ this.apiCall.getAllPackages().subscribe((res: any)=>{
       alert('Package Deleted Sucessfully')
       this.remove(id);
     })
+  }
+
+  exportAsXLSX():void {
+    this.excelservice.exportAsExcelFile(this.personList, 'sample');
   }
 }

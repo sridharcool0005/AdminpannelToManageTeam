@@ -1,7 +1,6 @@
 <!-- Jumbotron -->
 <div class="jumbotron p-0">
-  <div class="avatar mx-auto white"><img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Mahendra_Singh_Dhoni_January_2016_%28cropped%29.jpg" class="rounded-circle"
-    alt="Sample avatar image.">
+  <div class="avatar mx-auto white"><img src="assets/img/person.png" class="rounded-circle">
 </div>
   <!-- Card image -->
   <div class="view overlay rounded-top">
@@ -20,7 +19,7 @@
               <li class="list-group-item" >
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">FullName</strong>:
-                  <span class="list-group-right">Dhoni</span>
+                  <span class="list-group-right">{{personList.client_firstname}}</span>
                 </div>
               </li>
               <li class="list-group-item">
@@ -38,13 +37,13 @@
               <li class="list-group-item" >
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">City</strong>:
-                  <span class="list-group-right">Ranchi</span>
+                  <span class="list-group-right">{{personList.client_city}}</span>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">Address</strong>:
-                  <span class="list-group-right">Address</span>
+                  <span class="list-group-right">{{personList.client_address1}}</span>
                 </div>
               </li>
 
@@ -59,7 +58,7 @@
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">Client-CompanyName</strong>:
-                  <span class="list-group-right">Client-CompanyName</span>
+                  <span class="list-group-right">{{personList.client_company_name}}</span>
                 </div>
               </li>
 

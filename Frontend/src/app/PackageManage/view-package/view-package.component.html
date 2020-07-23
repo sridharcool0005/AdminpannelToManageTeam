@@ -17,7 +17,7 @@
           add
           </span></button>
 
-        <img class="xlicon media " src="assets/img/xlicon.png">
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
         </div>
     </div>
   </div>
@@ -41,6 +41,7 @@
         </tr>
         <tr *ngFor="let person of personList; let id = index">
           <td >
+
        {{person.package_id}}
           </td>
           <td >

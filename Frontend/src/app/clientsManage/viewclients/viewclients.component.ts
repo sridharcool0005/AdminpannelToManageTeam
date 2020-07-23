@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
-
+import {ExcelService} from '../../apiCalls/excel.service';
 @Component({
   selector: 'app-viewclients',
   templateUrl: './viewclients.component.html',
@@ -13,7 +13,7 @@ export class ViewclientsComponent implements OnInit {
   awaitingPersonList: Array<any> = [];
   clientsdata: any;
 
-  constructor(private apiCall: ApiCallService) { }
+  constructor(private apiCall: ApiCallService,private excelservice: ExcelService) { }
 
   ngOnInit() {
 
@@ -59,5 +59,9 @@ export class ViewclientsComponent implements OnInit {
       alert('User Deleted Sucessfully')
       this.remove(id);
     })
+  }
+
+  exportAsXLSX():void {
+    this.excelservice.exportAsExcelFile(this.personList, 'sample');
   }
 }

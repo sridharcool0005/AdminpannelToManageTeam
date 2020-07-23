@@ -17,7 +17,9 @@ export class AddPackageComponent implements OnInit {
     this.apiCall.addPackages(data).subscribe((res) =>{
       console.log(res)
       alert('Package added successfully')
-      this.router.navigate(['//packageMange/ViewPacks']);
+      this.router.navigate(['/packageMange/ViewPacks']);
     })
   }
+
+
 }
