@@ -10,7 +10,7 @@ import { clients } from 'src/app/dataModel/clentModel';
 export class ViewclientsComponent implements OnInit {
   personList:clients[]=[];
   editField: string;
-   client_id:string;
+  client_firstname:string;
 
   awaitingPersonList: Array<any> = [];
   clientsdata: any;
@@ -68,13 +68,13 @@ export class ViewclientsComponent implements OnInit {
   }
 
   search(){
-if(this.client_id !=""){
+if(this.client_firstname !=""){
   this.personList=this.personList.filter(res=>{
-    return res.client_id.toLocaleLowerCase().match(this.client_id.toLocaleLowerCase());
+    return res.client_firstname.toLocaleLowerCase().match(this.client_firstname.toLocaleLowerCase());
   })
 
 }
-else if(this.client_id == ""){
+else if(this.client_firstname == ""){
 
   this.ngOnInit();
 }
