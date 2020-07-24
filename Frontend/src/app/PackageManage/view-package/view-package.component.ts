@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { Router } from '@angular/router';
 import { ExcelService } from 'src/app/apiCalls/excel.service';
+import { packages } from 'src/app/dataModel/packageModel';
 
 @Component({
   selector: 'app-view-package',
@@ -9,9 +10,10 @@ import { ExcelService } from 'src/app/apiCalls/excel.service';
   styleUrls: ['./view-package.component.scss']
 })
 export class ViewPackageComponent implements OnInit {
+  personList:packages[]=[];
   editField: string;
-  personList: Array<any> = [];
 
+package_id: string;
   awaitingPersonList: Array<any> = [];
 
   constructor(private apiCall: ApiCallService,private router: Router, private excelservice: ExcelService) { }
@@ -20,27 +22,13 @@ export class ViewPackageComponent implements OnInit {
     this.getAllPackages();
   }
 
-  updateList(id: number, property: string, event: any) {
-    const editField = event.target.textContent;
-    this.personList[id][property] = editField;
-  }
 
   remove(id: any) {
     this.awaitingPersonList.push(this.personList[id]);
     this.personList.splice(id, 1);
   }
 
-  add() {
-    if (this.awaitingPersonList.length > 0) {
-      const person = this.awaitingPersonList[0];
-      this.personList.push(person);
-      this.awaitingPersonList.splice(0, 1);
-    }
-  }
 
-  changeValue(id: number, property: string, event: any) {
-    this.editField = event.target.textContent;
-  }
 
   getAllPackages(){
 this.apiCall.getAllPackages().subscribe((res: any)=>{
@@ -61,4 +49,19 @@ this.apiCall.getAllPackages().subscribe((res: any)=>{
   exportAsXLSX():void {
     this.excelservice.exportAsExcelFile(this.personList, 'sample');
   }
+
+  search(){
+    if(this.package_id !=""){
+      this.personList=this.personList.filter(res=>{
+        return res.package_id.toLocaleLowerCase().match(this.package_id.toLocaleLowerCase());
+      })
+
+    }
+    else if(this.package_id == ""){
+
+      this.ngOnInit();
+    }
+
+
+      }
 }

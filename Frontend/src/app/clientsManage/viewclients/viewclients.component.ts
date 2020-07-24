@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import {ExcelService} from '../../apiCalls/excel.service';
+import { clients } from 'src/app/dataModel/clentModel';
 @Component({
   selector: 'app-viewclients',
   templateUrl: './viewclients.component.html',
   styleUrls: ['./viewclients.component.scss']
 })
 export class ViewclientsComponent implements OnInit {
+  personList:clients[]=[];
   editField: string;
-  personList: Array<any> = [];
+   client_id:string;
 
   awaitingPersonList: Array<any> = [];
   clientsdata: any;
@@ -63,5 +65,20 @@ export class ViewclientsComponent implements OnInit {
 
   exportAsXLSX():void {
     this.excelservice.exportAsExcelFile(this.personList, 'sample');
+  }
+
+  search(){
+if(this.client_id !=""){
+  this.personList=this.personList.filter(res=>{
+    return res.client_id.toLocaleLowerCase().match(this.client_id.toLocaleLowerCase());
+  })
+
+}
+else if(this.client_id == ""){
+
+  this.ngOnInit();
+}
+
+
   }
 }

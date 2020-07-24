@@ -3,10 +3,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 search">
-        <form class="form-inline md-form mr-auto mb-4">
-          <input class="form-control mr-sm-2" type="text" name="searchkey" placeholder=" Search By Name"
-            aria-label="Search"><i class="fas fa-search"></i>
-        </form>
+
+          <input  type="text" [(ngModel)]="client_id" placeholder=" Search By clientId"
+            aria-label="Search" (input)="search()" >
+
       </div>
       <div class="col-md-4 mubutn">
         <button mat-stroked-button color="primary" routerLink="/client/addclient">
