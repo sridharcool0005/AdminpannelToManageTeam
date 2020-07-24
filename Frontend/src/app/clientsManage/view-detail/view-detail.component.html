@@ -19,7 +19,7 @@
               <li class="list-group-item" >
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">FullName</strong>:
-                  <span class="list-group-right">{{personList.client_firstname}}</span>
+                  <span class="list-group-right">{{personList.client_firstname}}{{personList.client_lastname}}</span>
                 </div>
               </li>
               <li class="list-group-item">
@@ -34,6 +34,21 @@
                   <span class="list-group-right">{{personList.user_mobile_number}}</span>
                 </div>
               </li>
+
+              <li class="list-group-item" >
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">WhatsappNumber</strong>:
+                  <span class="list-group-right">{{personList.client_whatsapp_number}}</span>
+                </div>
+              </li>
+              <li class="list-group-item" >
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">TelegramNumber</strong>:
+                  <span class="list-group-right">{{personList.client_telegram_number}}</span>
+                </div>
+              </li>
+
+
               <li class="list-group-item" >
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">City</strong>:
@@ -42,33 +57,48 @@
               </li>
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
-                  <strong class="list-group-left">Address</strong>:
+                  <strong class="list-group-left">Address1</strong>:
                   <span class="list-group-right">{{personList.client_address1}}</span>
                 </div>
               </li>
-
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
-                  <strong class="list-group-left">Cross-RegStatus</strong>:
-                  <span class="list-group-right">{{personList.user_cross_regn_status}}</span>
+                  <strong class="list-group-left">Address2</strong>:
+                  <span class="list-group-right">{{personList.client_address2}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">District</strong>:
+                  <span class="list-group-right">{{personList.client_district}}</span>
                 </div>
               </li>
 
 
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
-                  <strong class="list-group-left">Client-CompanyName</strong>:
-                  <span class="list-group-right">{{personList.client_company_name}}</span>
+                  <strong class="list-group-left">Postoffice</strong>:
+                  <span class="list-group-right">{{personList.client_postoffice}}</span>
                 </div>
               </li>
 
 
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
-                  <strong class="list-group-left">smsgateway_regn_status</strong>:
-                  <span class="list-group-right">{{personList.user_smsgateway_regn_status}}</span>
+                  <strong class="list-group-left">Pincode</strong>:
+                  <span class="list-group-right">{{personList.client_pincode}}</span>
                 </div>
               </li>
+
+
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">State</strong>:
+                  <span class="list-group-right">{{personList.client_state}}</span>
+                </div>
+              </li>
+
+
             </ul>
         </div>
 
@@ -77,6 +107,13 @@
 
   <ul class="list-group list-group-flush">
 
+
+    <li class="list-group-item" >
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">GstNumber</strong>:
+        <span class="list-group-right">{{personList.client_gst_number}}</span>
+      </div>
+    </li>
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">PID</strong>:
@@ -98,7 +135,7 @@
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">Route</strong>:
-        <span class="list-group-right">4</span>
+        <span class="list-group-right">{{personList.user_smsgateway_route}}</span>
       </div>
     </li>
     <li class="list-group-item" >
@@ -116,15 +153,15 @@
 
     <li class="list-group-item">
       <div class="list-group-item-fixed">
-        <strong class="list-group-left">UserExpiry</strong>:
-        <span class="list-group-right">{{personList.user_expiry}}</span>
+        <strong class="list-group-left">ClientExpiry</strong>:
+        <span class="list-group-right">{{personList.client_expiry}}</span>
       </div>
     </li>
 
     <li class="list-group-item">
       <div class="list-group-item-fixed">
         <strong class="list-group-left">ClientIndustry</strong>:
-        <span class="list-group-right">Insurance</span>
+        <span class="list-group-right">{{personList.client_industry}}</span>
       </div>
     </li>
 
@@ -133,6 +170,28 @@
       <div class="list-group-item-fixed">
         <strong class="list-group-left">Account Status</strong>:
         <span class="list-group-right">{{personList.account_status}}</span>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">Cross-RegStatus</strong>:
+        <span class="list-group-right">{{personList.user_cross_regn_status}}</span>
+      </div>
+    </li>
+
+
+    <li class="list-group-item">
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">Client-CompanyName</strong>:
+        <span class="list-group-right">{{personList.client_company_name}}</span>
+      </div>
+    </li>
+
+
+    <li class="list-group-item">
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">smsgateway_regn_status</strong>:
+        <span class="list-group-right">{{personList.user_smsgateway_regn_status}}</span>
       </div>
     </li>
   </ul>

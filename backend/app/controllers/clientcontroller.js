@@ -36,18 +36,18 @@ module.exports.getuserdata = async function (req, res) {
     });
 }
 
-module.exports.getuserDetails = async function (req, res) {
-    const client_id=req.body.client_id;
-    query = "SELECT * FROM users WHERE client_id=?"
-    await db.query(query,[client_id] ,function (err, result, fields) {
-        if (err) throw err;
-        res.send({
-            "code": 200,
-            "success": "users data ",
-            "data": result
-        });
-    });
-}
+// module.exports.getuserDetails = async function (req, res) {
+//     const client_id=req.body.client_id;
+//     query = "SELECT * FROM users WHERE client_id=?"
+//     await db.query(query,[client_id] ,function (err, result, fields) {
+//         if (err) throw err;
+//         res.send({
+//             "code": 200,
+//             "success": "users data ",
+//             "data": result
+//         });
+//     });
+// }
 
 module.exports.updateclientData = async function (req, res) {
     
@@ -76,3 +76,15 @@ module.exports.deleteclient = (req, res) => {
     });
 };
 
+module.exports.getuserDetails = async function (req, res) {
+    const client_id=req.body.client_id;
+    query = "select a.client_id,a.user_smsgateway_pid,a.user_smsgateway_sender_id,a.user_smsgateway_regn_status,a.user_smsgateway_authkey,a.user_smsgateway_route,a.user_smsgateway_unicode,a.user_cross_regn_status, a.user_mobile_number, a.user_email, a.user_regn_channel, a.account_type, a.account_status, b.client_firstname, b.client_lastname, b.client_whatsapp_number, b.client_telegram_number, b.client_company_name, b.client_address1, b.client_address2, b.client_city, b.client_district, b.client_postoffice, b.client_pincode, b.client_state, b.client_industry,b.client_gst_number, b.client_expiry from users a, clients_master b where a.client_id =? and b.client_id =? "
+    await db.query(query,[client_id,client_id] ,function (err, result, fields) {
+        if (err) throw err;
+        res.send({
+            "code": 200,
+            "success": "users data ",
+            "data": result
+        });
+    });
+}

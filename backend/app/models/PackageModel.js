@@ -15,7 +15,7 @@ var modelDefinition = {
 
     package_icon: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     package_name: {
         type: Sequelize.STRING,
