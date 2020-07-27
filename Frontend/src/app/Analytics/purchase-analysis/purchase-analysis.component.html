@@ -1,1 +1,65 @@
-<p>purchase-analysis works!</p>
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Purchase Analysis</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 search">
+
+          <input  type="text" [(ngModel)]="client_firstname" placeholder=" Search By Name"
+            aria-label="Search" (input)="search()" >
+
+      </div>
+      <div class="col-md-4 mubutn">
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+        <tr style="background-color: darkblue;color:white">
+          <th class="text-center">
+           Client ID</th>
+          <th class="text-center">
+            FullName</th>
+          <th class="text-center">DateofPurchase</th>
+          <th class="text-center">PackageName</th>
+          <th class="text-center">SMS Credits</th>
+          <th class="text-center">Amount Paid</th>
+          <th  class="text-center">Action
+          </th>
+
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td>
+            {{person.client_id}}
+          </td>
+          <td>
+            {{person.client_firstname}}{{person.client_lastname}}
+          </td>
+          <td name="name">
+        12/07/2020
+          </td>
+          <td name="mobile">
+          StarterPack
+          </td>
+          <td name="mobile">
+            1000
+          </td>
+          <td>100</td>
+          <td>
+           <a> <span class="material-icons" routerLink="/viewPurchaseDetailed"      matTooltip="View Detailed"
+            matTooltipClass="example-tooltip-red"
+            aria-label="Button that shows a red tooltip">
+              visibility
+              </span>
+              </a>
+          </td>
+
+
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

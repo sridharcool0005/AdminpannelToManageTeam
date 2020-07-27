@@ -37,6 +37,7 @@ import { UsageAnalysisComponent } from './Analytics/usage-analysis/usage-analysi
 import { SalesAnalysisComponent } from './Analytics/sales-analysis/sales-analysis.component';
 import { PurchaseAnalysisComponent } from './Analytics/purchase-analysis/purchase-analysis.component';
 import { UsageDetailedComponent } from './Analytics/usage-detailed/usage-detailed.component';
+import { PurchaseDetailedComponent } from './Analytics/purchase-detailed/purchase-detailed.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { UsageDetailedComponent } from './Analytics/usage-detailed/usage-detaile
     SalesAnalysisComponent,
     PurchaseAnalysisComponent,
     UsageDetailedComponent,
+    PurchaseDetailedComponent,
 
 
 

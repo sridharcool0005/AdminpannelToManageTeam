@@ -25,6 +25,7 @@ import { AnalyticComponent } from './Analytics/analytic/analytic.component';
 import { PurchaseAnalysisComponent } from './Analytics/purchase-analysis/purchase-analysis.component';
 import { SalesAnalysisComponent } from './Analytics/sales-analysis/sales-analysis.component';
 import { UsageDetailedComponent } from './Analytics/usage-detailed/usage-detailed.component';
+import { PurchaseDetailedComponent } from './Analytics/purchase-detailed/purchase-detailed.component';
 
 
 const routes: Routes = [{
@@ -64,7 +65,8 @@ const routes: Routes = [{
   {path:'usageAnalysis',component:SalesAnalysisComponent},
 
 ]},
-{path:'ViewUsageDetailed', component:UsageDetailedComponent}
+{path:'ViewUsageDetailed', component:UsageDetailedComponent},
+{path:'viewPurchaseDetailed',component:PurchaseDetailedComponent}
 
   ],
 
