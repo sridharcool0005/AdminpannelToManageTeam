@@ -1,0 +1,51 @@
+
+<button mat-raised-button color="primary" routerLink="/analytics">GoBack</button>
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Usage Analysis Detailed View</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 search">
+
+          <input  type="text" [(ngModel)]="client_firstname" placeholder=" Search By Name"
+            aria-label="Search" (input)="search()" >
+
+      </div>
+      <div class="col-md-4 mubutn">
+
+
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+        <tr style="background-color: darkblue;color:white">
+          <th class="text-center">
+           ClientId</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">CreditsUsed</th>
+          <th class="text-center">PackageID</th>
+          <th class="text-center">PackName</th>
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td>
+            115525
+          </td>
+          <td>
+           sridhar
+          </td>
+          <td name="name">
+         200
+          </td>
+          <td>packageId</td>
+          <td>PackName</td>
+
+
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

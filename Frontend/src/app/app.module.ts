@@ -32,6 +32,12 @@ import { UserManageComponent } from './userManage/user-manage/user-manage.compon
 import { PackManageComponent } from './PackageManage/pack-manage/pack-manage.component';
 import { MDBBootstrapModule,WavesModule, TableModule ,IconsModule  } from 'angular-bootstrap-md';
 import { ViewDetailComponent } from './clientsManage/view-detail/view-detail.component';
+import { AnalyticComponent } from './Analytics/analytic/analytic.component';
+import { UsageAnalysisComponent } from './Analytics/usage-analysis/usage-analysis.component';
+import { SalesAnalysisComponent } from './Analytics/sales-analysis/sales-analysis.component';
+import { PurchaseAnalysisComponent } from './Analytics/purchase-analysis/purchase-analysis.component';
+import { UsageDetailedComponent } from './Analytics/usage-detailed/usage-detailed.component';
+
 
 @NgModule({
   declarations: [
@@ -53,6 +59,12 @@ import { ViewDetailComponent } from './clientsManage/view-detail/view-detail.com
     UserManageComponent,
     PackManageComponent,
     ViewDetailComponent,
+    AnalyticComponent,
+    UsageAnalysisComponent,
+    SalesAnalysisComponent,
+    PurchaseAnalysisComponent,
+    UsageDetailedComponent,
+
 
 
   ],

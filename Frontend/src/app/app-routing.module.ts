@@ -21,6 +21,10 @@ import { AddPackageComponent } from './PackageManage/add-package/add-package.com
 import { UpdatePackageComponent } from './PackageManage/update-package/update-package.component';
 import { ViewPackageComponent } from './PackageManage/view-package/view-package.component';
 import { ViewDetailComponent } from './clientsManage/view-detail/view-detail.component';
+import { AnalyticComponent } from './Analytics/analytic/analytic.component';
+import { PurchaseAnalysisComponent } from './Analytics/purchase-analysis/purchase-analysis.component';
+import { SalesAnalysisComponent } from './Analytics/sales-analysis/sales-analysis.component';
+import { UsageDetailedComponent } from './Analytics/usage-detailed/usage-detailed.component';
 
 
 const routes: Routes = [{
@@ -54,8 +58,13 @@ const routes: Routes = [{
   {path:'ViewPacks',component:ViewPackageComponent}
 ]},
 
+{path:'analytics',component:AnalyticComponent,children:[
+  {path:'purchaseAnalysis',component:PurchaseAnalysisComponent},
+  {path:'salesAnalysis',component:SalesAnalysisComponent},
+  {path:'usageAnalysis',component:SalesAnalysisComponent},
 
-
+]},
+{path:'ViewUsageDetailed', component:UsageDetailedComponent}
 
   ],
 

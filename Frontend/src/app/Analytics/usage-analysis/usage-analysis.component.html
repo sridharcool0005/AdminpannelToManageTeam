@@ -1,0 +1,46 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Usage Analysis</h3>
+
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+        <tr style="background-color: darkblue;color:white">
+          <th class="text-center">
+           Date</th>
+          <th class="text-center">SMS Credits Sold</th>
+          <th class="text-center">SMS Credits Used</th>
+
+          <th colspan="3" class="text-center">Action
+          </th>
+
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td>
+            12/07/2020
+          </td>
+          <td>
+           1000
+          </td>
+          <td name="name">
+         200
+          </td>
+
+          <td>
+           <a> <span class="material-icons" routerLink="/ViewUsageDetailed"      matTooltip="View Detailed"
+            matTooltipClass="example-tooltip-red"
+            aria-label="Button that shows a red tooltip">
+              visibility
+              </span>
+              </a>
+          </td>
+
+
+
+
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
