@@ -21,6 +21,7 @@ export class PurchaseAnalysisComponent implements OnInit {
   ngOnInit() {
 
     this.getClients();
+    console.log(status)
   }
 
   updateList(id: number, property: string, event: any) {

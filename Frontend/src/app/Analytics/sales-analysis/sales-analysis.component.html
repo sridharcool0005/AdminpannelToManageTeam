@@ -1,1 +1,62 @@
-<p>sales-analysis works!</p>
+
+
+
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Purchase Analysis</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 search">
+          <input type="date" id="birthday" name="birthday">&nbsp;<input type="date" id="birthday" name="birthday">&nbsp;
+          <input type="submit">
+
+
+      </div>
+      <div class="col-md-4 mubutn">
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+        <tr style="background-color: darkblue;color:white">
+          <th class="text-center">
+            Date</th>
+          <th class="text-center">
+            PackageID</th>
+          <th class="text-center">PackName</th>
+          <th class="text-center">AmountReceived</th>
+          <th class="text-center">Payment Mode</th>
+          <th  class="text-center">Status</th>
+
+
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td>12/07/2020</td>
+
+          <td>
+            31311
+          </td>
+          <td name="name">
+           starterPack
+          </td>
+          <td>100</td>
+          <td name="mobile">
+           UPI
+          </td>
+
+          <td>
+           Active
+          </td>
+
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+
+
+

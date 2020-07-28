@@ -4,8 +4,12 @@
     <div class="row">
       <div class="col-md-6 search">
 
-          <input  type="text" [(ngModel)]="client_firstname" placeholder=" Search By Name"
-            aria-label="Search" (input)="search()" >
+        <input type="text" [(ngModel)]="client_firstname" placeholder=" Search By Name" aria-label="Search"
+          (input)="search()">
+        &nbsp;
+          <input type="date" id="birthday" name="birthday">&nbsp;
+          <input type="submit">
+
 
       </div>
       <div class="col-md-4 mubutn">
@@ -19,14 +23,13 @@
       <table class="table table-bordered table-responsive-md table-striped text-center table-media">
         <tr style="background-color: darkblue;color:white">
           <th class="text-center">
-           Client ID</th>
+            Client ID</th>
           <th class="text-center">
             FullName</th>
           <th class="text-center">DateofPurchase</th>
-          <th class="text-center">PackageName</th>
-          <th class="text-center">SMS Credits</th>
           <th class="text-center">Amount Paid</th>
-          <th  class="text-center">Action
+          <th class="text-center">Payment Status</th>
+          <th colspan="2" class="text-center">Action
           </th>
 
         </tr>
@@ -38,22 +41,30 @@
             {{person.client_firstname}}{{person.client_lastname}}
           </td>
           <td name="name">
-        12/07/2020
-          </td>
-          <td name="mobile">
-          StarterPack
-          </td>
-          <td name="mobile">
-            1000
+            12/07/2020
           </td>
           <td>100</td>
+          <td name="mobile">
+            <select>
+              <option value="Active">Active</option>
+              <option value="Pending">Pending</option>
+              <option value="Disable">Disable</option>
+
+            </select>
+          </td>
+
           <td>
-           <a> <span class="material-icons" routerLink="/viewPurchaseDetailed"      matTooltip="View Detailed"
-            matTooltipClass="example-tooltip-red"
-            aria-label="Button that shows a red tooltip">
-              visibility
+            <a><span class="material-icons">
+                save
+              </span></a>
+          </td>
+
+          <td>
+            <a> <span class="material-icons" routerLink="/viewPurchaseDetailed" matTooltip="View Detailed"
+                matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip">
+                visibility
               </span>
-              </a>
+            </a>
           </td>
 
 
