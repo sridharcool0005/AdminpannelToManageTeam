@@ -7,8 +7,14 @@
         <input type="text" [(ngModel)]="client_firstname" placeholder=" Search By Name" aria-label="Search"
           (input)="search()">
         &nbsp;
-          <input type="date" id="birthday" name="birthday">&nbsp;
+        <form (ngSubmit)="regform.form.valid&&getpurchaseDataByDate(regform.form.value)" #regform="ngForm">
+          <label>From Date:</label>
+          <input type="date"  name="fromDate" ngModel>&nbsp;
+          <label>To Date:</label>
+          <input type="date" name="toDate" ngModel>
           <input type="submit">
+        </form>
+
 
 
       </div>
@@ -28,6 +34,8 @@
             FullName</th>
           <th class="text-center">DateofPurchase</th>
           <th class="text-center">Amount Paid</th>
+          <th class="text-center">order_id</th>
+          <th class="text-center">package_id</th>
           <th class="text-center">Payment Status</th>
           <th colspan="2" class="text-center">Action
           </th>
@@ -41,14 +49,16 @@
             {{person.client_firstname}}{{person.client_lastname}}
           </td>
           <td name="name">
-            12/07/2020
+             {{person.txn_date| date: 'dd/MM/yyyy'}}
           </td>
-          <td>100</td>
+          <td>{{person.total_amount_paid}}</td>
+          <td>{{person.order_id}}</td>
+          <td>{{person.package_id}}</td>
           <td name="mobile">
-            <select>
-              <option value="Active">Active</option>
-              <option value="Pending">Pending</option>
-              <option value="Disable">Disable</option>
+            <select [(ngModel)]="person.payment_status_code">
+              <option value="success">success</option>
+              <option value="pending">pending</option>
+              <option value="Cancel">Cancel</option>
 
             </select>
           </td>
@@ -60,7 +70,7 @@
           </td>
 
           <td>
-            <a> <span class="material-icons" routerLink="/viewPurchaseDetailed" matTooltip="View Detailed"
+            <a> <span class="material-icons" [routerLink]="['/viewPurchaseDetailed',person.package_id,person.order_id]" matTooltip="View Detailed"
                 matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip">
                 visibility
               </span>

@@ -25,13 +25,13 @@
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">Email</strong>:
-                  <span class="list-group-right">{{personList.user_email}}</span>
+                  <span class="list-group-right">{{personList.client_email}}</span>
                 </div>
               </li>
               <li class="list-group-item" >
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">MobileNumber</strong>:
-                  <span class="list-group-right">{{personList.user_mobile_number}}</span>
+                  <span class="list-group-right">{{personList.client_mobile_number}}</span>
                 </div>
               </li>
 
@@ -51,13 +51,13 @@
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">coupon_id</strong>:
-                  <span class="list-group-right">coupon_id</span>
+                  <span class="list-group-right">{{personList.coupon_id}}</span>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">coupon_amount</strong>:
-                  <span class="list-group-right">coupon_amount</span>
+                  <span class="list-group-right">{{personList.coupon_amount}}</span>
                 </div>
               </li>
 
@@ -73,50 +73,50 @@
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">Date of Purchase</strong>:
-        <span class="list-group-right">12/07/2020</span>
+        <span class="list-group-right">{{personList.txn_date}}</span>
       </div>
     </li>
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">OrderId</strong>:
-        <span class="list-group-right">125255</span>
+        <span class="list-group-right">{{personList.order_id}}</span>
       </div>
     </li>
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">PackageName</strong>:
-        <span class="list-group-right">StarterPack</span>
+        <span class="list-group-right">{{personList.package_name}}</span>
       </div>
     </li>
     <li class="list-group-item">
       <div class="list-group-item-fixed">
         <strong class="list-group-left">SMSCredits</strong>:
-        <span class="list-group-right">120</span>
+        <span class="list-group-right">{{personList.package_sms_credits}}</span>
       </div>
     </li>
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">PaymentMode</strong>:
-        <span class="list-group-right">UPI</span>
+        <span class="list-group-right">{{personList.payment_mode}}</span>
       </div>
     </li>
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">Payment Status</strong>:
-        <span class="list-group-right">Active</span>
+        <span class="list-group-right">{{personList.payment_status_code}}</span>
       </div>
     </li>
 
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">TxnId</strong>:
-        <span class="list-group-right">122</span>
+        <span class="list-group-right">{{personList.payment_gateway_txn_id}}</span>
       </div>
     </li>
     <li class="list-group-item" >
       <div class="list-group-item-fixed">
         <strong class="list-group-left">TxnRef</strong>:
-        <span class="list-group-right">4646446</span>
+        <span class="list-group-right">{{personList.payment_gateway_txn_ref}}</span>
       </div>
     </li>
   </ul>

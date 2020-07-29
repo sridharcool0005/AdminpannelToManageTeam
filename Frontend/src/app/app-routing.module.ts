@@ -31,10 +31,10 @@ import { PurchaseDetailedComponent } from './Analytics/purchase-detailed/purchas
 const routes: Routes = [{
 
   path: '',
-  component: DefaultComponent,
+  component: DefaultComponent,canActivate: [AuthGuard],
   children: [{
     path: 'home',
-    component: DashboardComponent,canActivate: [AuthGuard]
+    component: DashboardComponent,
   }, {
     path: 'posts',
     component: PostsComponent
@@ -66,9 +66,8 @@ const routes: Routes = [{
 
 ]},
 {path:'ViewUsageDetailed', component:UsageDetailedComponent},
-{path:'viewPurchaseDetailed',component:PurchaseDetailedComponent}
-
-  ],
+{path:'viewPurchaseDetailed/:package_id/:order_id',component:PurchaseDetailedComponent},
+ ],
 
 
 },

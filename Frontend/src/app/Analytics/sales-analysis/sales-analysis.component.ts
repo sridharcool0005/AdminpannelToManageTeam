@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { ExcelService } from 'src/app/apiCalls/excel.service';
-import { clients } from 'src/app/dataModel/clentModel';
+
 
 @Component({
   selector: 'app-sales-analysis',
@@ -9,18 +9,15 @@ import { clients } from 'src/app/dataModel/clentModel';
   styleUrls: ['./sales-analysis.component.scss']
 })
 export class SalesAnalysisComponent implements OnInit {
-  personList:clients[]=[];
+  personList: Array<any> = [];;
   editField: string;
-  client_firstname:string;
-
   awaitingPersonList: Array<any> = [];
-  clientsdata: any;
+
 
   constructor(private apiCall: ApiCallService,private excelservice: ExcelService) { }
 
   ngOnInit() {
 
-    this.getClients();
     console.log(status)
   }
 
@@ -48,8 +45,8 @@ export class SalesAnalysisComponent implements OnInit {
 
 
 
-  getClients() {
-    this.apiCall.getClients().subscribe((res: any) => {
+  getSalesData(data) {
+    this.apiCall.getSalesData(data).subscribe((res: any) => {
       console.log(res)
       this.personList = res.data;
       console.log(this.personList)
@@ -69,18 +66,5 @@ export class SalesAnalysisComponent implements OnInit {
     this.excelservice.exportAsExcelFile(this.personList, 'sample');
   }
 
-  search(){
-if(this.client_firstname !=""){
-  this.personList=this.personList.filter(res=>{
-    return res.client_firstname.toLocaleLowerCase().match(this.client_firstname.toLocaleLowerCase());
-  })
 
-}
-else if(this.client_firstname == ""){
-
-  this.ngOnInit();
-}
-
-
-  }
 }

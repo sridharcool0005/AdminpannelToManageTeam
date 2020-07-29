@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { clients } from 'src/app/dataModel/clentModel';
+
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { ExcelService } from 'src/app/apiCalls/excel.service';
 
@@ -9,12 +9,12 @@ import { ExcelService } from 'src/app/apiCalls/excel.service';
   styleUrls: ['./purchase-analysis.component.scss']
 })
 export class PurchaseAnalysisComponent implements OnInit {
-  personList:clients[]=[];
+  personList;
   editField: string;
   client_firstname:string;
 
   awaitingPersonList: Array<any> = [];
-  clientsdata: any;
+
 
   constructor(private apiCall: ApiCallService,private excelservice: ExcelService) { }
 
@@ -49,7 +49,7 @@ export class PurchaseAnalysisComponent implements OnInit {
 
 
   getClients() {
-    this.apiCall.getClients().subscribe((res: any) => {
+    this.apiCall.getpurchaseData().subscribe((res: any) => {
       console.log(res)
       this.personList = res.data;
       console.log(this.personList)
@@ -82,6 +82,14 @@ else if(this.client_firstname == ""){
 }
 
 
+  }
+
+  getpurchaseDataByDate(data){
+    this.apiCall.getpurchaseDataByDate(data).subscribe((res: any) => {
+      console.log(res)
+      this.personList = res.data;
+      console.log(this.personList)
+    })
   }
 
 }

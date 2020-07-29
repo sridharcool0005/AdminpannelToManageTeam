@@ -9,6 +9,7 @@ var config = require('../config'),
     AdminController = require('../controllers/adminController');
   const ClientController = require('../controllers/clientController');
   const packageController=require('../controllers/packageController');
+  const analyticsController=require('../controllers/analyticsController');
 
 var APIRoutes = function (passport) {
     // POST Routes.
@@ -24,9 +25,11 @@ var APIRoutes = function (passport) {
     router.get('/getAllPackages', packageController.getAllPackages);
     router.post('/getPackageDetails', packageController.getPackageDetails);
     router.post('/deletePackage', packageController.deletePackage);
-    
-    
-
+    router.post('/sendSMS', ClientController.sendSMS);
+    router.get('/getpurchaseData',analyticsController.getpurchaseData);
+    router.post('/getpurchaseDetailed',analyticsController.getpurchaseDetailed);
+    router.post('/getSalesData', analyticsController.getSalesData);
+    router.post('/getpurchaseDataByDate', analyticsController.getpurchaseDataByDate)
     // GET Routes.
     router.get('/profile', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.user, UserController.index));
     router.get('/admin', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.admin, AdminController.index));

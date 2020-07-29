@@ -68,6 +68,22 @@ export class ApiCallService {
   deletePackage(data){
     return this.http.post(environment.apiBaseUrl + '/deletePackage',data);
   }
+
+  getpurchaseData(){
+    return this.http.get(environment.apiBaseUrl + '/getpurchaseData');
+  }
+
+  getpurchaseDetailed(data){
+    return this.http.post(environment.apiBaseUrl + '/getpurchaseDetailed',data);
+  }
+
+  getSalesData(data){
+    return this.http.post(environment.apiBaseUrl + '/getSalesData',data);
+  }
+
+  getpurchaseDataByDate(data){
+    return this.http.post(environment.apiBaseUrl + '/getpurchaseDataByDate',data);
+  }
   // Helper Methods
 
   setToken(token: string) {

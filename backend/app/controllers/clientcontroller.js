@@ -88,3 +88,45 @@ module.exports.getuserDetails = async function (req, res) {
         });
     });
 }
+
+module.exports.sendSMS = async (req, response) => {
+
+    const { mobile } = req.body;
+    
+    var options = {
+      "method": "POST",
+      "hostname": "api.msg91.com",
+      "port": null,
+      "path": "/api/v2/sendsms",
+      "headers": {
+        "authkey": authkey,
+        "content-type": "application/json"
+      }
+    };
+  
+    var req = http.request(options, function (res) {
+      var chunks = [];
+  
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
+  
+      res.on("end", function () {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+        const result = body.toString()
+        response.status(200).send(result)
+      })
+    });
+  
+    req.write(JSON.stringify({
+      sender: 'NUTANS',
+      route: '4',
+      country: '+91',
+      sms:
+        [{ message: "Your account is Activated ", to: [mobile] }
+  
+        ]
+    }));
+    req.end();
+  }
