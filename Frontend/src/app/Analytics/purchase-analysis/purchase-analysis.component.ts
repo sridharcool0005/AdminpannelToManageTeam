@@ -12,16 +12,16 @@ export class PurchaseAnalysisComponent implements OnInit {
   personList;
   editField: string;
   client_firstname:string;
-
+  add_balance:string;
   awaitingPersonList: Array<any> = [];
 
 
   constructor(private apiCall: ApiCallService,private excelservice: ExcelService) { }
 
   ngOnInit() {
-
     this.getClients();
-    console.log(status)
+    console.log(status);
+
   }
 
   updateList(id: number, property: string, event: any) {
@@ -90,6 +90,17 @@ else if(this.client_firstname == ""){
       this.personList = res.data;
       console.log(this.personList)
     })
+  }
+
+  updateclientData(data){
+    alert('Ensure you have added SMS balance to client account in SMS Gateway Portal')
+    console.log(data)
+    console.log(this.add_balance);
+    const userData={client_id:data.client_id,order_id:data.order_id,add_balance:this.add_balance,payment_status:data.payment_status_code}
+    this.apiCall.updatePaymentStatus(userData).subscribe((res: any)=>{
+    alert('Data updated Sucessfully')
+    })
+
   }
 
 }

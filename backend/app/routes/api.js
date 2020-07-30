@@ -29,7 +29,9 @@ var APIRoutes = function (passport) {
     router.get('/getpurchaseData',analyticsController.getpurchaseData);
     router.post('/getpurchaseDetailed',analyticsController.getpurchaseDetailed);
     router.post('/getSalesData', analyticsController.getSalesData);
-    router.post('/getpurchaseDataByDate', analyticsController.getpurchaseDataByDate)
+    router.post('/getpurchaseDataByDate', analyticsController.getpurchaseDataByDate);
+    router.put('/updatePaymentStatus', analyticsController.updatePaymentStatus)
+
     // GET Routes.
     router.get('/profile', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.user, UserController.index));
     router.get('/admin', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.admin, AdminController.index));

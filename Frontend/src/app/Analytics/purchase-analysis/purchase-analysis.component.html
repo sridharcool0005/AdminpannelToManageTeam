@@ -2,23 +2,18 @@
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Purchase Analysis</h3>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 search">
-
-        <input type="text" [(ngModel)]="client_firstname" placeholder=" Search By Name" aria-label="Search"
-          (input)="search()">
-        &nbsp;
+      <div class="col-md-6 ">
         <form (ngSubmit)="regform.form.valid&&getpurchaseDataByDate(regform.form.value)" #regform="ngForm">
-          <label>From Date:</label>
-          <input type="date"  name="fromDate" ngModel>&nbsp;
-          <label>To Date:</label>
-          <input type="date" name="toDate" ngModel>
+
+          <input type="date"  name="fromDate" placeholder="FromDate" ngModel>&nbsp;
+          <input type="date" name="toDate" placeholder="ToDate" ngModel>&nbsp;
+
           <input type="submit">
         </form>
-
-
-
       </div>
-      <div class="col-md-4 mubutn">
+      <div class="col-md-6 mubutn">
+        <input type="text" class="search" [(ngModel)]="client_firstname" placeholder=" Search By Name" aria-label="Search"
+        (input)="search()">
         <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
       </div>
     </div>
@@ -34,9 +29,11 @@
             FullName</th>
           <th class="text-center">DateofPurchase</th>
           <th class="text-center">Amount Paid</th>
-          <th class="text-center">order_id</th>
-          <th class="text-center">package_id</th>
+          <th class="text-center">SMS Credits</th>
+
           <th class="text-center">Payment Status</th>
+          <th class="text-center">Add Balance (Yes/No)</th>
+
           <th colspan="2" class="text-center">Action
           </th>
 
@@ -48,23 +45,28 @@
           <td>
             {{person.client_firstname}}{{person.client_lastname}}
           </td>
-          <td name="name">
+          <td>
              {{person.txn_date| date: 'dd/MM/yyyy'}}
           </td>
           <td>{{person.total_amount_paid}}</td>
-          <td>{{person.order_id}}</td>
-          <td>{{person.package_id}}</td>
-          <td name="mobile">
-            <select [(ngModel)]="person.payment_status_code">
-              <option value="success">success</option>
-              <option value="pending">pending</option>
-              <option value="Cancel">Cancel</option>
+          <td>{{person.package_sms_credits}}</td>
+
+          <td >
+            <select [(ngModel)]="person.payment_status_code" name="payment_status_code" >
+              <option value="success" [disabled]="person.payment_status_code=='success'" >success</option>
+              <option value="pending"  [disabled]="person.payment_status_code=='success'">pending</option>
+              <option value="Cancel"  [disabled]="person.payment_status_code=='success'">Cancel</option>
 
             </select>
           </td>
-
           <td>
-            <a><span class="material-icons">
+            <mat-radio-group aria-label="Select an option" name="add_balance" [(ngModel)]="add_balance">
+              <mat-radio-button value="yes">Yes</mat-radio-button>
+              <mat-radio-button value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </td>
+          <td>
+            <a (click)="updateclientData(person)"><span class="material-icons">
                 save
               </span></a>
           </td>

@@ -84,6 +84,10 @@ export class ApiCallService {
   getpurchaseDataByDate(data){
     return this.http.post(environment.apiBaseUrl + '/getpurchaseDataByDate',data);
   }
+
+  updatePaymentStatus(data){
+    return this.http.put(environment.apiBaseUrl + '/updatePaymentStatus',data);
+  }
   // Helper Methods
 
   setToken(token: string) {
