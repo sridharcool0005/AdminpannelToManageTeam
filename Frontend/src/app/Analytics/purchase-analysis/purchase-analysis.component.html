@@ -60,10 +60,11 @@
             </select>
           </td>
           <td>
-            <mat-radio-group aria-label="Select an option" name="add_balance" [(ngModel)]="add_balance">
-              <mat-radio-button value="yes">Yes</mat-radio-button>
-              <mat-radio-button value="no">No</mat-radio-button>
-            </mat-radio-group>
+            <select [(ngModel)]="person.add_balance" name="add_balance" >
+              <option value="select" selected disabled>select</option>
+              <option value="Yes">yes</option>
+              <option value="No" >No</option>
+            </select>
           </td>
           <td>
             <a (click)="updateclientData(person)"><span class="material-icons">

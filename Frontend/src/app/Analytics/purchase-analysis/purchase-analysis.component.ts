@@ -12,7 +12,6 @@ export class PurchaseAnalysisComponent implements OnInit {
   personList;
   editField: string;
   client_firstname:string;
-  add_balance:string;
   awaitingPersonList: Array<any> = [];
 
 
@@ -20,7 +19,7 @@ export class PurchaseAnalysisComponent implements OnInit {
 
   ngOnInit() {
     this.getClients();
-    console.log(status);
+
 
   }
 
@@ -50,16 +49,16 @@ export class PurchaseAnalysisComponent implements OnInit {
 
   getClients() {
     this.apiCall.getpurchaseData().subscribe((res: any) => {
-      console.log(res)
+
       this.personList = res.data;
-      console.log(this.personList)
+
     })
   }
 
   deleteclient(client_id, id) {
     const data={client_id:client_id}
     this.apiCall.deleteclient(data).subscribe((res: any) => {
-      console.log(res);
+
       alert('User Deleted Sucessfully')
       this.remove(id);
     })
@@ -86,21 +85,23 @@ else if(this.client_firstname == ""){
 
   getpurchaseDataByDate(data){
     this.apiCall.getpurchaseDataByDate(data).subscribe((res: any) => {
-      console.log(res)
+
       this.personList = res.data;
-      console.log(this.personList)
+
     })
   }
 
   updateclientData(data){
     alert('Ensure you have added SMS balance to client account in SMS Gateway Portal')
     console.log(data)
-    console.log(this.add_balance);
-    const userData={client_id:data.client_id,order_id:data.order_id,add_balance:this.add_balance,payment_status:data.payment_status_code}
+    const userData={client_id:data.client_id,order_id:data.order_id,add_balance:data.add_balance,payment_status:data.payment_status_code}
     this.apiCall.updatePaymentStatus(userData).subscribe((res: any)=>{
     alert('Data updated Sucessfully')
     })
 
   }
+
+
+
 
 }

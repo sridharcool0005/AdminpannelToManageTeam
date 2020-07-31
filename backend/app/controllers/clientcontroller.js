@@ -1,5 +1,6 @@
 var mysql = require('mysql');
-
+var constants = require('../constants/constant');
+var emailservice=require('../routes/mailer')
 
 var db = mysql.createConnection({
     host: 'localhost',
@@ -91,7 +92,7 @@ module.exports.getuserDetails = async function (req, res) {
 
 module.exports.sendSMS = async (req, response) => {
 
-    const { mobile } = req.body;
+    const { mobile,message } = req.body;
     
     var options = {
       "method": "POST",
@@ -99,7 +100,7 @@ module.exports.sendSMS = async (req, response) => {
       "port": null,
       "path": "/api/v2/sendsms",
       "headers": {
-        "authkey": authkey,
+        "authkey": '316115AorUQYTq5e351ea1P1',
         "content-type": "application/json"
       }
     };
@@ -124,9 +125,21 @@ module.exports.sendSMS = async (req, response) => {
       route: '4',
       country: '+91',
       sms:
-        [{ message: "Your account is Activated ", to: [mobile] }
+        [{ message: message, to: [mobile] }
   
         ]
     }));
     req.end();
   }
+
+  module.exports.activationEmail =async (req,res) => {
+      const email = req.body.email;
+      const toEmail = [email];
+      emailservice.ActivationEmail(toEmail, constants.activationEmail).then(sendemail => {
+   res.status(200).send({status:'success',message:'email sent successfully'})
+      }) .catch(err =>{
+          res.status(400).send(err.message)
+      })
+    
+  }
+  

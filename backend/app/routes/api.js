@@ -30,7 +30,8 @@ var APIRoutes = function (passport) {
     router.post('/getpurchaseDetailed',analyticsController.getpurchaseDetailed);
     router.post('/getSalesData', analyticsController.getSalesData);
     router.post('/getpurchaseDataByDate', analyticsController.getpurchaseDataByDate);
-    router.put('/updatePaymentStatus', analyticsController.updatePaymentStatus)
+    router.put('/updatePaymentStatus', analyticsController.updatePaymentStatus);
+    router.post('/activationEmail', ClientController.activationEmail)
 
     // GET Routes.
     router.get('/profile', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.user, UserController.index));

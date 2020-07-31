@@ -88,6 +88,10 @@ export class ApiCallService {
   updatePaymentStatus(data){
     return this.http.put(environment.apiBaseUrl + '/updatePaymentStatus',data);
   }
+
+  sendSMS(data){
+    return this.http.post(environment.apiBaseUrl + '/sendSMS',data);
+  }
   // Helper Methods
 
   setToken(token: string) {

@@ -70,7 +70,7 @@ module.exports.getSalesData = async function (req, res) {
 module.exports.updatePaymentStatus = async function (req, res) {
     const {payment_status,client_id,order_id,add_balance} = req.body;
     console.log(payment_status,order_id,client_id,add_balance)
-    query = "update  clients_payments_history a, clients_sms_credits_history b, smspackage_master c set a.payment_status_code =?, b.sms_credits_quantity = c.package_sms_credits, b.add_balance =? where ((a.client_id =? and a.order_id =?) and (a.client_id=b.client_id and a.order_id = b.order_id) and b.package_id=c.package_id)"
+    query = "update clients_payments_history a, clients_sms_credits_history b, smspackage_master c set a.payment_status_code =?, b.sms_credits_quantity = c.package_sms_credits, b.add_balance =? where ((a.client_id =? and a.order_id =?) and (a.client_id=b.client_id and a.order_id = b.order_id) and b.package_id=c.package_id)"
     await db.query(query,[payment_status,add_balance,client_id,order_id], function (err, result, fields) {
         if (err) throw err;
         res.send({
