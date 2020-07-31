@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 var constants = require('../constants/constant');
-var emailservice=require('../routes/mailer')
+var emailservice=require('../routes/mailer');
+var http= require('http');
 
 var db = mysql.createConnection({
     host: 'localhost',

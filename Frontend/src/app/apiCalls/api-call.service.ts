@@ -92,6 +92,10 @@ export class ApiCallService {
   sendSMS(data){
     return this.http.post(environment.apiBaseUrl + '/sendSMS',data);
   }
+
+  activationEmail(data){
+    return this.http.post(environment.apiBaseUrl + '/activationEmail',data);
+  }
   // Helper Methods
 
   setToken(token: string) {

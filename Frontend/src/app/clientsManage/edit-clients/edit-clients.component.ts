@@ -25,7 +25,8 @@ const data = userData;
 this.apiCall.updateclientData(data).subscribe((res: any) => {
   if(res){
     this.sendSMS();
-    alert(res.message)
+    alert(res.message);
+    this.activationEmail();
     this.router.navigate(['/client/viewclient'])
   }
 
@@ -46,6 +47,13 @@ this.apiCall.updateclientData(data).subscribe((res: any) => {
     const data={mobile:this.userdata[0].user_mobile_number,message:'Your Account is Activated sucessfully'}
 
     this.apiCall.sendSMS(data).subscribe((res: any) =>{
+
+    })
+  }
+
+  activationEmail(){
+    const data={email:this.userdata[0].user_email}
+    this.apiCall.activationEmail(data).subscribe((res: any) =>{
 
     })
   }
