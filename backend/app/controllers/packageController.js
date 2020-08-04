@@ -87,7 +87,7 @@ module.exports.addPackage = async function (req, res) {
 
 
 module.exports.getAllPackages = async function (req, res) {
-    query = "SELECT * FROM smspackage_masters"
+    query = "SELECT * FROM smspackage_master"
     await database.query(query, function (err, result, fields) {
         if (err) throw err;
         res.send({
@@ -104,7 +104,7 @@ module.exports.updatePackage = async function (req, res) {
     const { package_icon, package_name, package_route, package_unit_price, package_sms_credits, package_price, package_validity_in_months, package_details, package_status, package_id } = req.body
     const values = [package_icon, package_name, package_route, package_unit_price, package_sms_credits, package_price, package_validity_in_months, package_details, package_status, package_id];
     console.log(values)
-    const sql = "UPDATE smspackage_masters SET package_icon =?, package_name =?, package_route =?, package_unit_price =?, package_sms_credits =?, package_price =?, package_validity_in_months =?, package_details =?, package_status =? WHERE package_id =?";
+    const sql = "UPDATE smspackage_master SET package_icon =?, package_name =?, package_route =?, package_unit_price =?, package_sms_credits =?, package_price =?, package_validity_in_months =?, package_details =?, package_status =? WHERE package_id =?";
     await database.query(sql, values, function (err, result, fields) {
 
         if (err) throw err;
@@ -119,7 +119,7 @@ module.exports.updatePackage = async function (req, res) {
 module.exports.getPackageDetails = async function (req, res) {
     const package_id =req.body.package_id ;
     console.log(package_id)
-    query = "SELECT * FROM smspackage_masters WHERE package_id =?"
+    query = "SELECT * FROM smspackage_master WHERE package_id =?"
     await database.query(query,[package_id ] ,function (err, result, fields) {
         if (err) throw err;
         res.send({
@@ -133,7 +133,7 @@ module.exports.getPackageDetails = async function (req, res) {
 
 module.exports.deletePackage = (req, res) => {
     const package_id=req.body.package_id;
-    database.query('DELETE FROM `smspackage_masters` WHERE `package_id`=?', 
+    database.query('DELETE FROM `smspackage_master` WHERE `package_id`=?', 
         [package_id], function (error, results, fields) {
             if (error) throw error;
             res.send({

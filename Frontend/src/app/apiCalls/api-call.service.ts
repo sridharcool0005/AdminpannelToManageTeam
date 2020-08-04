@@ -96,6 +96,11 @@ export class ApiCallService {
   activationEmail(data){
     return this.http.post(environment.apiBaseUrl + '/activationEmail',data);
   }
+
+  addnewClient(data){
+    return this.http.post(environment.apiBaseUrl + '/addnewClient',data);
+  }
+
   // Helper Methods
 
   setToken(token: string) {

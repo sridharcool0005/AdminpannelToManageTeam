@@ -8,9 +8,15 @@ button.my-4.btn.btn-info.btn-block {
 }
 
 .medias.text-center.border.border-light.p-5 {
-  width: 50%;
-  margin-left: 25%;
+  width: 65%;
+  margin-left: 20%;
 }
+
+
+
+  label.validation-message{
+    color:#ed5558;
+  }
 @media screen and (max-width: 1060px){
 
   .medias.mymedia.text-center.border.border-light.p-5 {

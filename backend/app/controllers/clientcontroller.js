@@ -2,6 +2,8 @@ var mysql = require('mysql');
 var constants = require('../constants/constant');
 var emailservice=require('../routes/mailer');
 var http= require('http');
+const crypto = require("crypto");
+const request = require('request');
 
 var db = mysql.createConnection({
     host: 'localhost',
@@ -144,3 +146,57 @@ module.exports.sendSMS = async (req, response) => {
     
   }
   
+
+
+  module.exports.addnewClient=async  (req, res) =>{
+
+    const api = 'https://www.nutansms.nutantek.com/clients/addNewClient.php?sales_channel=smsportal';
+    let client_id = crypto.randomBytes(6).toString("hex");
+    let authkey = crypto.randomBytes(8).toString("hex");
+    console.log(client_id,authkey)
+    const options = {
+      url: api,
+      body: {
+        client_id: client_id,
+        client_authkey: authkey,
+        client_firstname: req.body.client_firstname,
+        client_lastname: req.body.client_lastname,
+        client_mobile_number: req.body.client_mobile_number,
+        client_whatsapp_number: req.body.client_whatsapp_number,
+        client_email: req.body.client_email,
+        client_address1: req.body.client_address1,
+        client_address2: req.body.client_address2,
+        client_city: req.body.client_city,
+        client_pincode: req.body.client_pincode,
+        client_postoffice: req.body.client_postoffice,
+        client_district: req.body.client_district,
+        client_state: req.body.client_state,
+        client_company_name: " ",
+        client_country: "",
+        client_industry: " ",
+        // default set to 91.... to update if support opens for other countries
+        client_country_code: " 91",
+        client_website: " ",
+        client_facebook: " ",
+        client_linkedin: " ",
+        client_gst_number: " ",
+        client_smsgateway: "pending"
+      },
+      headers: {
+        'Authorization': 'bh#xg6sf(gs67nsbsf99gsf%nn'
+      },
+      json: true,
+      method: 'POST',
+    }
+    request(options, (err, response, body) => {
+        if (err) {
+            res.json(err)
+          } else {
+            res.json(body)
+    
+          }
+    });
+  
+
+}
+

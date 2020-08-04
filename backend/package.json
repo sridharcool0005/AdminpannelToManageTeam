@@ -38,6 +38,7 @@
     "order-id": "^1.1.0",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
+    "request": "^2.88.2",
     "sequelize": "^3.30.2"
   }
 }
