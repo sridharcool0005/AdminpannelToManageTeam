@@ -1,0 +1,99 @@
+
+
+
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">HelpDesk</h3>
+<form (ngSubmit)="regform.form.valid&&gettickets(regform.form.value)" #regform="ngForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <label>Status:</label><select class="browser-default custom-select">
+          <option selected>select</option>
+          <option value="Opened">Opened</option>
+          <option value="Inprogress">Inprogress</option>
+          <option value="Pending">Pending</option>
+          <option value="Resolved">Resolved</option>
+          <option value="Closed">Closed</option>
+          <option value="All">All</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label>From Date:</label>
+        <input type="date"  name="fromDate" ngModel>
+      </div>
+&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="col-md-2">
+        <label>To Date:</label>
+        <input type="date" name="toDate" ngModel>
+      </div>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="col-md-2 mubutn">
+        <input type="submit" >
+      </div>
+
+      <div class="col-md-4 mubutn">
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<div class="card-body">
+  <div id="table" class="table-editable">
+
+    <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+      <tr style="background-color: darkblue;color:white">
+        <th class="text-center">
+          Date</th>
+        <th class="text-center">
+          Ticket#</th>
+        <th class="text-center">TicketDescription</th>
+        <th class="text-center">Attachment</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Tracking Comments</th>
+        <th class="text-center">Action</th>
+
+      </tr>
+      <tr *ngFor="let person of personList; let id = index">
+        <td>11/12/2020</td>
+
+        <td>
+          125525
+        </td>
+        <td name="name">
+          feedback
+        </td>
+        <td>
+          <img src="assets/img/users.png">
+        </td>
+        <td name="mobile">
+         <select class="browser-default custom-select">
+            <option selected>select</option>
+            <option value="Opened">Opened</option>
+            <option value="Inprogress">Inprogress</option>
+            <option value="Pending">Pending</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Closed">Closed</option>
+            <option value="All">All</option>
+          </select>
+        </td>
+
+        <td>
+      Open issue
+        </td>
+        <a> <span class="material-icons" routerLink="/ViewUsageDetailed"      matTooltip="View Detailed"
+          matTooltipClass="example-tooltip-red"
+          aria-label="Button that shows a red tooltip">
+            visibility
+            </span>
+            </a>
+        <td>
+
+            </td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+</div>

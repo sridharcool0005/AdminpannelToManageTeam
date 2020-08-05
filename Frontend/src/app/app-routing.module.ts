@@ -26,6 +26,9 @@ import { PurchaseAnalysisComponent } from './Analytics/purchase-analysis/purchas
 import { SalesAnalysisComponent } from './Analytics/sales-analysis/sales-analysis.component';
 import { UsageDetailedComponent } from './Analytics/usage-detailed/usage-detailed.component';
 import { PurchaseDetailedComponent } from './Analytics/purchase-detailed/purchase-detailed.component';
+import { HelpdeskComponent } from './helpdesk/helpdesk/helpdesk.component';
+import { ViewhelpdeskComponent } from './helpdesk/viewhelpdesk/viewhelpdesk.component';
+import { UpdateticketComponent } from './helpdesk/updateticket/updateticket.component';
 
 
 const routes: Routes = [{
@@ -65,11 +68,13 @@ const routes: Routes = [{
   {path:'usageAnalysis',component:SalesAnalysisComponent},
 
 ]},
+{path:'helpdesk',component:HelpdeskComponent,children:[
+  {path:'viewhelpdesk',component:ViewhelpdeskComponent},
+  {path:'updateticket',component:UpdateticketComponent}
+]},
 {path:'ViewUsageDetailed', component:UsageDetailedComponent},
 {path:'viewPurchaseDetailed/:package_id/:order_id',component:PurchaseDetailedComponent},
  ],
-
-
 },
 {
   path: 'signup', component: UserComponent,

@@ -38,6 +38,9 @@ import { SalesAnalysisComponent } from './Analytics/sales-analysis/sales-analysi
 import { PurchaseAnalysisComponent } from './Analytics/purchase-analysis/purchase-analysis.component';
 import { UsageDetailedComponent } from './Analytics/usage-detailed/usage-detailed.component';
 import { PurchaseDetailedComponent } from './Analytics/purchase-detailed/purchase-detailed.component';
+import { HelpdeskComponent } from './helpdesk/helpdesk/helpdesk.component';
+import { UpdateticketComponent } from './helpdesk/updateticket/updateticket.component';
+import { ViewhelpdeskComponent } from './helpdesk/viewhelpdesk/viewhelpdesk.component';
 
 
 @NgModule({
@@ -66,6 +69,9 @@ import { PurchaseDetailedComponent } from './Analytics/purchase-detailed/purchas
     PurchaseAnalysisComponent,
     UsageDetailedComponent,
     PurchaseDetailedComponent,
+    HelpdeskComponent,
+    UpdateticketComponent,
+    ViewhelpdeskComponent,
 
 
 
