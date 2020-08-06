@@ -10,6 +10,7 @@ var config = require('../config'),
   const ClientController = require('../controllers/clientController');
   const packageController=require('../controllers/packageController');
   const analyticsController=require('../controllers/analyticsController');
+  const helpdeskController=require('../controllers/helpdeskController');
 
 var APIRoutes = function (passport) {
     // POST Routes.
@@ -33,6 +34,9 @@ var APIRoutes = function (passport) {
     router.put('/updatePaymentStatus', analyticsController.updatePaymentStatus);
     router.post('/activationEmail', ClientController.activationEmail);
     router.post('/addnewClient', ClientController.addnewClient);
+    router.get('/getAllTickets',helpdeskController.getAllTickets);
+    router.put('/updateticketstatus', helpdeskController.updateticketstatus);
+    router.post('/getDataByQuery', helpdeskController.getDataByQuery);
 
     // GET Routes.
     router.get('/profile', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.user, UserController.index));

@@ -3,12 +3,12 @@
 
 <div class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">HelpDesk</h3>
-<form (ngSubmit)="regform.form.valid&&gettickets(regform.form.value)" #regform="ngForm">
+<form (ngSubmit)="regform.form.valid&&getDataByQuery(regform.form.value)" #regform="ngForm">
   <div class="container">
     <div class="row">
       <div class="col-md-2">
-        <label>Status:</label><select class="browser-default custom-select">
-          <option selected>select</option>
+        <label>Status:</label><select class="browser-default custom-select" name="status" ngModel>
+          <option selected value="">select</option>
           <option value="Opened">Opened</option>
           <option value="Inprogress">Inprogress</option>
           <option value="Pending">Pending</option>
@@ -48,28 +48,28 @@
           Date</th>
         <th class="text-center">
           Ticket#</th>
+
         <th class="text-center">TicketDescription</th>
-        <th class="text-center">Attachment</th>
+
         <th class="text-center">Status</th>
         <th class="text-center">Tracking Comments</th>
         <th class="text-center">Action</th>
 
       </tr>
       <tr *ngFor="let person of personList; let id = index">
-        <td>11/12/2020</td>
+        <td>{{person.created_on| date }}</td>
 
         <td>
-          125525
+          {{person.query_id}}
         </td>
-        <td name="name">
-          feedback
-        </td>
+
         <td>
-          <img src="assets/img/users.png">
+        {{person.subject}}
         </td>
-        <td name="mobile">
-         <select class="browser-default custom-select">
-            <option selected>select</option>
+
+        <td >
+         <select class="browser-default custom-select" [(ngModel)]="person.status" name="status">
+            <option selected value="">select</option>
             <option value="Opened">Opened</option>
             <option value="Inprogress">Inprogress</option>
             <option value="Pending">Pending</option>
@@ -80,20 +80,23 @@
         </td>
 
         <td>
-      Open issue
+          <span contenteditable="true">  {{person.message}}</span>
+
         </td>
-        <a> <span class="material-icons" routerLink="/ViewUsageDetailed"      matTooltip="View Detailed"
+        <td>
+        <a>
+
+          <span class="material-icons" (click)="updateticketstatus(person)" matTooltip="View Detailed"
           matTooltipClass="example-tooltip-red"
           aria-label="Button that shows a red tooltip">
-            visibility
+            save
             </span>
-            </a>
-        <td>
 
-            </td>
+            </a>
+          </td>
       </tr>
     </table>
-
+<p *ngIf="message" style="text-align: center">{{message}}</p>
   </div>
 </div>
 </div>

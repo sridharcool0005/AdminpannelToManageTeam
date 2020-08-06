@@ -101,6 +101,18 @@ export class ApiCallService {
     return this.http.post(environment.apiBaseUrl + '/addnewClient',data);
   }
 
+  getAllTickets(){
+    return this.http.get(environment.apiBaseUrl + '/getAllTickets');
+  }
+
+  getDataByQuery(data){
+    return this.http.post(environment.apiBaseUrl + '/getDataByQuery',data);
+  }
+
+  updateticketstatus(data){
+    return this.http.put(environment.apiBaseUrl + '/updateticketstatus',data);
+  }
+
   // Helper Methods
 
   setToken(token: string) {
