@@ -1,0 +1,30 @@
+<button mat-stroked-button color="primary" routerLink="/templates/addTemplates">
+  AddTemplates
+  <span class="material-icons">
+  add
+  </span></button>
+  <button mat-stroked-button color="primary" routerLink="/templates/addTemplateType">
+    AddEvents
+    <span class="material-icons">
+    add
+    </span></button>
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" *ngFor="let item of data">
+      <mat-card class="example-card" [routerLink]="['/templates/viewsystemtemplates/',item.event_code]" >
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{item.display_name}}</mat-card-title>
+
+        </mat-card-header>
+        <img mat-card-image [src]="item.image_filename" >
+        <mat-card-actions>
+          <!-- <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button> -->
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+

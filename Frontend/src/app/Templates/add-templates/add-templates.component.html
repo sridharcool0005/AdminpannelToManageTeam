@@ -1,0 +1,19 @@
+
+
+
+ <button mat-stroked-button color="primary" routerLink="/templates/viewTemplates">Back</button>
+
+<form (ngSubmit)="regform.form.valid&&add(regform.form.value)" #regform="ngForm">
+  <div class="medias mymedia text-center border border-light p-5 ">
+    <img src="assets/img/addsmspack.jpg" width="25%">
+
+    <select class="form-control mb-4"  name="event_code" ngModel>
+      <option selected  value=""> select </option>
+      <option [value]="event.event_code" *ngFor="let event of events">{{event.event_code}}</option>
+
+    </select>
+
+    <textarea class="form-control mb-4" placeholder="message" name="message" ngModel></textarea>
+    <button mdbBtn color="info" block="true" class="my-4" type="submit">Add</button>
+  </div>
+</form>

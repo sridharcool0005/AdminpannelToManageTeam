@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +41,11 @@ import { PurchaseDetailedComponent } from './Analytics/purchase-detailed/purchas
 import { HelpdeskComponent } from './helpdesk/helpdesk/helpdesk.component';
 import { UpdateticketComponent } from './helpdesk/updateticket/updateticket.component';
 import { ViewhelpdeskComponent } from './helpdesk/viewhelpdesk/viewhelpdesk.component';
+import { ViewtemplatesComponent } from './Templates/viewtemplates/viewtemplates.component';
+import { AddTemplatesComponent } from './Templates/add-templates/add-templates.component';
+import { AddtemplateTypeComponent } from './Templates/addtemplate-type/addtemplate-type.component';
+import { TemplatesComponent } from './Templates/templates/templates.component';
+import { ViewsystemtemplatesComponent } from './Templates/viewsystemtemplates/viewsystemtemplates.component';
 
 
 @NgModule({
@@ -72,6 +77,11 @@ import { ViewhelpdeskComponent } from './helpdesk/viewhelpdesk/viewhelpdesk.comp
     HelpdeskComponent,
     UpdateticketComponent,
     ViewhelpdeskComponent,
+    ViewtemplatesComponent,
+    AddTemplatesComponent,
+    AddtemplateTypeComponent,
+    TemplatesComponent,
+    ViewsystemtemplatesComponent,
 
 
 
@@ -82,7 +92,7 @@ import { ViewhelpdeskComponent } from './helpdesk/viewhelpdesk/viewhelpdesk.comp
     BrowserAnimationsModule,
     DefaultModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule,ReactiveFormsModule,
     MatDividerModule,
     MatToolbarModule,
     MatIconModule,

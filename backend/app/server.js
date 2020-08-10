@@ -33,14 +33,19 @@ hookJWTStrategy(passport);
 
 // Set the static files location.
 app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/'))
 
 // Bundle API routes.
 app.use('/api', require('./routes/api')(passport));
+app.use('/api', require('./routes/templateRoute'));
+
+
 
 // Catch all route.
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname + '/../public/app/views/index.html'));
 });
+
 
 // Start the server.
 app.listen('8080', function() {

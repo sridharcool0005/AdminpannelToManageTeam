@@ -1,0 +1,18 @@
+
+
+ <button mat-stroked-button color="primary" routerLink="/templates/viewTemplates">Back</button>
+
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="medias mymedia text-center border border-light p-5 " >
+      <img src="assets/img/addsmspack.jpg" width="25%">
+
+        <input type="text"  class="form-control mb-4" placeholder="Event Name" formControlName="event_code" >
+        <input type="text"  class="form-control mb-4" placeholder="DisplayName" formControlName="display_name"  >
+       <input type="file"   class="form-control mb-4" (change)="uploadFile($event)">
+
+
+      <button mdbBtn color="info" block="true"  class="my-4" type="submit">Add</button>
+  </div>
+  </form>
+
+

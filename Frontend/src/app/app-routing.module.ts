@@ -29,6 +29,11 @@ import { PurchaseDetailedComponent } from './Analytics/purchase-detailed/purchas
 import { HelpdeskComponent } from './helpdesk/helpdesk/helpdesk.component';
 import { ViewhelpdeskComponent } from './helpdesk/viewhelpdesk/viewhelpdesk.component';
 import { UpdateticketComponent } from './helpdesk/updateticket/updateticket.component';
+import { TemplatesComponent } from './Templates/templates/templates.component';
+import { ViewtemplatesComponent } from './Templates/viewtemplates/viewtemplates.component';
+import { AddTemplatesComponent } from './Templates/add-templates/add-templates.component';
+import { AddtemplateTypeComponent } from './Templates/addtemplate-type/addtemplate-type.component';
+import { ViewsystemtemplatesComponent } from './Templates/viewsystemtemplates/viewsystemtemplates.component';
 
 
 const routes: Routes = [{
@@ -72,6 +77,15 @@ const routes: Routes = [{
   {path:'viewhelpdesk',component:ViewhelpdeskComponent},
   {path:'updateticket',component:UpdateticketComponent}
 ]},
+{
+path:'templates',component:TemplatesComponent,children:[
+  {path:'viewTemplates',component:ViewtemplatesComponent},
+  {path:'addTemplateType',component:AddtemplateTypeComponent},
+  {path:'addTemplates', component:AddTemplatesComponent},
+{path:'viewsystemtemplates/:event_code',component:ViewsystemtemplatesComponent}
+]
+},
+
 {path:'ViewUsageDetailed', component:UsageDetailedComponent},
 {path:'viewPurchaseDetailed/:package_id/:order_id',component:PurchaseDetailedComponent},
  ],

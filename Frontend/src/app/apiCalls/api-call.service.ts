@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -113,6 +114,32 @@ export class ApiCallService {
     return this.http.put(environment.apiBaseUrl + '/updateticketstatus',data);
   }
 
+  addtemplateType(event_code: string,display_name:string, profileImage: File): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('event_code', event_code);
+    formData.append('avatar', profileImage);
+    formData.append('display_name', display_name);
+
+    return this.http.post<User>(environment.apiBaseUrl +  '/addTemplateType', formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
+
+  addnewTemplate(data){
+    return this.http.post(environment.apiBaseUrl + '/addnewTemplate',data);
+  }
+  getAllTemplateTypes(){
+    return this.http.get(environment.apiBaseUrl + '/getAllTemplateTypes');
+  }
+
+  getevents(){
+    return this.http.get(environment.apiBaseUrl + '/getevents');
+  }
+
+  getsmsTemplates(data){
+    return this.http.post(environment.apiBaseUrl + '/getsmsTemplates',data);
+  }
   // Helper Methods
 
   setToken(token: string) {
