@@ -8,7 +8,7 @@
     <img src="assets/img/addsmspack.jpg" width="25%">
 
     <select class="form-control mb-4"  name="event_code" ngModel>
-      <option selected  value=""> select </option>
+      <option selected  value=""> Select Event </option>
       <option [value]="event.event_code" *ngFor="let event of events">{{event.event_code}}</option>
 
     </select>

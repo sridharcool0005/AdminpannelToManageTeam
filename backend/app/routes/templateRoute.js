@@ -4,7 +4,7 @@ let express = require('express'),
   const fs = require("fs")
   var mysql = require('mysql');
 // Multer File upload settings
-const DIR = './myfolder/';
+const DIR = './myfolder';
 if (!fs.existsSync(DIR)){
     fs.mkdirSync(DIR);
 }
@@ -43,7 +43,7 @@ router.post('/addTemplateType', upload.single('avatar'), (req, res, next) => {
     console.log(event_code,display_name)
   const url = req.protocol + '://' + req.get('host')
 
-   const  image_filename=url+'/myfolder/' + req.file.filename
+   const  image_filename=url+'/' + req.file.filename
    console.log(image_filename)
    
   

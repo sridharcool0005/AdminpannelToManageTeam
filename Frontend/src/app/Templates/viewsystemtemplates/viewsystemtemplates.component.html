@@ -1,1 +1,47 @@
-<p>viewsystemtemplates works!</p>
+<button mat-raised-button color="primary" routerLink="/templates/viewTemplates">Go Back</button>
+
+
+<h4 class="text-center ">choose your Templates</h4>
+
+<!--
+
+<div class="container">
+  <div class="row">
+    <div class="col md-3">
+    <ng-container   *ngFor="let templateItem of categoryArr">
+        <button type="button" class="btn btn-dark-blue btn-md" (click)="selectTemplate(templateItem)">{{templateItem.template}}</button>
+    </ng-container>
+  </div>
+    </div>
+
+  </div> -->
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <ng-container *ngFor="let templateItem of message">
+    <div class="col-md-4">
+      <div class="card-deck">
+
+          <div class="card mb-4">
+
+            <div class="card-body">
+
+              <!--Text-->
+              <h5 class="card-text">{{templateItem.message}}</h5>
+              <!-- <button type="button" class="btn purple-gradient" >Select</button> -->
+
+            </div>
+
+          </div>
+
+
+      </div>
+    </div>
+  </ng-container>
+
+  </div>
+</div>
