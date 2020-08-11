@@ -34,6 +34,9 @@ import { ViewtemplatesComponent } from './Templates/viewtemplates/viewtemplates.
 import { AddTemplatesComponent } from './Templates/add-templates/add-templates.component';
 import { AddtemplateTypeComponent } from './Templates/addtemplate-type/addtemplate-type.component';
 import { ViewsystemtemplatesComponent } from './Templates/viewsystemtemplates/viewsystemtemplates.component';
+import { CardsComponent } from './cards/cards/cards.component';
+import { ViewcardsComponent } from './cards/viewcards/viewcards.component';
+import { UploadcardsComponent } from './cards/uploadcards/uploadcards.component';
 
 
 const routes: Routes = [{
@@ -86,6 +89,10 @@ path:'templates',component:TemplatesComponent,children:[
 ]
 },
 
+{path:'card', component:CardsComponent,children:[
+  {path:'viewcards', component:ViewcardsComponent},
+  {path:'uploadcards',component:UploadcardsComponent}
+]},
 {path:'ViewUsageDetailed', component:UsageDetailedComponent},
 {path:'viewPurchaseDetailed/:package_id/:order_id',component:PurchaseDetailedComponent},
  ],

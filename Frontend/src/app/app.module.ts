@@ -46,6 +46,9 @@ import { AddTemplatesComponent } from './Templates/add-templates/add-templates.c
 import { AddtemplateTypeComponent } from './Templates/addtemplate-type/addtemplate-type.component';
 import { TemplatesComponent } from './Templates/templates/templates.component';
 import { ViewsystemtemplatesComponent } from './Templates/viewsystemtemplates/viewsystemtemplates.component';
+import { ViewcardsComponent } from './cards/viewcards/viewcards.component';
+import { UploadcardsComponent } from './cards/uploadcards/uploadcards.component';
+import { CardsComponent } from './cards/cards/cards.component';
 
 
 @NgModule({
@@ -82,6 +85,9 @@ import { ViewsystemtemplatesComponent } from './Templates/viewsystemtemplates/vi
     AddtemplateTypeComponent,
     TemplatesComponent,
     ViewsystemtemplatesComponent,
+    ViewcardsComponent,
+    UploadcardsComponent,
+    CardsComponent,
 
 
 

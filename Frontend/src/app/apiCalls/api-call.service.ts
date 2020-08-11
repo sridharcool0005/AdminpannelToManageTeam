@@ -140,6 +140,26 @@ export class ApiCallService {
   getsmsTemplates(data){
     return this.http.post(environment.apiBaseUrl + '/getsmsTemplates',data);
   }
+
+  uploadtemplates(data){
+    return this.http.post(environment.apiBaseUrl + '/uploadtemplates',data)
+  }
+
+
+
+  uploadCards(title: string, profileImage: File): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('title', title);
+    formData.append('avatar', profileImage);
+    return this.http.post<User>(environment.apiBaseUrl +  '/uploadcard', formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
+
+  getAllCards(){
+    return this.http.get(environment.apiBaseUrl + '/getAllCards');
+  }
   // Helper Methods
 
   setToken(token: string) {

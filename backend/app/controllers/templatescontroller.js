@@ -71,3 +71,34 @@ var database = mysql.createConnection({
             });
         });
     }
+
+
+    module.exports.uploadtemplates = async (req, res) => {
+       
+        const { data } = req.body;
+     
+        var promiseSaveArr = [];
+        if (Array.isArray(data)) {
+          data.forEach(obj => {
+            // create excel model
+            db.sync().then(function () {
+                var newTemplate = {
+                    event_code: obj.event_code,
+                    message: obj.message,
+                    tid :obj.tid 
+                };
+            // save one obj
+            promiseSaveArr.push(templateModel.create(newTemplate))
+          });
+        });
+        }
+
+        return await Promise.all(promiseSaveArr).then(result => {
+          res.status(200).send({ success: true, message: 'Data imported  sucessfully' });
+        }).catch((err) => {
+          console.log('err in templateservice ', err);
+          res.status(400).send({ success: false, message: err.message })
+        });
+      
+      };
+      

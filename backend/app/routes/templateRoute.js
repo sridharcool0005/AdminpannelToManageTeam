@@ -69,6 +69,7 @@ const templatescontroller= require('../controllers/templatescontroller')
 router.get('/getevents', templatescontroller.geteventCodes);
 router.get('/getAllTemplateTypes', templatescontroller.getAllTemplateTypes);
 router.post('/addnewTemplate', templatescontroller.addnewTemplate);
-router.post('/getsmsTemplates', templatescontroller.getsmsTemplates)
+router.post('/getsmsTemplates', templatescontroller.getsmsTemplates);
+router.post('/uploadtemplates', templatescontroller.uploadtemplates)
 
 module.exports = router;
