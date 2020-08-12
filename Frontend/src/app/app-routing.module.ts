@@ -37,6 +37,7 @@ import { ViewsystemtemplatesComponent } from './Templates/viewsystemtemplates/vi
 import { CardsComponent } from './cards/cards/cards.component';
 import { ViewcardsComponent } from './cards/viewcards/viewcards.component';
 import { UploadcardsComponent } from './cards/uploadcards/uploadcards.component';
+import { UploaddigprofileComponent } from './cards/uploaddigprofile/uploaddigprofile.component';
 
 
 const routes: Routes = [{
@@ -91,8 +92,10 @@ path:'templates',component:TemplatesComponent,children:[
 
 {path:'card', component:CardsComponent,children:[
   {path:'viewcards', component:ViewcardsComponent},
-  {path:'uploadcards',component:UploadcardsComponent}
+  {path:'uploadcards',component:UploadcardsComponent},
+  {path:'uploaddigiProfiles',component:UploaddigprofileComponent}
 ]},
+
 {path:'ViewUsageDetailed', component:UsageDetailedComponent},
 {path:'viewPurchaseDetailed/:package_id/:order_id',component:PurchaseDetailedComponent},
  ],

@@ -49,6 +49,7 @@ import { ViewsystemtemplatesComponent } from './Templates/viewsystemtemplates/vi
 import { ViewcardsComponent } from './cards/viewcards/viewcards.component';
 import { UploadcardsComponent } from './cards/uploadcards/uploadcards.component';
 import { CardsComponent } from './cards/cards/cards.component';
+import { UploaddigprofileComponent } from './cards/uploaddigprofile/uploaddigprofile.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { CardsComponent } from './cards/cards/cards.component';
     ViewcardsComponent,
     UploadcardsComponent,
     CardsComponent,
+    UploaddigprofileComponent,
 
 
 

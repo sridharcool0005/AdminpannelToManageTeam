@@ -4,13 +4,13 @@ router = express.Router();
 const fs = require("fs")
 var mysql = require('mysql');
 // Multer File upload settings
-const DIR = './cards';
+const DIR = './digitalprofiles';
 if (!fs.existsSync(DIR)) {
     fs.mkdirSync(DIR);
 }
 
 const crypto = require("crypto");
-const templateModel = require('../models/cardsModel');
+const templateModel = require('../models/digiprofileModel');
 const db = require('../services/database')
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -38,18 +38,17 @@ var upload = multer({
     // }
 });
 
-router.post('/uploadcard', upload.single('avatar'), (req, res, next) => {
-    const { title } = req.body;
-    const tid  = crypto.randomBytes(3).toString("hex");
+router.post('/uploaddcprofile', upload.single('avatar'), (req, res, next) => {
+    const { title,category } = req.body;
+    const image_id  = crypto.randomBytes(3).toString("hex");
     const url = req.protocol + '://' + req.get('host');
     const image_filename = url + '/' + req.file.filename
-    console.log(image_filename);
-
     db.sync().then(function () {
         var newTemplate = {
-            tid:tid,
-            title: title,
+            image_id:image_id,
+            image_title: title,
             image_filename: image_filename,
+            image_category: category
         };
 
         return templateModel.create(newTemplate).then(function () {

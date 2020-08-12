@@ -4,17 +4,17 @@ import { FormBuilder,FormGroup ,Validators} from '@angular/forms';
 import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-uploadcards',
-  templateUrl: './uploadcards.component.html',
-  styleUrls: ['./uploadcards.component.scss']
+  selector: 'app-uploaddigprofile',
+  templateUrl: './uploaddigprofile.component.html',
+  styleUrls: ['./uploaddigprofile.component.scss']
 })
-export class UploadcardsComponent implements OnInit {
+export class UploaddigprofileComponent implements OnInit {
 
   preview: string;
   form: FormGroup;
   percentDone: any = 0;
   users = [];
-  category='C';
+  category='P'
   constructor(private apiCall: ApiCallService,
     public fb: FormBuilder,
     public router: Router,) {
@@ -52,7 +52,7 @@ export class UploadcardsComponent implements OnInit {
       this.apiCall.uploaddigitalprofile(
         this.form.value.title,
         this.form.value.avatar,
-       this.category
+        this.category
       ).subscribe((event: HttpEvent<any>) => {
         switch (event.type) {
           case HttpEventType.Sent:

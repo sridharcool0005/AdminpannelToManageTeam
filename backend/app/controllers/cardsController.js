@@ -14,7 +14,7 @@ var database = mysql.createConnection({
 
 
 module.exports.getAllCards = async function (req, res) {
-    query = "SELECT * FROM cards"
+    query = "SELECT * FROM dc_sample_images"
     await database.query(query, function (err, result, fields) {
         if (err) throw err;
         res.send({
@@ -24,3 +24,4 @@ module.exports.getAllCards = async function (req, res) {
         });
     });
 }
+

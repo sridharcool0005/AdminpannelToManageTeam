@@ -147,18 +147,19 @@ export class ApiCallService {
 
 
 
-  uploadCards(title: string, profileImage: File): Observable<any> {
+  getAllCards(){
+    return this.http.get(environment.apiBaseUrl + '/getAllCards');
+  }
+
+  uploaddigitalprofile(title: string, profileImage: File,category:string): Observable<any> {
     const formData: any = new FormData();
     formData.append('title', title);
     formData.append('avatar', profileImage);
-    return this.http.post<User>(environment.apiBaseUrl +  '/uploadcard', formData, {
+    formData.append('category', category);
+    return this.http.post<User>(environment.apiBaseUrl +  '/uploaddcprofile', formData, {
       reportProgress: true,
       observe: 'events'
     });
-  }
-
-  getAllCards(){
-    return this.http.get(environment.apiBaseUrl + '/getAllCards');
   }
   // Helper Methods
 

@@ -7,13 +7,13 @@ var Sequelize = require('sequelize'),
 
 // 1: The model schema.
 var modelDefinition = {
-    tid: {
+    image_id: {
         type: Sequelize.STRING,
         unique: true,
         allowNull: false
     },
 
-    title: {
+    image_title: {
         type: Sequelize.STRING,
         allowNull: true
     },
@@ -22,10 +22,14 @@ var modelDefinition = {
         type: Sequelize.STRING,
         allowNull: true
     },
+    image_category: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
 };
 
 
 // 3: Define the User model.
-var packageModel = db.define('cards', modelDefinition);
+var digitalprofileModel = db.define('dc_sample_images', modelDefinition);
 
-module.exports = packageModel;
+module.exports = digitalprofileModel;
