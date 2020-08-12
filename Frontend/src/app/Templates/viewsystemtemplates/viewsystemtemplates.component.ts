@@ -24,4 +24,17 @@ export class ViewsystemtemplatesComponent implements OnInit {
       console.log(res)
     })
   }
+
+  delete(id){
+    let isBoss = confirm("Are you sure to delete?");
+    if(isBoss==true){
+      const data={tid:id}
+      this.apiCall.deletetemplate(data).subscribe((res: any)=>{
+        alert(res.message);
+        this.getsmsTemplates();
+      })
+    }
+
+
+  }
 }

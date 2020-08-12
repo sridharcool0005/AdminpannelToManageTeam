@@ -1,7 +1,8 @@
 <button mat-raised-button color="primary" routerLink="/templates/viewTemplates">Go Back</button>
 
 
-<h4 class="text-center ">choose your Templates</h4>
+<h4 class="text-center " style="color: darkblue">choose your Templates</h4>
+<br>
 
 <!--
 
@@ -33,9 +34,10 @@
               <!--Text-->
               <h5 class="card-text">{{templateItem.message}}</h5>
               <!-- <button type="button" class="btn purple-gradient" >Select</button> -->
+              <br>
               <mat-card-actions>
-                <!-- <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button> -->
+                <button mat-raised-button  color="warn" (click)="delete(templateItem.tid)">Delete</button>
+                <!-- <button mat-button>SHARE</button>  -->
               </mat-card-actions>
             </div>
 

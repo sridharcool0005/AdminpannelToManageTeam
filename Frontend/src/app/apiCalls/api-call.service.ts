@@ -161,6 +161,10 @@ export class ApiCallService {
       observe: 'events'
     });
   }
+
+  deletetemplate(data){
+    return this.http.post(environment.apiBaseUrl + '/deletetemplate',data)
+  }
   // Helper Methods
 
   setToken(token: string) {

@@ -102,3 +102,17 @@ var database = mysql.createConnection({
       
       };
       
+
+      module.exports.deletetemplate = (req, res) => {
+        const tid=req.body.tid;
+        database.query('DELETE FROM `system_templates` WHERE `tid`=?', 
+            [tid], function (error, results, fields) {
+                if (error) throw error;
+                res.send({
+                    code: 200,
+                    status:'success',
+                    message: "template deleted Sucessfully",
+                });
+        });
+    };
+    

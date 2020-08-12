@@ -70,6 +70,8 @@ router.get('/getevents', templatescontroller.geteventCodes);
 router.get('/getAllTemplateTypes', templatescontroller.getAllTemplateTypes);
 router.post('/addnewTemplate', templatescontroller.addnewTemplate);
 router.post('/getsmsTemplates', templatescontroller.getsmsTemplates);
-router.post('/uploadtemplates', templatescontroller.uploadtemplates)
+router.post('/uploadtemplates', templatescontroller.uploadtemplates);
+router.post('/deletetemplate', templatescontroller.deletetemplate);
+
 
 module.exports = router;
