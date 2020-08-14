@@ -46,7 +46,7 @@ module.exports.createCard = async function (req, res) {
         150, 200,
         (err, image, { x, y }) => {
 
-            image.print(font2, x, y + 150, address, 200);
+            image.print(font2, 30,20+ 200, address, 400,400);
         }
     );
 
@@ -63,7 +63,7 @@ module.exports.createCard = async function (req, res) {
         image.composite(watermark, 50, 50, {
             mode: Jimp.BLEND_SOURCE_OVER,
             opacityDest: 1,
-            opacitySource: 1,
+            opacitySource: 2,
 
         })
 
