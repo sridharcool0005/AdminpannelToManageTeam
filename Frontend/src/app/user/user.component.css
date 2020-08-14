@@ -398,3 +398,7 @@ td.text-center {
 td.text-right {
   text-align: right;
 }
+
+.wrapper {
+  background-image: url("/assets/img/business.png");
+}

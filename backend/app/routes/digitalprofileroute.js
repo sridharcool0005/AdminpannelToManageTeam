@@ -64,6 +64,7 @@ router.post('/uploaddcprofile', upload.single('avatar'), (req, res, next) => {
 const cardsController= require('../controllers/cardsController')
 
 router.get('/getAllCards', cardsController.getAllCards);
+router.post('/createCard', cardsController.createCard);
 
 
 

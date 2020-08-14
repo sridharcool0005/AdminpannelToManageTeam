@@ -9,7 +9,6 @@ var Sequelize = require('sequelize'),
 var modelDefinition = {
     image_id: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false
     },
 
