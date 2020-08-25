@@ -2,7 +2,13 @@
   <img src="/assets/img/users.png" id="icon" alt="User Icon" />
 </div>
 <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
-  <input type="text" #MobileNumber="ngModel" [(ngModel)]="userService.selectedUser.mobile_number" name="mobile_number" placeholder="MobileNumber"
+  <input type="text" #username="ngModel" [(ngModel)]="userService.selectedUser.user_name" name="user_name" placeholder="User Name"
+  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !username.valid }">
+  <div *ngIf="signUpForm.submitted && !username.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+
+  <input type="text" #MobileNumber="ngModel" [(ngModel)]="userService.selectedUser.mobile_number" pattern="[789][0-9]{9}" maxlength="10" name="mobile_number" placeholder="MobileNumber"
   required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !MobileNumber.valid }">
   <div *ngIf="signUpForm.submitted && !MobileNumber.valid">
     <label class="validation-message">This field is required.</label>

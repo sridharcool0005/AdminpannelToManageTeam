@@ -38,6 +38,9 @@ import { CardsComponent } from './cards/cards/cards.component';
 import { ViewcardsComponent } from './cards/viewcards/viewcards.component';
 import { UploadcardsComponent } from './cards/uploadcards/uploadcards.component';
 import { UploaddigprofileComponent } from './cards/uploaddigprofile/uploaddigprofile.component';
+import { BulkprofileCreateComponent } from './clientsManage/bulkprofile-create/bulkprofile-create.component';
+import { ApkuploadsComponent } from './apkupload/apkuploads/apkuploads.component';
+import { ViewapksComponent } from './apkupload/viewapks/viewapks.component';
 
 
 const routes: Routes = [{
@@ -57,7 +60,8 @@ const routes: Routes = [{
   {path:'addclient',component:AddClientsComponent},
   {path:'editclient/:client_id',component:EditClientsComponent},
   {path:'viewclient',component:ViewclientsComponent},
-  {path:'viewDetail/:client_id',component:ViewDetailComponent}
+  {path:'viewDetail/:client_id',component:ViewDetailComponent},
+  {path:'createprofile', component:BulkprofileCreateComponent}
 ]},
 {path:'user',component:UserManageComponent,children:[
   {path:'adduser',component:AddUsersComponent},
@@ -95,6 +99,8 @@ path:'templates',component:TemplatesComponent,children:[
   {path:'uploadcards',component:UploadcardsComponent},
   {path:'uploaddigiProfiles',component:UploaddigprofileComponent}
 ]},
+{path:'apkUpload',component:ApkuploadsComponent},
+{path:'viewapklist',component:ViewapksComponent},
 
 {path:'ViewUsageDetailed', component:UsageDetailedComponent},
 {path:'viewPurchaseDetailed/:package_id/:order_id',component:PurchaseDetailedComponent},

@@ -7,8 +7,16 @@
           <input  type="text" [(ngModel)]="client_firstname" placeholder=" Search By Name"
             aria-label="Search" (input)="search()" >
 
+       &nbsp; <button mat-stroked-button color="primary" routerLink="/client/createprofile">
+        Bulkprofile Create
+          <span class="material-icons">
+            add
+          </span></button>
+
       </div>
       <div class="col-md-4 mubutn">
+
+
         <button mat-stroked-button color="primary" routerLink="/client/addclient">
           Add
           <span class="material-icons">

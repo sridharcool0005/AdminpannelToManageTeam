@@ -10,7 +10,8 @@ export class ApiCallService {
   selectedUser: User = {
     mobile_number: '',
     email_id: '',
-    password: ''
+    password: '',
+    user_name:''
   };
 
   noAuthHeader = { headers: new HttpHeaders({ NoAuth: 'True' }) };
@@ -162,9 +163,33 @@ export class ApiCallService {
     });
   }
 
+  uploadapk(title: string, profileImage: File): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('title', title);
+    formData.append('avatar', profileImage);
+
+    return this.http.post<User>(environment.apiBaseUrl +  '/uploadapk', formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
+
   deletetemplate(data){
     return this.http.post(environment.apiBaseUrl + '/deletetemplate',data)
   }
+
+  createbulkcontacts(data){
+    return this.http.post(environment.apiBaseUrl + '/createbulkprofiles',data)
+  }
+
+  getallapkslist(){
+    return this.http.get(environment.apiBaseUrl + '/getallapkslist')
+  }
+
+  deleteapk(data){
+    return this.http.post(environment.apiBaseUrl + '/deleteapk',data)
+  }
+
   // Helper Methods
 
   setToken(token: string) {

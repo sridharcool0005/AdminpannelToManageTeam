@@ -34,16 +34,20 @@ hookJWTStrategy(passport);
 // Set the static files location.
 app.use(express.static(__dirname + '/../public'));
 app.use(express.static(__dirname + '/../myfolder'))
-app.use(express.static(__dirname + '/../digitalprofiles'))
+app.use(express.static(__dirname + '/../digitalprofiles'));
+app.use(express.static(__dirname + '/../dist'));
+app.use(express.static(__dirname + '/../apkuploads'));
 // Bundle API routes.
 app.use('/api', require('./routes/api')(passport));
 app.use('/api', require('./routes/templateRoute'));
 app.use('/api', require('./routes/digitalprofileroute'));
-
-
+app.use('/api', require('./routes/apkroute'));
 // Catch all route.
+// app.get('*', function(req, res) {
+//     res.sendFile(path.join(__dirname + '/../public/app/views/index.html'));
+// });
 app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/../public/app/views/index.html'));
+    res.sendFile(path.join(__dirname + '/../dist/index.html'));
 });
 
 

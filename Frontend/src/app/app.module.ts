@@ -50,6 +50,9 @@ import { ViewcardsComponent } from './cards/viewcards/viewcards.component';
 import { UploadcardsComponent } from './cards/uploadcards/uploadcards.component';
 import { CardsComponent } from './cards/cards/cards.component';
 import { UploaddigprofileComponent } from './cards/uploaddigprofile/uploaddigprofile.component';
+import { BulkprofileCreateComponent } from './clientsManage/bulkprofile-create/bulkprofile-create.component';
+import { ApkuploadsComponent } from './apkupload/apkuploads/apkuploads.component';
+import { ViewapksComponent } from './apkupload/viewapks/viewapks.component';
 
 
 @NgModule({
@@ -90,6 +93,9 @@ import { UploaddigprofileComponent } from './cards/uploaddigprofile/uploaddigpro
     UploadcardsComponent,
     CardsComponent,
     UploaddigprofileComponent,
+    BulkprofileCreateComponent,
+    ApkuploadsComponent,
+    ViewapksComponent,
 
 
 

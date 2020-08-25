@@ -1,0 +1,20 @@
+
+<h3>Create Profiles from XL-File</h3>
+<div class="medias mymedia text-center border border-light p-5 " >
+
+ <form (ngSubmit)="regform.form.valid&&importdata(regform.form.value)" #regform="ngForm">
+
+       <img src="assets/img/groupicon.png" width="25%">
+
+
+        <input type="file" (change)="onFileChange($event)"   class="form-control mb-4" >
+
+       <button mdbBtn color="info" block="true"  class="my-4" type="submit">Import</button>
+
+   </form>
+
+
+   <a href="assets/xl/testdata.xlsx"><button mat-button color="primary">Download sample </button></a>
+
+
+  </div>

@@ -22,7 +22,8 @@ AuthController.signUp = function(req, res) {
                 user_id:user_id,
                 email_id: req.body.email_id,
                 password: req.body.password,
-                mobile_number:req.body.mobile_number
+                mobile_number:req.body.mobile_number,
+                user_name: req.body.user_name
                 
             };
 

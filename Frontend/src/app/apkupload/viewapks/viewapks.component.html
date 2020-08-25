@@ -1,0 +1,33 @@
+
+ <button mat-raised-button color="primary" routerLink="/apkUpload">UploadApk</button><br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let el of apkdata">
+
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{el.title}}</mat-card-title>
+          <mat-card-subtitle>apk_id:&nbsp;{{el.apk_id}}</mat-card-subtitle>
+
+
+        </mat-card-header>
+        <img mat-card-image src="assets/img/apkicon.jpg" >
+        <mat-card-content>
+          apk_filename:&nbsp;{{el.apk_filename}}<br>
+          <p>
+            createdAt: &nbsp;{{el.createdAt|date}}
+
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+         <a href="{{el.apk_filename}}"> <button mat-button >Download</button></a>
+         <a><button mat-button (click)="deleteapk(el.apk_id)">Delete</button></a>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+  </div>
+</div>
+
+<h6>{{message}}</h6>
