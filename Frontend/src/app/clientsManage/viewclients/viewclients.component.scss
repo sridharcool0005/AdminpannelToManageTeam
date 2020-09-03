@@ -26,5 +26,20 @@ img.xlicon {
 
 input {
   margin-top: 7%;
+  width: 30%;
 }
 
+select.browser-default.custom-select.filter {
+  width: 25%;
+  margin-left: 1%;
+}
+
+
+
+button.mat-stroked-button.mat-button-base.mat-primary {
+  margin-left: 1%;
+}
+h6.errorMessage.ng-star-inserted {
+  text-align: center;
+  color: red;
+}

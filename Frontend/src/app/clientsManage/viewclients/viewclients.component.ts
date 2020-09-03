@@ -8,12 +8,14 @@ import { clients } from 'src/app/dataModel/clentModel';
   styleUrls: ['./viewclients.component.scss']
 })
 export class ViewclientsComponent implements OnInit {
-  personList:clients[]=[];
+  personList;
   editField: string;
   client_firstname:string;
 
   awaitingPersonList: Array<any> = [];
   clientsdata: any;
+  accountStatus:any;
+  errorMessage: any;
 
   constructor(private apiCall: ApiCallService,private excelservice: ExcelService) { }
 
@@ -78,7 +80,31 @@ else if(this.client_firstname == ""){
 
   this.ngOnInit();
 }
+  }
 
 
+  updatestatus(person){
+
+    const data={account_status:person.account_status,client_id:person.client_id,user_regn_channel:person.user_regn_channel}
+    console.log(data)
+
+    this.apiCall.updateclientStatus(data).subscribe((res: any)=>{
+      if(res.status=='true'){
+        alert(res.message)
+      }
+
+    })
+  }
+
+
+  getclientsbyfilter(value){
+    console.log(value)
+    const data={account_status:value}
+    this.apiCall.getclientsbyfilter(data).subscribe((res: any)=>{
+      this.personList = res.data;
+      if(res.status=="false"){
+        this.errorMessage=res.message
+      }
+    })
   }
 }

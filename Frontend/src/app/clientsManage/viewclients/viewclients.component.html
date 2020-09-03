@@ -1,3 +1,7 @@
+
+
+
+
 <div class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">View Clients</h3>
   <div class="container">
@@ -6,15 +10,22 @@
 
           <input  type="text" [(ngModel)]="client_firstname" placeholder=" Search By Name"
             aria-label="Search" (input)="search()" >
-
-       &nbsp; <button mat-stroked-button color="primary" routerLink="/client/createprofile">
+<button mat-stroked-button color="primary" routerLink="/client/createprofile">
         Bulkprofile Create
           <span class="material-icons">
             add
           </span></button>
 
+          <select class="browser-default custom-select filter" (change)="getclientsbyfilter($event.target.value)">
+            <option selected value="">select</option>
+            <option value="review" >Review</option>
+            <option value="active">Active</option>
+            <option value="pending">Pending</option>
+            <option value="disable">Disable</option>
+          </select>
       </div>
       <div class="col-md-4 mubutn">
+
 
 
         <button mat-stroked-button color="primary" routerLink="/client/addclient">
@@ -37,13 +48,12 @@
           <th class="text-center">
             FullName</th>
           <th class="text-center">Mobile</th>
-          <th class="text-center">Email</th>
-          <th class="text-center">City</th>
-          <th colspan="3" class="text-center">Action
+          <th class="text-center">Status</th>
+          <th colspan="4" class="text-center">Action
           </th>
 
         </tr>
-        <tr *ngFor="let person of personList; let id = index">
+        <tr *ngFor="let person of personList; let id = index " #loaded>
           <td>
             {{person.client_id}}
           </td>
@@ -51,14 +61,27 @@
             {{person.client_firstname}}{{person.client_lastname}}
           </td>
           <td name="name">
-            {{person.client_mobile_number}}
+            {{person.user_mobile_number}}
           </td>
           <td name="mobile">
-            {{person.client_email}}
+            <select class="browser-default custom-select" [(ngModel)]="person.account_status" name="account_status">
+              <option selected value="">select</option>
+              <option value="review"  [disabled]="person.account_status=='active'">Review</option>
+              <option value="active"  [disabled]="person.account_status=='active'">Active</option>
+              <option value="pending" [disabled]="person.account_status=='active'">Pending</option>
+              <option value="disable" [disabled]="person.account_status=='active'">Disable</option>
+            </select>
           </td>
-          <td name="mobile">
-            {{person.client_city}}
-          </td>
+
+          <td>
+            <a>
+              <span class="material-icons" (click)="updatestatus(person)" matTooltip="Save"
+              matTooltipClass="example-tooltip-red"
+              aria-label="Button that shows a red tooltip">
+                save
+                </span>
+                </a>
+              </td>
           <td>
            <a> <span class="material-icons" [routerLink]="['/client/viewDetail/',person.client_id]"      matTooltip="View Detailed"
             matTooltipClass="example-tooltip-red"
@@ -88,6 +111,9 @@
 
         </tr>
       </table>
+
+
+      <h6 class="errorMessage" *ngIf="errorMessage">{{errorMessage}}</h6>
 
     </div>
   </div>

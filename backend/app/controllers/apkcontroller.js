@@ -13,7 +13,7 @@ var db = mysql.createConnection({
 
 
 module.exports.getallapkslist = async function (req, res) {
-    query = "SELECT * FROM nutan_apks"
+    query = "SELECT * FROM app_nutan_apks"
     await db.query(query, function (err, result, fields) {
         if (err) throw err;
         if (!result.length)  {
@@ -27,7 +27,7 @@ module.exports.getallapkslist = async function (req, res) {
 
 module.exports.deleteapk = (req, res) => {
     const apk_id=req.body.apk_id;
-    db.query('DELETE FROM `nutan_apks` WHERE `apk_id`=?', 
+    db.query('DELETE FROM `app_nutan_apks` WHERE `apk_id`=?', 
         [apk_id], function (error, results, fields) {
             if (error) throw error;
             res.send({

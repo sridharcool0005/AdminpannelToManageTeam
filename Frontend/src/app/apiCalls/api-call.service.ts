@@ -190,6 +190,14 @@ export class ApiCallService {
     return this.http.post(environment.apiBaseUrl + '/deleteapk',data)
   }
 
+  updateclientStatus(data){
+    return this.http.post(environment.apiBaseUrl + '/updateclientStatus',data)
+  }
+
+  getclientsbyfilter(data){
+    return this.http.post(environment.apiBaseUrl + '/getclientsbyfilter',data)
+  }
+
   // Helper Methods
 
   setToken(token: string) {

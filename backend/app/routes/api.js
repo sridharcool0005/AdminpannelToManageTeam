@@ -39,6 +39,9 @@ var APIRoutes = function (passport) {
     router.put('/updateticketstatus', helpdeskController.updateticketstatus);
     router.post('/getDataByQuery', helpdeskController.getDataByQuery);
     router.post('/createbulkprofiles', bulkprofilecontroller.createbulkprofiles);
+    router.post('/updateclientStatus', ClientController.updateclientStatus);
+    router.post('/getclientsbyfilter', ClientController.getclientsbyfilter)
+    
     
 
     // GET Routes.
