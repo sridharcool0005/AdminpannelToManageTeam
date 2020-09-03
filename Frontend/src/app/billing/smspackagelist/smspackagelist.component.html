@@ -1,0 +1,50 @@
+<!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">SMS Package List</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <tr>
+          <th class="text-center">Package Name</th>
+          <th class="text-center">SMS Credits</th>
+          <th class="text-center">Price/SMS	</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">GST(18%)</th>
+          <th class="text-center">	Total Amount	</th>
+          <th class="text-center">	Validity	</th>
+          <th class="text-center">Action</th>
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td>
+            Basic
+          </td>
+          <td>
+            100
+          </td>
+          <td>
+            33.00
+          </td>
+          <td>
+            33
+          </td>
+          <td>
+            5.94
+          </td>
+          <td>
+            RS:38.94
+          </td>
+          <td>
+            1 Months
+          </td>
+          <td>
+            <span class="table-remove">
+              <button type="button" mdbBtn color="success" rounded="true" size="sm" class="my-0" routerLink="/billing/paymentdetails">Proceed</button>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Editable table -->

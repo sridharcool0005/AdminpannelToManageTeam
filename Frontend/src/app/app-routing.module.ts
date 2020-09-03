@@ -41,6 +41,9 @@ import { UploaddigprofileComponent } from './cards/uploaddigprofile/uploaddigpro
 import { BulkprofileCreateComponent } from './clientsManage/bulkprofile-create/bulkprofile-create.component';
 import { ApkuploadsComponent } from './apkupload/apkuploads/apkuploads.component';
 import { ViewapksComponent } from './apkupload/viewapks/viewapks.component';
+import { BillingComponent } from './billing/billing/billing.component';
+import { SmspackagelistComponent } from './billing/smspackagelist/smspackagelist.component';
+import { PaymentdetailsupdateComponent } from './billing/paymentdetailsupdate/paymentdetailsupdate.component';
 
 
 const routes: Routes = [{
@@ -99,6 +102,12 @@ path:'templates',component:TemplatesComponent,children:[
   {path:'uploadcards',component:UploadcardsComponent},
   {path:'uploaddigiProfiles',component:UploaddigprofileComponent}
 ]},
+
+{path:'billing',component:BillingComponent,children:[
+  {path:'smspackagelist',component:SmspackagelistComponent},
+  {path:'paymentdetails', component:PaymentdetailsupdateComponent}
+]},
+
 {path:'apkUpload',component:ApkuploadsComponent},
 {path:'viewapklist',component:ViewapksComponent},
 

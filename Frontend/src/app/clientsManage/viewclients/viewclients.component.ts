@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
-import {ExcelService} from '../../apiCalls/excel.service';
+import { ExcelService } from '../../apiCalls/excel.service';
 import { clients } from 'src/app/dataModel/clentModel';
 @Component({
   selector: 'app-viewclients',
@@ -10,14 +10,14 @@ import { clients } from 'src/app/dataModel/clentModel';
 export class ViewclientsComponent implements OnInit {
   personList;
   editField: string;
-  client_firstname:string;
+  client_firstname: string;
 
   awaitingPersonList: Array<any> = [];
   clientsdata: any;
-  accountStatus:any;
+  accountStatus: any;
   errorMessage: any;
 
-  constructor(private apiCall: ApiCallService,private excelservice: ExcelService) { }
+  constructor(private apiCall: ApiCallService, private excelservice: ExcelService) { }
 
   ngOnInit() {
 
@@ -57,7 +57,7 @@ export class ViewclientsComponent implements OnInit {
   }
 
   deleteclient(client_id, id) {
-    const data={client_id:client_id}
+    const data = { client_id: client_id }
     this.apiCall.deleteclient(data).subscribe((res: any) => {
       console.log(res);
       alert('User Deleted Sucessfully')
@@ -65,31 +65,31 @@ export class ViewclientsComponent implements OnInit {
     })
   }
 
-  exportAsXLSX():void {
+  exportAsXLSX(): void {
     this.excelservice.exportAsExcelFile(this.personList, 'sample');
   }
 
-  search(){
-if(this.client_firstname !=""){
-  this.personList=this.personList.filter(res=>{
-    return res.client_firstname.toLocaleLowerCase().match(this.client_firstname.toLocaleLowerCase());
-  })
+  search() {
+    if (this.client_firstname != "") {
+      this.personList = this.personList.filter(res => {
+        return res.client_firstname.toLocaleLowerCase().match(this.client_firstname.toLocaleLowerCase());
+      })
 
-}
-else if(this.client_firstname == ""){
+    }
+    else if (this.client_firstname == "") {
 
-  this.ngOnInit();
-}
+      this.ngOnInit();
+    }
   }
 
 
-  updatestatus(person){
+  updatestatus(person) {
 
-    const data={account_status:person.account_status,client_id:person.client_id,user_regn_channel:person.user_regn_channel}
+    const data = { account_status: person.account_status, client_id: person.client_id, user_regn_channel: person.user_regn_channel }
     console.log(data)
 
-    this.apiCall.updateclientStatus(data).subscribe((res: any)=>{
-      if(res.status=='true'){
+    this.apiCall.updateclientStatus(data).subscribe((res: any) => {
+      if (res.status == 'true') {
         alert(res.message)
       }
 
@@ -97,13 +97,16 @@ else if(this.client_firstname == ""){
   }
 
 
-  getclientsbyfilter(value){
+  getclientsbyfilter(value) {
     console.log(value)
-    const data={account_status:value}
-    this.apiCall.getclientsbyfilter(data).subscribe((res: any)=>{
+    const data = { account_status: value }
+    this.apiCall.getclientsbyfilter(data).subscribe((res: any) => {
       this.personList = res.data;
-      if(res.status=="false"){
-        this.errorMessage=res.message
+      if (res.status == "false") {
+        this.errorMessage = res.message
+      }
+      if (value === 'All') {
+        this.ngOnInit()
       }
     })
   }

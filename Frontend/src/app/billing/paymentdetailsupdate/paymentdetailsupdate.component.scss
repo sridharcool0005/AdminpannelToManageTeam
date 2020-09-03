@@ -1,0 +1,20 @@
+input#city {
+  margin-top: 0%;
+  margin-bottom: 4%;
+}
+
+button.my-4.btn.btn-info.btn-block {
+  margin-left: 0%;
+}
+
+.medias.text-center.border.border-light.p-5 {
+  width: 50%;
+  margin-left: 25%;
+}
+@media screen and (max-width: 1060px){
+
+  .medias.mymedia.text-center.border.border-light.p-5 {
+    width: 100%;
+    margin-left: 0%;
+  }
+}

@@ -53,6 +53,9 @@ import { UploaddigprofileComponent } from './cards/uploaddigprofile/uploaddigpro
 import { BulkprofileCreateComponent } from './clientsManage/bulkprofile-create/bulkprofile-create.component';
 import { ApkuploadsComponent } from './apkupload/apkuploads/apkuploads.component';
 import { ViewapksComponent } from './apkupload/viewapks/viewapks.component';
+import { SmspackagelistComponent } from './billing/smspackagelist/smspackagelist.component';
+import { PaymentdetailsupdateComponent } from './billing/paymentdetailsupdate/paymentdetailsupdate.component';
+import { BillingComponent } from './billing/billing/billing.component';
 
 
 @NgModule({
@@ -96,6 +99,9 @@ import { ViewapksComponent } from './apkupload/viewapks/viewapks.component';
     BulkprofileCreateComponent,
     ApkuploadsComponent,
     ViewapksComponent,
+    SmspackagelistComponent,
+    PaymentdetailsupdateComponent,
+    BillingComponent,
 
 
 
