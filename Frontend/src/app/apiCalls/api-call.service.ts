@@ -163,6 +163,22 @@ export class ApiCallService {
     });
   }
 
+  postPaymentTransaction(TxnOrderId: string,payment_mode: string,payment_gateway_txn_ref,payment_gateway_txn_id,client_id,authkey,profileImage: File): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('TxnOrderId', TxnOrderId);
+    formData.append('payment_mode', payment_mode);
+    formData.append('payment_gateway_txn_ref', payment_gateway_txn_ref);
+    formData.append('payment_gateway_txn_id', payment_gateway_txn_id);
+    formData.append('client_id', client_id);
+    formData.append('authkey', authkey);
+    formData.append('avatar', profileImage);
+
+    return this.http.post<User>(environment.apiBaseUrl +  '/postPaymentTransaction', formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
+
   uploadapk(title: string, profileImage: File): Observable<any> {
     const formData: any = new FormData();
     formData.append('title', title);
@@ -197,6 +213,19 @@ export class ApiCallService {
   getclientsbyfilter(data){
     return this.http.post(environment.apiBaseUrl + '/getclientsbyfilter',data)
   }
+
+getsmspackagelist(){
+  return this.http.get(environment.apiBaseUrl + '/getsmspackagelist')
+}
+
+getclientdetails(data){
+  return this.http.post(environment.apiBaseUrl + '/getclientdetails',data)
+}
+getOrderId(data){
+  return this.http.post(environment.apiBaseUrl + '/getOrderId',data)
+}
+
+
 
   // Helper Methods
 

@@ -12,6 +12,7 @@ var config = require('../config'),
   const analyticsController=require('../controllers/analyticsController');
   const helpdeskController=require('../controllers/helpdeskController');
   const bulkprofilecontroller=require('../controllers/bulkprofilecontroller');
+  const billingcontroller=require('../controllers/billingcontroller');
 
 var APIRoutes = function (passport) {
     // POST Routes.
@@ -41,8 +42,10 @@ var APIRoutes = function (passport) {
     router.post('/createbulkprofiles', bulkprofilecontroller.createbulkprofiles);
     router.post('/updateclientStatus', ClientController.updateclientStatus);
     router.post('/getclientsbyfilter', ClientController.getclientsbyfilter)
-    
-    
+    router.get('/getsmspackagelist', billingcontroller.getsmspackagelist)
+    router.post('/getclientdetails', billingcontroller.getclientdetails);
+    router.post('/getOrderId',billingcontroller.getOrderId);
+
 
     // GET Routes.
     router.get('/profile', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.user, UserController.index));

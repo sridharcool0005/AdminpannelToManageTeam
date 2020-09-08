@@ -105,7 +105,7 @@ path:'templates',component:TemplatesComponent,children:[
 
 {path:'billing',component:BillingComponent,children:[
   {path:'smspackagelist',component:SmspackagelistComponent},
-  {path:'paymentdetails', component:PaymentdetailsupdateComponent}
+  {path:'paymentdetails/:package_id', component:PaymentdetailsupdateComponent}
 ]},
 
 {path:'apkUpload',component:ApkuploadsComponent},

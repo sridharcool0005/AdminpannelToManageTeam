@@ -17,29 +17,29 @@
         </tr>
         <tr *ngFor="let person of personList; let id = index">
           <td>
-            Basic
+            {{person.package_name}}
           </td>
           <td>
-            100
+            {{person.package_sms_credits}}
           </td>
           <td>
-            33.00
+            {{person.package_unit_price}}
           </td>
           <td>
-            33
+            {{person.package_price}}
           </td>
           <td>
-            5.94
+            {{person.package_gst_amount}}
           </td>
           <td>
-            RS:38.94
+            RS:{{person.total_package_price}}
           </td>
           <td>
-            1 Months
+            {{person.package_validity_in_months}} Months
           </td>
           <td>
             <span class="table-remove">
-              <button type="button" mdbBtn color="success" rounded="true" size="sm" class="my-0" routerLink="/billing/paymentdetails">Proceed</button>
+              <button type="button" mdbBtn color="success" rounded="true" size="sm" class="my-0" [routerLink]="['/billing/paymentdetails/',person.package_id]">Proceed</button>
             </span>
           </td>
         </tr>
