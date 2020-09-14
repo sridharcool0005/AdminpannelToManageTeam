@@ -163,7 +163,7 @@ export class ApiCallService {
     });
   }
 
-  postPaymentTransaction(TxnOrderId: string,payment_mode: string,payment_gateway_txn_ref,payment_gateway_txn_id,client_id,authkey,profileImage: File): Observable<any> {
+  postPaymentTransaction(TxnOrderId: string,payment_mode: string,payment_gateway_txn_ref,payment_gateway_txn_id,client_id,authkey,profileImage: File,notes:string,totalamount:string,discountAmount:number): Observable<any> {
     const formData: any = new FormData();
     formData.append('TxnOrderId', TxnOrderId);
     formData.append('payment_mode', payment_mode);
@@ -172,7 +172,9 @@ export class ApiCallService {
     formData.append('client_id', client_id);
     formData.append('authkey', authkey);
     formData.append('avatar', profileImage);
-
+    formData.append('notes', notes);
+    formData.append('totalamount', totalamount);
+    formData.append('discountAmount', discountAmount);
     return this.http.post<User>(environment.apiBaseUrl +  '/postPaymentTransaction', formData, {
       reportProgress: true,
       observe: 'events'
@@ -225,6 +227,9 @@ getOrderId(data){
   return this.http.post(environment.apiBaseUrl + '/getOrderId',data)
 }
 
+getpremiumplanlist(){
+  return this.http.get(environment.apiBaseUrl + '/getpremiumplanlist')
+}
 
 
   // Helper Methods

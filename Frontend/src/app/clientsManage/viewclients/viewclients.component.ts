@@ -91,6 +91,8 @@ export class ViewclientsComponent implements OnInit {
     this.apiCall.updateclientStatus(data).subscribe((res: any) => {
       if (res.status == 'true') {
         alert(res.message)
+      }else if (res.status == 'false'){
+        alert(res.message)
       }
 
     })
@@ -110,4 +112,6 @@ export class ViewclientsComponent implements OnInit {
       }
     })
   }
+
+
 }

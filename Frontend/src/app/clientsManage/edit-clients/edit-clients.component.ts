@@ -20,17 +20,23 @@ export class EditClientsComponent implements OnInit {
   }
 
   updateclientData(userData) {
-userData.client_id = this.client_id;
-const data = userData;
-this.apiCall.updateclientData(data).subscribe((res: any) => {
-  if(res){
-    this.sendSMS();
-    alert(res.message);
-    this.activationEmail();
-    this.router.navigate(['/client/viewclient'])
-  }
+    const yes = confirm('Are you sure want to update?');
+    if(yes){
+      userData.client_id = this.client_id;
+      const data = userData;
+      this.apiCall.updateclientData(data).subscribe((res: any) => {
 
-    });
+        alert(res.message);
+        // if(res){
+        //   this.sendSMS();
+        //   alert(res.message);
+        //   this.activationEmail();
+          this.router.navigate(['/client/viewclient'])
+        // }
+
+          });
+    }
+
   }
 
 
@@ -57,4 +63,6 @@ this.apiCall.updateclientData(data).subscribe((res: any) => {
 
     })
   }
+
+
 }

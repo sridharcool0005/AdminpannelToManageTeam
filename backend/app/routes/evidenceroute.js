@@ -54,7 +54,7 @@ var upload = multer({
 postPaymentTransactionApi = 'https://www.portalapi.nutansms.in/postPaymentTransaction.php';
 
 router.post('/postPaymentTransaction', upload.single('avatar'), (req, res, next) => {
-    const { TxnOrderId, payment_mode, payment_gateway_txn_ref, notes, payment_gateway_txn_id,client_id,authkey } = req.body;
+    const { TxnOrderId, payment_mode,discountAmount,totalamount, payment_gateway_txn_ref, notes, payment_gateway_txn_id,client_id,authkey } = req.body;
     const url = req.protocol + '://' + req.get('host');
     const image_filename = url + '/' + req.file.filename
 
@@ -67,10 +67,7 @@ router.post('/postPaymentTransaction', upload.single('avatar'), (req, res, next)
 
     database.query(query, newTemplate, function (error, result, fields) {
         if (error) throw error;
-      
-
     })
-
             const options = {
               url: postPaymentTransactionApi,
               qs: { client_id: client_id },
@@ -80,7 +77,9 @@ router.post('/postPaymentTransaction', upload.single('avatar'), (req, res, next)
                 payment_gateway_txn_ref: payment_gateway_txn_ref,
                 payment_status_code: "success",
                 payment_gateway_txn_id: payment_gateway_txn_id,//mappped during patym
-                notes: notes
+                notes: notes,
+                total_amount_paid:totalamount,
+                discount_amount:discountAmount
               },
               headers: {
                 'Authorization': authkey

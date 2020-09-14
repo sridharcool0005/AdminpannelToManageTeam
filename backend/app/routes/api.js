@@ -45,6 +45,7 @@ var APIRoutes = function (passport) {
     router.get('/getsmspackagelist', billingcontroller.getsmspackagelist)
     router.post('/getclientdetails', billingcontroller.getclientdetails);
     router.post('/getOrderId',billingcontroller.getOrderId);
+    router.get('/getpremiumplanlist',billingcontroller.getpremiumplanlist);
 
 
     // GET Routes.

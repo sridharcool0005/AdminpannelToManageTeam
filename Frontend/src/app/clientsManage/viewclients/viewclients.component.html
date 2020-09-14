@@ -7,14 +7,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 search">
-
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="getClients()">
+          <mdb-icon fas icon="sync-alt"></mdb-icon>
+        </button>&nbsp;
           <input  type="text" [(ngModel)]="client_firstname" placeholder=" Search By Name"
             aria-label="Search" (input)="search()" >
-<button mat-stroked-button color="primary" routerLink="/client/createprofile">
-        Bulkprofile Create
-          <span class="material-icons">
-            add
-          </span></button>
+
 
           <select class="browser-default custom-select filter" (change)="getclientsbyfilter($event.target.value)">
             <option selected value="">select</option>
@@ -25,7 +23,7 @@
             <option value="disable">Disable</option>
           </select>
       </div>
-      <div class="col-md-4 mubutn">
+      <div class="col-md-6 mubutn">
 
 
 
@@ -34,6 +32,11 @@
           <span class="material-icons">
             add
           </span></button>
+          <button mat-stroked-button color="primary" routerLink="/client/createprofile">
+            Bulkprofile Create
+              <span class="material-icons">
+                add
+              </span></button>
 
         <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
       </div>

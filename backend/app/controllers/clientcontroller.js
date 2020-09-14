@@ -93,7 +93,7 @@ module.exports.getuserdata = async function (req, res) {
 
 module.exports.updateclientData = async function (req, res) {
 
-  const { client_id, user_smsgateway_authkey,user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid } = req.body
+  const { client_id, user_smsgateway_authkey,user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid} = req.body
   var sql = "UPDATE users SET  user_smsgateway_authkey =?,user_smsgateway_route =?,user_smsgateway_sender_id =?,user_smsgateway_unicode =?,account_type =?,account_status =?,user_smsgateway_pid =? WHERE  client_id =?";
   await db.query(sql, [user_smsgateway_authkey,user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid, client_id], function (err, result, fields) {
 
@@ -243,20 +243,14 @@ module.exports.addnewClient = async (req, res) => {
 module.exports.updateclientStatus = async function (req, res) {
 
   const { client_id, account_status, user_regn_channel } = req.body
-
   const today_date = new Date()
-
   const curDate = new Date();
-
   console.log(curDate, 'curdate')
-
   const campaign_status = "SELECT * FROM portal_live_campaign WHERE status='active' and (valid_from_date <= ? and valid_to_date >= ?)"
-
   await db.query(campaign_status, [today_date, today_date], function (err, result, fields) {
     if (err) throw err;
-
     if (!result.length) {
-      res.status(201).send({ status: 'false', message: 'No data found' });
+      res.status(201).send({ status: 'false', message: ' No live campaign is running' });
     } else {
       console.log(result)
       const duration = result[0].duration_in_days

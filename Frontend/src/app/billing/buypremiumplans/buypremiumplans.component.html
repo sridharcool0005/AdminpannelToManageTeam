@@ -1,15 +1,15 @@
 <!-- Editable table -->
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">SMS Package List</h3>
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Premium Packages</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
 
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
           <th class="text-center">Package Name</th>
-          <th class="text-center">SMS Credits</th>
-          <th class="text-center">Price/SMS	</th>
-          <th class="text-center">Price</th>
+          <th class="text-center">free_sms_credits</th>
+          <th class="text-center">package_list_price	</th>
+          <th class="text-center">package_offered_price</th>
           <th class="text-center">GST(18%)</th>
           <th class="text-center">	Total Amount	</th>
           <th class="text-center">	Validity	</th>
@@ -20,13 +20,13 @@
             {{person.package_name}}
           </td>
           <td>
-            {{person.package_sms_credits}}
+            {{person.free_sms_credits}}
           </td>
           <td>
-            {{person.package_unit_price}}
+            {{person.package_list_price}}
           </td>
           <td>
-            {{person.package_price}}
+            {{person.package_offered_price}}
           </td>
           <td>
             {{person.package_gst_amount}}
@@ -39,7 +39,7 @@
           </td>
           <td>
             <span class="table-remove">
-              <button type="button" mdbBtn color="success" rounded="true" size="sm" class="my-0" [routerLink]="['/paymentdetails/',person.package_id,person.package_price,person.package_gst_amount]">Proceed</button>
+              <button type="button" mdbBtn color="success" rounded="true" size="sm" class="my-0" [routerLink]="['/paymentdetails/',person.package_id]">Proceed</button>
             </span>
           </td>
         </tr>

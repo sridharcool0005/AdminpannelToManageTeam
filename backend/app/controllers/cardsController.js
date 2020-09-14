@@ -31,23 +31,38 @@ module.exports.getAllCards = async function (req, res) {
 
 module.exports.createCard = async function (req, res) {
 
-    const {fullName,designation,address}=req.body;
-    console.log(fullName,designation,address)
+    const {fullName,designation,branch,city,district,mobilenumber,whatsaap,email,website,facebookid}=req.body;
 
-    const image = await Jimp.read("images/3.jpg");
+    const image = await Jimp.read("digitalprofiles/12.jpeg");
 
-    const font = await Jimp.loadFont(Jimp.FONT_SANS_16_BLACK);
-    const font2 = await Jimp.loadFont(Jimp.FONT_SANS_12_BLACK);
+    const font = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
+    const font2 = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
+    const font3= await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK)
     await image.print(
         font,
-        20,
-        10,
- fullName+" "+designation,
-        150, 200,
+        30,
+        30,
+        {
+            text:fullName,
+            alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+            alignmentY: Jimp.VERTICAL_ALIGN_BOTTOM
+          },
+ 
+        300,500,
         (err, image, { x, y }) => {
 
-            image.print(font2, 30,20+ 200, address, 400,400);
-        }
+            image.print(font2, 30,20+500,designation+","+"LIC of India", 400,400);
+            image.print(font3, 750,60+60,"Branch:"+" "+branch,500,400);
+            image.print(font3, 800,60+110,city+","+district,400,400);
+            image.print(font3, 750,60+162,mobilenumber,400,400);
+            image.print(font3, 750,60+245,whatsaap,400,400);
+            image.print(font3, 750,60+320,email,400,400);
+            image.print(font3, 750,60+400,facebookid,400,400);
+            image.print(font3, 600,60+450,website,400,400);
+        }, 
+     
+ 
+      
     );
 
 
@@ -74,7 +89,7 @@ module.exports.createCard = async function (req, res) {
         })
     }
     waterMark('images/logo.png');
-    image.write("images/edited-shapes.png");
+    image.write("digitalprofiles/edited.png");
 
     
 }

@@ -56,6 +56,7 @@ import { ViewapksComponent } from './apkupload/viewapks/viewapks.component';
 import { SmspackagelistComponent } from './billing/smspackagelist/smspackagelist.component';
 import { PaymentdetailsupdateComponent } from './billing/paymentdetailsupdate/paymentdetailsupdate.component';
 import { BillingComponent } from './billing/billing/billing.component';
+import { BuypremiumplansComponent } from './billing/buypremiumplans/buypremiumplans.component';
 
 
 @NgModule({
@@ -102,6 +103,7 @@ import { BillingComponent } from './billing/billing/billing.component';
     SmspackagelistComponent,
     PaymentdetailsupdateComponent,
     BillingComponent,
+    BuypremiumplansComponent,
 
 
 

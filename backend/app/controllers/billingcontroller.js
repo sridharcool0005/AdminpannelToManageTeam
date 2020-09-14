@@ -27,6 +27,19 @@ module.exports.getsmspackagelist = async function (req, res) {
 }
 
 
+module.exports.getpremiumplanlist = async function (req, res) {
+
+  query = "SELECT * FROM `portal_premiumplans_master` WHERE package_id like 'P1%'"
+  await database.query(query, function (err, result, fields) {
+    if (err) throw err;
+    if (!result.length) {
+      res.status(200).send({ status: 'false', message: 'No data found' });
+    } else {
+      res.status(200).send({ status: 'success', data: result })
+    }
+  });
+}
+
 // module.exports.updatepaymentdetails = async function (req, res) {
 //   query = "SELECT 	last_order_id FROM counter"
 //   await database.query(query, function (err, result, fields) {

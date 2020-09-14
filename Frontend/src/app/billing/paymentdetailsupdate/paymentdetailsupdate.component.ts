@@ -20,26 +20,34 @@ export class PaymentdetailsupdateComponent implements OnInit {
   message: any;
   TxnOrderId: any;
   authkey: any;
+  package_price: any;
+  package_gst_amount: any;
+  discountAmount = 0;
+  amount_topay: any;
+  totalamount: any;
   constructor(private apiCall: ApiCallService,
               public fb: FormBuilder,
               public router: Router, private route: ActivatedRoute) {
 
     this.form = this.fb.group({
       payment_mode: ['', Validators.required],
-      payment_gateway_txn_ref:['', Validators.required],
-      payment_gateway_txn_id:['', Validators.required],
-      client_id:['', Validators.required],
-      authkey:['', Validators.required],
-      TxnOrderId:['', Validators.required],
+      payment_gateway_txn_ref: ['', Validators.required],
+      payment_gateway_txn_id: ['', Validators.required],
+      client_id: ['', Validators.required],
+      authkey: ['', Validators.required],
+      TxnOrderId: ['', Validators.required],
       avatar: [null, Validators.required],
-
+      notes: [null, Validators.required],
 
     });
   }
 
   ngOnInit() {
     this.package_id = this.route.snapshot.params.package_id;
-    console.log(this.package_id);
+    this.package_price = this.route.snapshot.params.package_price;
+    this.package_gst_amount = this.route.snapshot.params.package_gst_amount;
+    this.amount_topay = -this.discountAmount - -this.package_price;
+    this.totalamount = +this.package_gst_amount + +this.amount_topay;
 
   }
 
@@ -69,6 +77,9 @@ export class PaymentdetailsupdateComponent implements OnInit {
       this.clientData.client_id,
       this.authkey,
       this.form.value.avatar,
+      this.form.value.notes,
+      this.totalamount,
+      this.discountAmount
     ).subscribe((event: HttpEvent<any>) => {
       switch (event.type) {
         case HttpEventType.Sent:
@@ -91,27 +102,28 @@ export class PaymentdetailsupdateComponent implements OnInit {
   }
 
   getclientdetails(data) {
-
     this.apiCall.getclientdetails(data).subscribe((res: any) => {
       if (res.status == 'success') {
         this.clientData = res.data[0];
-        this.authkey=this.clientData.user_authkey_old
+        this.authkey = this.clientData.user_authkey_old;
         this.getOrderId();
       } else if (res.status == 'false') {
         this.message = res.message;
       }
-
     });
   }
-
 
   getOrderId() {
-    const data = {package_id: this.package_id, client_id: this.clientData.client_id, sales_channel: 'smsportal', authkey: this.clientData.user_authkey_old};
+    const data = { package_id: this.package_id, client_id: this.clientData.client_id, sales_channel: 'smsportal', authkey: this.clientData.user_authkey_old };
     this.apiCall.getOrderId(data).subscribe((res: any) => {
-     this.TxnOrderId = res.TxnOrderId;
-     console.log(this.TxnOrderId);
+      this.TxnOrderId = res.TxnOrderId;
+      console.log(this.TxnOrderId);
     });
   }
 
-
+  calculatediscount(event) {
+    this.discountAmount = event;
+    this.amount_topay = -this.discountAmount - -this.package_price;
+    this.totalamount = +this.package_gst_amount + +this.amount_topay;
+  }
 }
