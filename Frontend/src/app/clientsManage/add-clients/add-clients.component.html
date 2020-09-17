@@ -47,19 +47,20 @@
         <input type="text" class="form-control mb-4" placeholder="client_city" name="client_city" ngModel>
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="client_pincode" name="client_pincode" ngModel>
+        <input type="text" class="form-control mb-4" placeholder="client_pincode" name="client_pincode" maxlength="6" ngModel (input)="postofficeApi($event.target.value)">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="client_postoffice" name="client_postoffice" ngModel>
+
+        <input type="text" class="form-control mb-4" placeholder="client_postoffice" name="client_postoffice" [(ngModel)]="postoffice"  >
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="client_district" name="client_district" ngModel>
+        <input type="text" class="form-control mb-4" placeholder="client_district" name="client_district" [(ngModel)]="district">
       </div>
     </div>
-    <input type="text" class="form-control mb-4" placeholder="client_state" name="client_state" ngModel>
+    <input type="text" class="form-control mb-4" placeholder="client_state" name="client_state" [(ngModel)]="state">
     <!-- Sign up button -->
     <button mdbBtn color="info" block="true" class="my-4" type="submit">Add</button>
   </div>

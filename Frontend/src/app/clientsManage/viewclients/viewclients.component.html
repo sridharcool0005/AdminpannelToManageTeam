@@ -10,8 +10,8 @@
         <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="getClients()">
           <mdb-icon fas icon="sync-alt"></mdb-icon>
         </button>&nbsp;
-          <input  type="text" [(ngModel)]="client_firstname" placeholder=" Search By Name"
-            aria-label="Search" (input)="search()" >
+          <input  type="text" [(ngModel)]="searchText" placeholder=" Search By Filter"
+            aria-label="Search" >
 
 
           <select class="browser-default custom-select filter" (change)="getclientsbyfilter($event.target.value)">
@@ -57,7 +57,7 @@
           </th>
 
         </tr>
-        <tr *ngFor="let person of personList; let id = index " #loaded>
+        <tr *ngFor="let person of personList| filter: {client_id: searchText, client_firstname:searchText,  client_lastname: searchText,user_mobile_number:searchText}; let i=index;" #loaded>
           <td>
             {{person.client_id}}
           </td>

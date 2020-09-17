@@ -93,9 +93,9 @@ module.exports.getuserdata = async function (req, res) {
 
 module.exports.updateclientData = async function (req, res) {
 
-  const { client_id, user_smsgateway_authkey,user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid} = req.body
-  var sql = "UPDATE users SET  user_smsgateway_authkey =?,user_smsgateway_route =?,user_smsgateway_sender_id =?,user_smsgateway_unicode =?,account_type =?,account_status =?,user_smsgateway_pid =? WHERE  client_id =?";
-  await db.query(sql, [user_smsgateway_authkey,user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid, client_id], function (err, result, fields) {
+  const { client_id, user_smsgateway_authkey, user_smsgateway_sender_id1,user_smsgateway_sender_id2,user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid } = req.body
+  var sql = "UPDATE users SET  user_smsgateway_authkey =?,user_smsgateway_route =?,user_smsgateway_sender_id =?,user_smsgateway_sender_id1 =?,user_smsgateway_sender_id2 =?user_smsgateway_unicode =?,account_type =?,account_status =?,user_smsgateway_pid =? WHERE  client_id =?";
+  await db.query(sql, [user_smsgateway_authkey, user_smsgateway_route, user_smsgateway_sender_id,user_smsgateway_sender_id1,user_smsgateway_sender_id2,user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid, client_id], function (err, result, fields) {
 
     if (err) throw err;
     res.send({
@@ -278,20 +278,29 @@ module.exports.updateclientStatus = async function (req, res) {
 
           const sql = "SELECT package_id, package_sms_credits  from portal_smspackage_master where package_status = 'active' and package_id LIKE " + db.escape('%' + campaign_code + '%');
 
+          const fetchdata = "select is_sim_allowed, is_min_bal_req from portal_premiumplans_master where package_id =?"
 
           db.query(sql, function (err, result, fields) {
             if (err) throw err;
             console.log(result, 'verify packid')
           })
 
-          const updateifsmspackexits = "UPDATE portal_users SET  account_status =?, account_plan_id =?, plan_activation_date =?, plan_expiry_date =?, smspackage_act_date =?, smspackage_exp_date =?  WHERE client_id =?";
-          const smspackage_act_date = act_date;
-          const smspackage_exp_date = exp_date;
-
-          db.query(updateifsmspackexits, [account_status, campaign_code, act_date, exp_date, smspackage_act_date, smspackage_exp_date, client_id], function (err, result, fields) {
+          db.query(fetchdata, [campaign_code], function (err, result, fields) {
             if (err) throw err;
+            const is_sim_allowed = result[0].is_sim_allowed;
+            const is_min_bal_req = result[0].is_min_bal_req;
+            console.log(is_sim_allowed, is_min_bal_req)
 
-            console.log(result, 'updateifsmspackexits')
+            const updateifsmspackexits = "UPDATE portal_users SET  account_status =?, account_plan_id =?, plan_activation_date =?, plan_expiry_date =?, smspackage_act_date =?, smspackage_exp_date =?,is_sim_allowed =?,is_min_bal_req =? WHERE client_id =?";
+            const smspackage_act_date = act_date;
+            const smspackage_exp_date = exp_date;
+
+            db.query(updateifsmspackexits, [account_status, campaign_code, act_date, exp_date, smspackage_act_date, smspackage_exp_date, client_id, is_sim_allowed, is_min_bal_req], function (err, result, fields) {
+              if (err) throw err;
+
+              console.log(result, 'updateifsmspackexits')
+            })
+
           })
 
           const postvalues = {
@@ -326,7 +335,7 @@ module.exports.updateclientStatus = async function (req, res) {
             package_id: result[0].package_id,
             order_id: 'SIGNUP',
             package_activation_date: act_date,
-            package_expiry_date: smspackage_exp_date,
+            package_expiry_date: exp_date,
             sms_credits_quantity: result[0].package_sms_credits,
             sms_package_status: 'active'
           }
@@ -346,4 +355,30 @@ module.exports.updateclientStatus = async function (req, res) {
   })
 
 
+}
+
+
+module.exports.postofficeApi = async (req, res) => {
+  const pinCode = req.body.pinCode;
+  const options = {
+    url: 'https://portalapi.nutansms.in/getPostOfficeNew.php',
+    qs: { pincode: pinCode },
+
+    method: 'GET',
+
+    json: true,
+  }
+
+  request(options, (err, response, body) => {
+    // console.log(err)
+    // console.log(response)
+    console.log(body)
+
+    if (err) {
+      res.json(err)
+    } else {
+      res.send(body)
+
+    }
+  });
 }

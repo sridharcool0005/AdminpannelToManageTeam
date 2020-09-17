@@ -10,8 +10,8 @@
           <th class="text-center">free_sms_credits</th>
           <th class="text-center">package_list_price	</th>
           <th class="text-center">package_offered_price</th>
-          <th class="text-center">GST(18%)</th>
-          <th class="text-center">	Total Amount	</th>
+          <!-- <th class="text-center">GST(18%)</th>
+          <th class="text-center">	Total Amount	</th> -->
           <th class="text-center">	Validity	</th>
           <th class="text-center">Action</th>
         </tr>
@@ -28,18 +28,18 @@
           <td>
             {{person.package_offered_price}}
           </td>
-          <td>
+          <!-- <td>
             {{person.package_gst_amount}}
           </td>
           <td>
             RS:{{person.total_package_price}}
-          </td>
+          </td> -->
           <td>
             {{person.package_validity_in_months}} Months
           </td>
           <td>
             <span class="table-remove">
-              <button type="button" mdbBtn color="success" rounded="true" size="sm" class="my-0" [routerLink]="['/paymentdetails/',person.package_id]">Proceed</button>
+              <button type="button" mdbBtn color="success" rounded="true" size="sm" class="my-0" [routerLink]="['/paymentdetails/',person.package_id,person.package_offered_price,person.package_gst_rate]">Proceed</button>
             </span>
           </td>
         </tr>

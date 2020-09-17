@@ -231,6 +231,19 @@ getpremiumplanlist(){
   return this.http.get(environment.apiBaseUrl + '/getpremiumplanlist')
 }
 
+postofficeApi(data){
+  return this.http.post(environment.apiBaseUrl + '/postofficeApi',data)
+}
+
+getplanexpirycontacts(data){
+  return this.http.post(environment.apiBaseUrl + '/getplanexpirycontacts',data)
+
+}
+
+getplanexpirycontactsAll(){
+  return this.http.get(environment.apiBaseUrl + '/getplanexpirycontactsAll')
+
+}
 
   // Helper Methods
 

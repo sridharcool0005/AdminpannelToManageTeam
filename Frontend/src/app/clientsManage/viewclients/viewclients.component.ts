@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { ExcelService } from '../../apiCalls/excel.service';
-import { clients } from 'src/app/dataModel/clentModel';
+import { FilterPipe} from './filter.pipe';
+
 @Component({
   selector: 'app-viewclients',
   templateUrl: './viewclients.component.html',
   styleUrls: ['./viewclients.component.scss']
 })
 export class ViewclientsComponent implements OnInit {
+  public searchText : string;
   personList;
   editField: string;
   client_firstname: string;
@@ -57,6 +59,8 @@ export class ViewclientsComponent implements OnInit {
   }
 
   deleteclient(client_id, id) {
+    const yes = confirm('Are you sure want to Delete?');
+    if(yes){
     const data = { client_id: client_id }
     this.apiCall.deleteclient(data).subscribe((res: any) => {
       console.log(res);
@@ -64,38 +68,30 @@ export class ViewclientsComponent implements OnInit {
       this.remove(id);
     })
   }
+  }
 
   exportAsXLSX(): void {
     this.excelservice.exportAsExcelFile(this.personList, 'sample');
   }
 
-  search() {
-    if (this.client_firstname != "") {
-      this.personList = this.personList.filter(res => {
-        return res.client_firstname.toLocaleLowerCase().match(this.client_firstname.toLocaleLowerCase());
-      })
 
-    }
-    else if (this.client_firstname == "") {
-
-      this.ngOnInit();
-    }
-  }
 
 
   updatestatus(person) {
+    const yes = confirm('Are you  sure want to change the status?');
+    if (yes) {
+      const data = { account_status: person.account_status, client_id: person.client_id, user_regn_channel: person.user_regn_channel }
+      console.log(data)
 
-    const data = { account_status: person.account_status, client_id: person.client_id, user_regn_channel: person.user_regn_channel }
-    console.log(data)
+      this.apiCall.updateclientStatus(data).subscribe((res: any) => {
+        if (res.status == 'true') {
+          alert(res.message)
+        } else if (res.status == 'false') {
+          alert(res.message)
+        }
 
-    this.apiCall.updateclientStatus(data).subscribe((res: any) => {
-      if (res.status == 'true') {
-        alert(res.message)
-      }else if (res.status == 'false'){
-        alert(res.message)
-      }
-
-    })
+      })
+    }
   }
 
 

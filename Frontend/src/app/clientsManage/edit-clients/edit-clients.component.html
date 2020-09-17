@@ -1,18 +1,30 @@
+
 <form (ngSubmit)="updateclientData(regform.form.value)" #regform="ngForm">
   <div class="medias mymedia text-center border border-light p-5 " *ngFor="let user of userdata">
-
-
     <h5>Client Name: {{user.client_firstname}} {{user.client_lastname}}</h5>
     <h6>ClientId: {{user.client_id}}</h6> <img src="assets/img/person.png" width="25%">
+
+    <div class="container">
+      <div class="row">
+
 
     <br><br>
     UserId<input type="text" class="form-control mb-4" placeholder="UserId" name="user_id" [(ngModel)]="user.user_id">
     <p>Authkey</p> <input type="text" class="form-control mb-4" placeholder="user_smsgateway_authkey"
       name="user_smsgateway_authkey" [(ngModel)]="user.user_smsgateway_authkey">
-    SenderId 1<input type="text" class="form-control mb-4" placeholder="SenderId 1" name="user_smsgateway_sender_id"
+      <div class="col-md-4">
+      SenderId<input type="text" class="form-control mb-4" placeholder="SenderId " maxlength="6" name="user_smsgateway_sender_id"
       [(ngModel)]="user.user_smsgateway_sender_id">
-    SenderId 2<input type="text" class="form-control mb-4" placeholder="SenderId 2" name="user_smsgateway_sender_id"
-      [(ngModel)]="user.user_smsgateway_sender_id">
+      </div>
+      <div class="col-md-4">
+    SenderId 1<input type="text" class="form-control mb-4" placeholder="SenderId 1" maxlength="6" name="user_smsgateway_sender_id1"
+      [(ngModel)]="user.user_smsgateway_sender_id1">
+      </div>
+      <div class="col-md-4">
+    SenderId 2<input type="text" class="form-control mb-4" placeholder="SenderId 2" maxlength="6" name="user_smsgateway_sender_id2"
+      [(ngModel)]="user.user_smsgateway_sender_id2">
+      </div>
+      <div class="col-md-6">
     Route
     <select class="browser-default custom-select" name="user_smsgateway_route" [(ngModel)]="user.user_smsgateway_route">
       <option selected value="">select Route</option>
@@ -20,10 +32,12 @@
       <option value="4">4-Tran</option>
       <option value="16">16-OTP</option>
     </select>
-
+</div>
+<div class="col-md-6">
     PID<input type="text" class="form-control mb-4" placeholder="PID" name="user_smsgateway_pid"
       [(ngModel)]="user.user_smsgateway_pid">
-
+</div>
+<div class="col-md-4">
     Unicode
     <select class="browser-default custom-select" name="user_smsgateway_unicode"
       [(ngModel)]="user.user_smsgateway_unicode">
@@ -31,10 +45,12 @@
       <option value="1">1-Hindi</option>
       <option value="0">0-English</option>
     </select>
-
+    </div>
+    <div class="col-md-4">
     AccountType<input type="text" disabled class="form-control mb-4" placeholder="AccountType" name="account_type"
       [(ngModel)]="user.account_type">
-
+</div>
+<div class="col-md-4">
     AccountStatus
     <select class="browser-default custom-select" name="account_status" [(ngModel)]="user.account_status">
       <option selected value="">Select</option>
@@ -43,22 +59,28 @@
       <option value="pending">Pending</option>
       <option value="disable">Disable</option>
     </select>
-
-    SIM Allowed<select class="browser-default custom-select">
-      <option selected>select</option>
+</div>
+<!-- <div class="col-md-6">
+    SIM Allowed<select class="browser-default custom-select" name="is_sim_allowed" ngModel>
+      <option value="" selected>select</option>
       <option value="yes">Yes</option>
       <option value="no">No</option>
 
     </select>
-    <br>
-    MinBalance Required<select class="browser-default custom-select">
-      <option selected>select</option>
+</div>
+    <div class="col-md-6">
+
+    MinBalance Required<select class="browser-default custom-select" name="is_min_bal_req " ngModel>
+      <option value ="" selected>select</option>
       <option value="yes">Yes</option>
       <option value="no">No</option>
 
     </select>
-
+</div> -->
     <!-- Sign up button -->
     <button mdbBtn color="info" block="true" class="my-4" type="submit">Update</button>
   </div>
+</div>
+</div>
 </form>
+

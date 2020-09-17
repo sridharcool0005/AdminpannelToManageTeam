@@ -106,7 +106,7 @@ path:'templates',component:TemplatesComponent,children:[
 {path:'billing',component:BillingComponent,children:[
   {path:'smspackagelist',component:SmspackagelistComponent},
   ]},
-{path:'paymentdetails/:package_id/:package_price/:package_gst_amount', component:PaymentdetailsupdateComponent},
+{path:'paymentdetails/:package_id/:package_price/:package_gst_rate', component:PaymentdetailsupdateComponent},
 
 {path:'apkUpload',component:ApkuploadsComponent},
 {path:'viewapklist',component:ViewapksComponent},

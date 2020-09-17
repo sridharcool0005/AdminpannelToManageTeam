@@ -14,6 +14,9 @@ export class AddClientsComponent implements OnInit {
     lastName:''
   };
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  state: any;
+  district: any;
+  postoffice: any;
   constructor(private apiCall: ApiCallService, private router: Router) { }
 
   ngOnInit() {
@@ -28,5 +31,17 @@ export class AddClientsComponent implements OnInit {
         alert(res.message)
       }
     })
+  }
+
+  postofficeApi(data){
+    const pincode={pinCode:data}
+    this.apiCall.postofficeApi(pincode).subscribe((res: any)=>{
+      console.log(res)
+      this.state=res.state;
+      this.district=res[0].district;
+      this.postoffice=res[0].postoffice[0].postoffice
+
+    })
+
   }
 }

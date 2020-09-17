@@ -46,7 +46,12 @@ var APIRoutes = function (passport) {
     router.post('/getclientdetails', billingcontroller.getclientdetails);
     router.post('/getOrderId',billingcontroller.getOrderId);
     router.get('/getpremiumplanlist',billingcontroller.getpremiumplanlist);
+    router.post('/postofficeApi', ClientController.postofficeApi);
+    router.post('/getplanexpirycontacts', analyticsController.getplanexpirycontacts);
+    router.get('/getplanexpirycontactsAll', analyticsController.getplanexpirycontactsAll);
+    router.post('/pushnotifications', analyticsController.pushnotifications);
 
+    
 
     // GET Routes.
     router.get('/profile', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.user, UserController.index));

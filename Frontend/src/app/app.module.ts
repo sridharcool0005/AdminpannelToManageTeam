@@ -58,9 +58,12 @@ import { PaymentdetailsupdateComponent } from './billing/paymentdetailsupdate/pa
 import { BillingComponent } from './billing/billing/billing.component';
 import { BuypremiumplansComponent } from './billing/buypremiumplans/buypremiumplans.component';
 
+import { FilterPipe} from './clientsManage/viewclients/filter.pipe';
+import { PlanexpirytrackingComponent } from './Analytics/planexpirytracking/planexpirytracking.component';
 
 @NgModule({
   declarations: [
+    FilterPipe,
     AppComponent,
     UserComponent,
     SignUpComponent,
@@ -104,6 +107,8 @@ import { BuypremiumplansComponent } from './billing/buypremiumplans/buypremiumpl
     PaymentdetailsupdateComponent,
     BillingComponent,
     BuypremiumplansComponent,
+    PlanexpirytrackingComponent,
+
 
 
 

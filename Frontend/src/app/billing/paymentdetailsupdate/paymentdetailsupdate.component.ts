@@ -25,6 +25,7 @@ export class PaymentdetailsupdateComponent implements OnInit {
   discountAmount = 0;
   amount_topay: any;
   totalamount: any;
+  gst_amount: number;
   constructor(private apiCall: ApiCallService,
               public fb: FormBuilder,
               public router: Router, private route: ActivatedRoute) {
@@ -45,10 +46,11 @@ export class PaymentdetailsupdateComponent implements OnInit {
   ngOnInit() {
     this.package_id = this.route.snapshot.params.package_id;
     this.package_price = this.route.snapshot.params.package_price;
-    this.package_gst_amount = this.route.snapshot.params.package_gst_amount;
+    this.package_gst_amount = this.route.snapshot.params.package_gst_rate;
+    console.log(this.package_gst_amount)
     this.amount_topay = -this.discountAmount - -this.package_price;
-    this.totalamount = +this.package_gst_amount + +this.amount_topay;
-
+   this.gst_amount= this.amount_topay * this.package_gst_amount / 100;
+    this.totalamount = (+this.gst_amount + +this.amount_topay);
   }
 
 
@@ -124,6 +126,8 @@ export class PaymentdetailsupdateComponent implements OnInit {
   calculatediscount(event) {
     this.discountAmount = event;
     this.amount_topay = -this.discountAmount - -this.package_price;
-    this.totalamount = +this.package_gst_amount + +this.amount_topay;
+    // this.totalamount = +this.package_gst_amount + +this.amount_topay;
+    this.gst_amount= this.amount_topay * this.package_gst_amount / 100;
+    this.totalamount = (+this.gst_amount + +this.amount_topay);
   }
 }
