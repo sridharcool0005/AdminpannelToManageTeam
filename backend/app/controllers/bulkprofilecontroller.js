@@ -20,6 +20,7 @@ module.exports.createbulkprofiles = async (req, res) => {
   const hash = bcrypt.hashSync(password, saltRounds);
 
   const { formdata } = req.body;
+ 
   var count = '';
   var promiseSaveArr = [];
   if (Array.isArray(formdata)) {

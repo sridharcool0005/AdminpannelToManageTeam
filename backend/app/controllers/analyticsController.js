@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-
+const crypto = require("crypto");
 
 var db = mysql.createConnection({
     host: 'localhost',
@@ -85,7 +85,7 @@ module.exports.updatePaymentStatus = async function (req, res) {
 module.exports.getplanexpirycontacts = async function (req, res) {
     const { fromDate, toDate } = req.body;
 
-    query = "SELECT a.client_id, b.client_firstname, b.client_lastname, b.client_district,a.user_mobile_number, a.account_type, a.account_plan_id, a.plan_activation_date, a.plan_expiry_date FROM `portal_users` a, clients_master b where a.client_id=b.client_id and (plan_expiry_date BETWEEN ? AND ? )"
+    query = "SELECT a.client_id, b.client_firstname, b.client_lastname, b.client_district,a.user_mobile_number, a.account_type, a.account_plan_id, a.plan_activation_date, a.plan_expiry_date FROM `portal_users` a, clients_master b where a.client_id=b.client_id and (plan_expiry_date BETWEEN ? AND ? + interval 1 day )"
     await db.query(query, [fromDate, toDate], function (err, result, fields) {
         if (err) throw err;
         res.send({
@@ -109,45 +109,57 @@ module.exports.getplanexpirycontactsAll = async function (req, res) {
 }
 
 
-module.exports.pushnotifications = async (req, res) => {
+module.exports.insertnotifications = (req, res) => {
+   
+    const curDate = new Date();
+    const {client_ids}= req.body;
 
-    const { formdata } = req.body;
-    console.log(formdata)
-
-    var promiseSaveArr = [];
-    if (Array.isArray(formdata)) {
-        formdata.forEach(obj => {
-
-            const nid = crypto.randomBytes(4).toString("hex");
-            console.log(nid)
-            const query = "INSERT INTO `portal_mynotifications` SET =?"
-            var newTemplate = {
-                nid: nid,
-                client_id: obj.client_id,
-                title: 'Upgrade Premium',
-                message: 'Your Free Demo Plan is about to expire on <expiry date>. Please upgrade to Premium to continue service without any interruption.',
-                action: '11',
-                url: 'nil',
-                status: 'new'
-
-            };
-            console.log(newTemplate)
-            db.query(query,[newTemplate],function (err, result, fields) {
-               
-              
-
-                promiseSaveArr.push(newTemplate)
-
-            });
-        });
+    if(!client_ids){
+        res.status(200).send({status:false, message:'error in adding push notifications'})
     }
+else{
+    client_ids.forEach(myFunction);
+    function myFunction(item) {
+        const nid = crypto.randomBytes(4).toString("hex");
+        
+        var values = {
+            nid: nid,
+            client_id: item,
+            title: 'Upgrade Premium',
+            message: 'Your Free Demo Plan is about to expire on'+' '+curDate+ 'Please upgrade to Premium to continue service without any interruption.',
+            action: '11',
+            url: 'nil',
+            status: 'new'
+        }
 
-    return await Promise.all(promiseSaveArr).then(result => {
-
-        res.status(200).send({ success: true, message: 'profiles created  sucessfully' });
-    }).catch((err) => {
-
-        res.status(400).send({ success: false, message: err.message })
+        var sql = "INSERT INTO portal_mynotifications SET ?"
+    db.query(sql, [values], function (error, results, fields) {
+        if (error) throw error;
+       
     });
-
+    }
+    res.send({
+        code: 200,
+        status: 'success',
+        message: "push notifications added Sucessfully",
+    }); 
+}
+    
+     
 };
+
+
+module.exports.registeredcontactstracking= async function (req, res) {
+    const { fromDate, toDate } = req.body;
+
+    console.log(fromDate,toDate)
+    query = "SELECT a.client_id, b.client_firstname, b.client_lastname, b.client_district,a.user_mobile_number, a.account_type, a.account_plan_id, a.plan_activation_date, a.plan_expiry_date FROM `portal_users` a, clients_master b where a.client_id=b.client_id and (created_on BETWEEN ? AND ? + interval 1 day)"
+    await db.query(query, [fromDate, toDate], function (err, result, fields) {
+        if (err) throw err;
+        res.send({
+            "code": 200,
+            "success": "users data ",
+            "data": result
+        });
+    });
+}

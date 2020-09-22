@@ -7,12 +7,15 @@
     <div class="container">
       <div class="row">
 
-
-    <br><br>
-    UserId<input type="text" class="form-control mb-4" placeholder="UserId" name="user_id" [(ngModel)]="user.user_id">
-    <p>Authkey</p> <input type="text" class="form-control mb-4" placeholder="user_smsgateway_authkey"
+    <div class="col-md-6">
+    UserId<input type="text" class="form-control mb-4" placeholder="UserId" name="user_smsgateway_id" [(ngModel)]="user.user_smsgateway_id">
+    </div>
+    <div class="col-md-6">
+    Authkey<input type="text" class="form-control mb-4" placeholder="user_smsgateway_authkey"
       name="user_smsgateway_authkey" [(ngModel)]="user.user_smsgateway_authkey">
+    </div>
       <div class="col-md-4">
+
       SenderId<input type="text" class="form-control mb-4" placeholder="SenderId " maxlength="6" name="user_smsgateway_sender_id"
       [(ngModel)]="user.user_smsgateway_sender_id">
       </div>
@@ -54,29 +57,38 @@
     AccountStatus
     <select class="browser-default custom-select" name="account_status" [(ngModel)]="user.account_status">
       <option selected value="">Select</option>
-      <option value="review">Review</option>
-      <option value="active">Active</option>
-      <option value="pending">Pending</option>
-      <option value="disable">Disable</option>
+      <option value="review" [disabled]="user.account_status=='active'">Review</option>
+      <option value="active" [disabled]="user.account_status=='active'">Active</option>
+      <option value="pending" [disabled]="user.account_status=='active'">Pending</option>
+      <option value="disable" [disabled]="user.account_status=='active'">Disable</option>
     </select>
 </div>
-<!-- <div class="col-md-6">
-    SIM Allowed<select class="browser-default custom-select" name="is_sim_allowed" ngModel>
+ <div class="col-md-6">
+    SIM Allowed<select class="browser-default custom-select" name="is_sim_allowed" [(ngModel)]="user.is_sim_allowed">
+      <option value="" selected>select</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+</div>
+    <div class="col-md-6">
+    MinBalance Required<select class="browser-default custom-select" name="is_min_bal_req" [(ngModel)]="user.is_min_bal_req">
       <option value="" selected>select</option>
       <option value="yes">Yes</option>
       <option value="no">No</option>
 
     </select>
 </div>
-    <div class="col-md-6">
 
-    MinBalance Required<select class="browser-default custom-select" name="is_min_bal_req " ngModel>
-      <option value ="" selected>select</option>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
+<div class="col-md-6">
+  <br>
+  Account_plan_id<input type="text" class="form-control mb-4" placeholder="account_plan_id" [(ngModel)]="user.account_plan_id" name="account_plan_id">
+  </div>
 
-    </select>
-</div> -->
+  <div class="col-md-6">
+    <br>
+    plan_expiry_date<input type="date" class="form-control mb-4"  [(ngModel)]="user.plan_expiry_date" name="plan_expiry_date">
+
+    </div>
     <!-- Sign up button -->
     <button mdbBtn color="info" block="true" class="my-4" type="submit">Update</button>
   </div>

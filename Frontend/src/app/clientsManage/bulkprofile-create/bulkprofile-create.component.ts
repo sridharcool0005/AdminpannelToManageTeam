@@ -13,6 +13,7 @@ export class BulkprofileCreateComponent implements OnInit {
   constructor(private apiCall: ApiCallService, private router: Router) { }
 
   ngOnInit() {
+    console.log(this.filteredJsonData)
   }
 
   onFileChange(ev) {
@@ -30,6 +31,7 @@ export class BulkprofileCreateComponent implements OnInit {
       }, {});
       if (isArray(jsonData.data)) {
         this.filteredJsonData = jsonData.data;
+        console.log(this.filteredJsonData)
       }
     };
     reader.readAsBinaryString(file);
@@ -37,6 +39,7 @@ export class BulkprofileCreateComponent implements OnInit {
 
   importdata() {
     const bulkData = { formdata: this.filteredJsonData };
+    console.log(bulkData)
     this.apiCall.createbulkcontacts(bulkData).subscribe((res: any) => {
       alert(res.message);
       this.router.navigate(['home'])

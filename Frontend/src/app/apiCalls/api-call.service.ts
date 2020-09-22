@@ -245,6 +245,10 @@ getplanexpirycontactsAll(){
 
 }
 
+insertnotifications(data){
+  return this.http.post(environment.apiBaseUrl + '/insertnotifications',data)
+
+}
   // Helper Methods
 
   setToken(token: string) {

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { ExcelService } from 'src/app/apiCalls/excel.service';
 @Component({
-  selector: 'app-planexpirytracking',
-  templateUrl: './planexpirytracking.component.html',
-  styleUrls: ['./planexpirytracking.component.scss']
+  selector: 'app-registrationtracking',
+  templateUrl: './registrationtracking.component.html',
+  styleUrls: ['./registrationtracking.component.scss']
 })
-export class PlanexpirytrackingComponent implements OnInit {
+export class RegistrationtrackingComponent implements OnInit {
   personList;
   editField: string;
   client_firstname: string;

@@ -93,9 +93,26 @@ module.exports.getuserdata = async function (req, res) {
 
 module.exports.updateclientData = async function (req, res) {
 
-  const { client_id, user_smsgateway_authkey, user_smsgateway_sender_id1,user_smsgateway_sender_id2,user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid } = req.body
-  var sql = "UPDATE users SET  user_smsgateway_authkey =?,user_smsgateway_route =?,user_smsgateway_sender_id =?,user_smsgateway_sender_id1 =?,user_smsgateway_sender_id2 =?user_smsgateway_unicode =?,account_type =?,account_status =?,user_smsgateway_pid =? WHERE  client_id =?";
-  await db.query(sql, [user_smsgateway_authkey, user_smsgateway_route, user_smsgateway_sender_id,user_smsgateway_sender_id1,user_smsgateway_sender_id2,user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid, client_id], function (err, result, fields) {
+  const { client_id,account_plan_id,plan_expiry_date,user_smsgateway_id,	is_sim_allowed, is_min_bal_req,user_smsgateway_authkey, user_smsgateway_sender_id1,user_smsgateway_sender_id2,user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid } = req.body
+  var sql = "UPDATE portal_users SET ? where client_id =?";
+
+  var newTemplate = {
+    account_plan_id: account_plan_id,
+    plan_expiry_date: plan_expiry_date,
+    is_sim_allowed: is_sim_allowed, 
+    is_min_bal_req: is_min_bal_req,
+    user_smsgateway_unicode: user_smsgateway_unicode,
+    user_smsgateway_authkey: user_smsgateway_authkey,
+    user_smsgateway_pid: user_smsgateway_pid,
+    user_smsgateway_sender_id: user_smsgateway_sender_id,
+    user_smsgateway_sender_id1: user_smsgateway_sender_id1,
+    user_smsgateway_sender_id2:user_smsgateway_sender_id2,
+    user_smsgateway_route: user_smsgateway_route,
+    account_type: account_type,
+    account_status: account_status,
+    user_smsgateway_id:	user_smsgateway_id
+  }
+  await db.query(sql, [newTemplate,client_id], function (err, result, fields) {
 
     if (err) throw err;
     res.send({
@@ -120,7 +137,7 @@ module.exports.deleteclient = (req, res) => {
 
 module.exports.getuserDetails = async function (req, res) {
   const client_id = req.body.client_id;
-  query = "select a.client_id,a.user_smsgateway_pid,a.user_smsgateway_sender_id,a.user_smsgateway_regn_status,a.user_smsgateway_authkey,a.user_smsgateway_route,a.user_smsgateway_unicode,a.user_cross_regn_status, a.user_mobile_number, a.user_email, a.user_regn_channel, a.account_type, a.account_status, b.client_firstname, b.client_lastname, b.client_whatsapp_number, b.client_telegram_number, b.client_company_name, b.client_address1, b.client_address2, b.client_city, b.client_district, b.client_postoffice, b.client_pincode, b.client_state, b.client_industry,b.client_gst_number, b.client_expiry from users a, clients_master b where a.client_id =? and b.client_id =? "
+  query = "select a.client_id,a.user_smsgateway_pid,a.is_sim_allowed,a.is_min_bal_req,a.account_plan_id,a.plan_expiry_date,a.user_smsgateway_id,a.user_smsgateway_sender_id1,a.user_smsgateway_sender_id2,a.user_smsgateway_sender_id,a.user_smsgateway_regn_status,a.user_smsgateway_authkey,a.user_smsgateway_route,a.user_smsgateway_unicode,a.user_cross_regn_status, a.user_mobile_number, a.user_email, a.user_regn_channel, a.account_type, a.account_status, b.client_firstname, b.client_lastname, b.client_whatsapp_number, b.client_telegram_number, b.client_company_name, b.client_address1, b.client_address2, b.client_city, b.client_district, b.client_postoffice, b.client_pincode, b.client_state, b.client_industry,b.client_gst_number, b.client_expiry from portal_users a, clients_master b where a.client_id =? and b.client_id =? "
   await db.query(query, [client_id, client_id], function (err, result, fields) {
     if (err) throw err;
     res.send({

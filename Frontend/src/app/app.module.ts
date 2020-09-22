@@ -60,6 +60,7 @@ import { BuypremiumplansComponent } from './billing/buypremiumplans/buypremiumpl
 
 import { FilterPipe} from './clientsManage/viewclients/filter.pipe';
 import { PlanexpirytrackingComponent } from './Analytics/planexpirytracking/planexpirytracking.component';
+import { RegistrationtrackingComponent } from './Analytics/registrationtracking/registrationtracking.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { PlanexpirytrackingComponent } from './Analytics/planexpirytracking/plan
     BillingComponent,
     BuypremiumplansComponent,
     PlanexpirytrackingComponent,
+    RegistrationtrackingComponent,
 
 
 

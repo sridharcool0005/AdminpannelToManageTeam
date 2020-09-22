@@ -49,8 +49,10 @@ var APIRoutes = function (passport) {
     router.post('/postofficeApi', ClientController.postofficeApi);
     router.post('/getplanexpirycontacts', analyticsController.getplanexpirycontacts);
     router.get('/getplanexpirycontactsAll', analyticsController.getplanexpirycontactsAll);
-    router.post('/pushnotifications', analyticsController.pushnotifications);
+    router.post('/insertnotifications', analyticsController.insertnotifications);
+    router.post('/registeredcontactstracking', analyticsController.registeredcontactstracking);
 
+    
     
 
     // GET Routes.
