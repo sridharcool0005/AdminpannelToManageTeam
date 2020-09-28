@@ -14,6 +14,7 @@ module.exports.getpurchaseData = async function (req, res) {
     query = "select a.client_id, a.client_firstname, a.client_lastname, b.txn_date, b.order_id, b.package_id, c.package_sms_credits ,b.total_amount_paid, b.payment_status_code from clients_master a, clients_payments_history b, smspackage_master c where (a.client_id=b.client_id and b.package_id = c.package_id)"
     await db.query(query, function (err, result, fields) {
         if (err) throw err;
+       
         res.send({
             "code": 200,
             "success": "users data ",
@@ -153,7 +154,7 @@ module.exports.registeredcontactstracking= async function (req, res) {
     const { fromDate, toDate } = req.body;
 
     console.log(fromDate,toDate)
-    query = "SELECT a.client_id, b.client_firstname, b.client_lastname, b.client_district,a.user_mobile_number, a.account_type, a.account_plan_id, a.plan_activation_date, a.plan_expiry_date FROM `portal_users` a, clients_master b where a.client_id=b.client_id and (created_on BETWEEN ? AND ? + interval 1 day)"
+    query = "SELECT a.CLIENT_id as 'ClientID', CONCAT(b.client_firstname, ' ', b.client_lastname) as 'ClientName', a.user_mobile_number as 'MobileNumber', b.client_district as 'District', a.account_plan_id as 'PlanID', a.account_type as 'AccountType', a.created_on as 'DateofRegn', a.plan_activation_date as 'DateofActivation', a.plan_expiry_date as 'DateofExpiry' FROM `portal_users` a, clients_master b where a.client_id=b.client_id and (a.created_on between ? and ? + interval 1 day) order by a.created_on asc, a.account_plan_id asc"
     await db.query(query, [fromDate, toDate], function (err, result, fields) {
         if (err) throw err;
         res.send({
@@ -161,5 +162,22 @@ module.exports.registeredcontactstracking= async function (req, res) {
             "success": "users data ",
             "data": result
         });
+    });
+}
+
+module.exports.getTodayregisterdData= async function (req, res) {
+    query = "SELECT a.CLIENT_id as 'ClientID', CONCAT(b.client_firstname, ' ', b.client_lastname) as 'ClientName', a.user_mobile_number as 'MobileNumber', b.client_district as 'District', a.account_plan_id as 'PlanID', a.account_type as 'AccountType', a.created_on as 'DateofRegn', a.plan_activation_date as 'DateofActivation', a.plan_expiry_date as 'DateofExpiry' FROM `portal_users` a, clients_master b where a.client_id=b.client_id and (a.created_on between CURRENT_date and CURRENT_DATE  + interval 1 day) order by a.created_on asc, a.account_plan_id asc"
+    await db.query(query, function (err, result, fields) {
+        if (err) throw err;
+        if(!result.length){
+            res.status(200).send({ status: 'false', message: 'No Client Registered Today' })
+        }else{
+            res.send({
+                "code": 200,
+                "success": "users data ",
+                "data": result
+            });
+        }
+      
     });
 }

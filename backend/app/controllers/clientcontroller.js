@@ -93,26 +93,26 @@ module.exports.getuserdata = async function (req, res) {
 
 module.exports.updateclientData = async function (req, res) {
 
-  const { client_id,account_plan_id,plan_expiry_date,user_smsgateway_id,	is_sim_allowed, is_min_bal_req,user_smsgateway_authkey, user_smsgateway_sender_id1,user_smsgateway_sender_id2,user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid } = req.body
+  const { client_id, account_plan_id, plan_expiry_date, user_smsgateway_id, is_sim_allowed, is_min_bal_req, user_smsgateway_authkey, user_smsgateway_sender_id1, user_smsgateway_sender_id2, user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid } = req.body
   var sql = "UPDATE portal_users SET ? where client_id =?";
 
   var newTemplate = {
     account_plan_id: account_plan_id,
     plan_expiry_date: plan_expiry_date,
-    is_sim_allowed: is_sim_allowed, 
+    is_sim_allowed: is_sim_allowed,
     is_min_bal_req: is_min_bal_req,
     user_smsgateway_unicode: user_smsgateway_unicode,
     user_smsgateway_authkey: user_smsgateway_authkey,
     user_smsgateway_pid: user_smsgateway_pid,
     user_smsgateway_sender_id: user_smsgateway_sender_id,
     user_smsgateway_sender_id1: user_smsgateway_sender_id1,
-    user_smsgateway_sender_id2:user_smsgateway_sender_id2,
+    user_smsgateway_sender_id2: user_smsgateway_sender_id2,
     user_smsgateway_route: user_smsgateway_route,
     account_type: account_type,
     account_status: account_status,
-    user_smsgateway_id:	user_smsgateway_id
+    user_smsgateway_id: user_smsgateway_id
   }
-  await db.query(sql, [newTemplate,client_id], function (err, result, fields) {
+  await db.query(sql, [newTemplate, client_id], function (err, result, fields) {
 
     if (err) throw err;
     res.send({
@@ -267,7 +267,24 @@ module.exports.updateclientStatus = async function (req, res) {
   await db.query(campaign_status, [today_date, today_date], function (err, result, fields) {
     if (err) throw err;
     if (!result.length) {
-      res.status(201).send({ status: 'false', message: ' No live campaign is running' });
+      const query = "select * from portal_premiumplans where package_id='P1005'";
+      const curDate= new Date();
+      db.query(query,function (err, result, fields) {
+        if (err) throw err;
+        const updatequery="INSERT INTO portal_users SET ?"
+        var newTemplate = {
+          account_status :'active',
+          account_plan_id :null,
+          plan_activation_date : curDate,
+          plan_expiry_date :'99 Months'
+        }
+        db.query(updatequery,[newTemplate],function (err, result, fields) {
+          if (err) throw err;
+          res.status(201).send({ status: 'true', message: 'Data is updated sucessfully' });
+        })
+      
+      })
+    
     } else {
       console.log(result)
       const duration = result[0].duration_in_days
@@ -275,28 +292,20 @@ module.exports.updateclientStatus = async function (req, res) {
       expiry_date.setDate(expiry_date.getDate() + duration);
       const campaign_code = result[0].campaign_code
       const act_date = today_date;
-      const exp_date = expiry_date
-
+      const exp_date = expiry_date;
       const verifyCredits = "SELECT package_id,package_sms_credits from portal_smspackage_master where package_id LIKE" + db.escape('%' + campaign_code + '%')
+
       db.query(verifyCredits, function (err, result, fields) {
 
         if (!result.length) {
-
           var sql = "UPDATE portal_users SET  account_status =?,account_plan_id =?,plan_activation_date =?,plan_expiry_date =? WHERE client_id =?";
-
           db.query(sql, [account_status, campaign_code, act_date, exp_date, client_id], function (err, result, fields) {
-
             res.status(201).send({ status: 'true', message: 'Data is updated' });
-
-
           })
 
         } else {
-
           const sql = "SELECT package_id, package_sms_credits  from portal_smspackage_master where package_status = 'active' and package_id LIKE " + db.escape('%' + campaign_code + '%');
-
           const fetchdata = "select is_sim_allowed, is_min_bal_req from portal_premiumplans_master where package_id =?"
-
           db.query(sql, function (err, result, fields) {
             if (err) throw err;
             console.log(result, 'verify packid')
@@ -307,14 +316,11 @@ module.exports.updateclientStatus = async function (req, res) {
             const is_sim_allowed = result[0].is_sim_allowed;
             const is_min_bal_req = result[0].is_min_bal_req;
             console.log(is_sim_allowed, is_min_bal_req)
-
             const updateifsmspackexits = "UPDATE portal_users SET  account_status =?, account_plan_id =?, plan_activation_date =?, plan_expiry_date =?, smspackage_act_date =?, smspackage_exp_date =?,is_sim_allowed =?,is_min_bal_req =? WHERE client_id =?";
             const smspackage_act_date = act_date;
             const smspackage_exp_date = exp_date;
-
             db.query(updateifsmspackexits, [account_status, campaign_code, act_date, exp_date, smspackage_act_date, smspackage_exp_date, client_id, is_sim_allowed, is_min_bal_req], function (err, result, fields) {
               if (err) throw err;
-
               console.log(result, 'updateifsmspackexits')
             })
 
@@ -345,7 +351,6 @@ module.exports.updateclientStatus = async function (req, res) {
             console.log(result, 'insertintoPaymentHistory')
 
           })
-
 
           const credits_history_values = {
             client_id: client_id,
@@ -391,6 +396,28 @@ module.exports.postofficeApi = async (req, res) => {
     // console.log(response)
     console.log(body)
 
+    if (err) {
+      res.json(err)
+    } else {
+      res.send(body)
+
+    }
+  });
+}
+
+module.exports.fetchProfessions = async (req, res) => {
+  
+  const options = {
+    url: 'https://portalapi.nutansms.in/fetchProfessions.php',
+    method: 'GET',
+
+    json: true,
+  }
+
+  request(options, (err, response, body) => {
+    // console.log(err)
+    // console.log(response)
+    console.log(body)
     if (err) {
       res.json(err)
     } else {

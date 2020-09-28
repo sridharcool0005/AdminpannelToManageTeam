@@ -1,0 +1,84 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">View Premium Plans</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 search">
+
+        <input  type="text" [(ngModel)]="package_id" placeholder=" Search By packageId"
+        aria-label="Search" (input)="search()" >
+      </div>
+
+      <div class="col-md-4 mubutn">
+        <button mat-stroked-button color="primary" routerLink="/packageMange/addPacks">
+          Add
+          <span class="material-icons">
+          add
+          </span></button>
+
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+        </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media" >
+        <tr style="background-color: darkblue;color:white" >
+          <th class="text-center">
+            PackageID</th>
+          <th class="text-center">
+            PackageName</th>
+          <th class="text-center">Credits</th>
+          <th class="text-center">list Price </th>
+          <th class="text-center">offered Price</th>
+          <th class="text-center">packagePrice</th>
+          <th class="text-center">Validity</th>
+          <th class="text-center">status</th>
+          <th colspan="2" class="text-center">Action</th>
+
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td >
+
+       {{person.package_id}}
+          </td>
+          <td >
+         {{person.package_name}}
+             </td>
+
+          <td >
+      {{person.	free_sms_credits}}
+          </td>
+          <td >
+       {{person.package_list_price}}
+          </td>
+          <td >
+            {{person.	package_offered_price}}
+               </td>
+          <td name="city">
+            {{person.	total_package_price}}
+          </td>
+          <td name="state">
+       {{person.package_validity_in_months	}}
+          </td>
+          <td name="state">
+            {{person.package_status}}
+               </td>
+          <td>
+            <span class="table-Add">
+              <button type="Submit" mdbBtn color="green" rounded="true" size="sm" class="my-0" [routerLink]="['/packageMange/editpremiumPlan/',person.package_id]" ><i class="fas fa-user-edit"></i></button>
+            </span>
+          </td>
+          <td>
+            <span class="table-remove">
+              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="deletePackage(person.package_id)"><i class="fas fa-trash-alt"></i></button>
+            </span>
+          </td>
+
+
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

@@ -142,3 +142,29 @@ module.exports.deletePackage = (req, res) => {
             });
     });
 };
+
+module.exports.getAllportal_premiumplans_master = async function (req, res) {
+    query = "SELECT * FROM portal_premiumplans_master"
+    await database.query(query, function (err, result, fields) {
+        if (err) throw err;
+        res.send({
+            "code": 200,
+            "success": "All Packages",
+            "data": result
+        });
+    });
+}
+
+module.exports.getpremiumplandetails = async function (req, res) {
+    const package_id =req.body.package_id ;
+    console.log(package_id)
+    query = "SELECT * FROM portal_premiumplans_master WHERE package_id =?"
+    await database.query(query,[package_id ] ,function (err, result, fields) {
+        if (err) throw err;
+        res.send({
+            "code": 200,
+            "success": "users data ",
+            "data": result
+        });
+    });
+}

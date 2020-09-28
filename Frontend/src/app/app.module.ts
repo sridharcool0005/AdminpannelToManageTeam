@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthGuard } from './auth/auth.guard';
@@ -61,6 +60,13 @@ import { BuypremiumplansComponent } from './billing/buypremiumplans/buypremiumpl
 import { FilterPipe} from './clientsManage/viewclients/filter.pipe';
 import { PlanexpirytrackingComponent } from './Analytics/planexpirytracking/planexpirytracking.component';
 import { RegistrationtrackingComponent } from './Analytics/registrationtracking/registrationtracking.component';
+import { CampaignManagementComponent } from './campaign/campaign-management/campaign-management.component';
+import { AddpushnotificationComponent } from './campaign/addpushnotification/addpushnotification.component';
+import { ViewpremiumplansComponent } from './PackageManage/viewpremiumplans/viewpremiumplans.component';
+import { PacktabsComponent } from './PackageManage/packtabs/packtabs.component';
+import { UpdatepremiumplanComponent } from './PackageManage/updatepremiumplan/updatepremiumplan.component';
+import { PushnotifyComponent } from './campaign/pushnotify/pushnotify.component';
+import { NotifytemplatesComponent } from './campaign/notifytemplates/notifytemplates.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +116,15 @@ import { RegistrationtrackingComponent } from './Analytics/registrationtracking/
     BuypremiumplansComponent,
     PlanexpirytrackingComponent,
     RegistrationtrackingComponent,
+    CampaignManagementComponent,
+    AddpushnotificationComponent,
+    ViewpremiumplansComponent,
+    PacktabsComponent,
+    UpdatepremiumplanComponent,
+    PushnotifyComponent,
+    NotifytemplatesComponent,
+
+
 
 
 

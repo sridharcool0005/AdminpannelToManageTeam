@@ -13,8 +13,7 @@
         </form>
       </div>
       <div class="col-md-6 mubutn" >
-        <input type="text" class="search" [(ngModel)]="client_firstname" placeholder=" Search By Name" aria-label="Search"
-        (input)="search()">
+        <input type="text" class="search" [(ngModel)]="searchText"  placeholder=" Search " aria-label="Search">
 
         <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
       </div>
@@ -31,55 +30,58 @@
             FullName</th>
             <th class="text-center">
               MobileNumber</th>
-          <th class="text-center">District</th>
+          <!-- <th class="text-center">District</th> -->
           <th class="text-center">Account_Type</th>
-          <th class="text-center">Date of Activation</th>
-          <th class="text-center">Date of Expiry</th>
+          <th class="text-center">PlanID</th>
+          <th class="text-center">DateofRegn</th>
+          <th class="text-center">DateofActivation</th>
+          <th class="text-center">DateofExpiry</th>
 
-
-
-
-
-          <th  class="text-center">Action
-          </th>
+          <!-- <th  class="text-center">Action
+          </th> -->
 
         </tr>
-        <tr *ngFor="let person of personList; let id = index">
+        <tr *ngFor="let person of personList| filter: {ClientID: searchText, ClientName:searchText,  MobileNumber: searchText}; let id = index">
           <td>
-            {{person.client_id}}
+            {{person.ClientID}}
           </td>
           <td>
-            {{person.client_firstname}} {{person.client_lastname}}
+            {{person.ClientName}}
           </td>
           <td>
-            {{person.user_mobile_number}}
+            {{person.MobileNumber}}
           </td>
+          <!-- <td>
+            {{person.District}}
+          </td> -->
           <td>
-            {{person.client_district}}
-          </td>
-          <td>{{person.account_type}}</td>
-          <td>
-             {{person.plan_activation_date| date: 'dd/MM/yyyy'}}
-          </td>
-          <td>
-            {{person.plan_expiry_date| date: 'dd/MM/yyyy'}}
+            {{person.AccountType}}
          </td>
-
-
-
+          <td>{{person.PlanID}}</td>
 
           <td>
+            {{person.DateofRegn| date: 'dd/MM/yyyy'}}
+         </td>
+         <td>
+          {{person.DateofActivation| date: 'dd/MM/yyyy'}}
+       </td>
+       <td>
+        {{person.DateofExpiry| date: 'dd/MM/yyyy'}}
+     </td>
+
+          <!-- <td>
             <a> <span class="material-icons" [routerLink]="['/client/viewDetail/',person.client_id]"   matTooltip="View Detailed"
                 matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip">
                 visibility
               </span>
             </a>
-          </td>
+          </td> -->
 
 
         </tr>
-      </table>
 
+      </table>
+      <p *ngIf="message" class="text-center" style="color: red;">{{message}}</p>
     </div>
   </div>
 </div>

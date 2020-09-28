@@ -51,8 +51,11 @@ var APIRoutes = function (passport) {
     router.get('/getplanexpirycontactsAll', analyticsController.getplanexpirycontactsAll);
     router.post('/insertnotifications', analyticsController.insertnotifications);
     router.post('/registeredcontactstracking', analyticsController.registeredcontactstracking);
+    router.get('/getTodayregisterdData', analyticsController.getTodayregisterdData);
+    router.get('/getAllpremiumplans', packageController.getAllportal_premiumplans_master);
+    router.post('/getpremiumplandetails', packageController.getpremiumplandetails);
+    router.get('/fetchProfessions', ClientController.fetchProfessions);
 
-    
     
 
     // GET Routes.

@@ -17,9 +17,11 @@ export class AddClientsComponent implements OnInit {
   state: any;
   district: any;
   postoffice: any;
+  professions: any;
   constructor(private apiCall: ApiCallService, private router: Router) { }
 
   ngOnInit() {
+    this.fetchProfessions()
   }
 
   addnewClient(data) {
@@ -43,5 +45,12 @@ export class AddClientsComponent implements OnInit {
 
     })
 
+  }
+
+  fetchProfessions(){
+    this.apiCall.fetchProfessions().subscribe((res: any)=>{
+      this.professions=res;
+      console.log(res);
+    })
   }
 }

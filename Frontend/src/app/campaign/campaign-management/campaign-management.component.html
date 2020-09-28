@@ -1,0 +1,88 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+    campaign Management</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <form (ngSubmit)="regform.form.valid&&getplanexpirycontacts(regform.form.value)" #regform="ngForm">
+
+          <input type="date"  name="fromDate" placeholder="FromDate" ngModel>&nbsp;
+          <input type="date" name="toDate" placeholder="ToDate" ngModel>&nbsp;
+
+          <input type="submit">
+        </form>
+      </div>
+      <div class="col-md-6 mubutn" >
+
+        <select class="browser-default custom-select filter" (change)="getclientsbyfilter($event.target.value)">
+          <option selected value="">select</option>
+          <option  value="All">ALL</option>
+          <option value="Demo" >Demo</option>
+          <option value="Business">Business </option>
+          <option value="Express">Express</option>
+          <option value="Business Plus">Business Plus</option>
+          <option value="Business Express">Business Express</option>
+
+        </select>
+  <button mat-fab color="primary" aria-label="Example icon button with a delete icon" routerLink="/addpushnotify" matTooltip=" Add Push notification"
+  matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip">
+    <span class="material-icons">
+      add_alert
+      </span>
+  </button>
+  &nbsp;
+   <button mat-fab color="primary" aria-label="Example icon button with a delete icon" routerLink="/pushnotify" matTooltip="Push notification"
+  matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip">
+  <span class="material-icons">
+    notifications
+    </span>
+  </button>
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+        <tr style="background-color: darkblue;color:white">
+          <th class="text-center">
+            Client ID</th>
+          <th class="text-center">
+            FullName</th>
+            <th class="text-center">
+              MobileNumber</th>
+          <th class="text-center">Account_Type</th>
+          <th class="text-center">Date of Activation</th>
+          <th class="text-center">Date of Expiry</th>
+          <th  class="text-center">
+            Select All<input type="checkbox" name="all" (change)="selectAllToppings($event.target.checked)"/>
+          </th>
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td>
+            {{person.client_id}}
+          </td>
+          <td>
+            {{person.client_firstname}} {{person.client_lastname}}
+          </td>
+          <td>
+            {{person.user_mobile_number}}
+          </td>
+          <td>{{person.account_type}}</td>
+          <td>
+             {{person.plan_activation_date| date: 'dd/MM/yyyy'}}
+          </td>
+          <td>
+            {{person.plan_expiry_date| date: 'dd/MM/yyyy'}}
+         </td>
+
+          <td>
+            <input type="checkbox" name="sizecb[]" value="{{person.id}}" [checked]="allToppings" (change)="selectNewTopping($event.target.checked,person)"/>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

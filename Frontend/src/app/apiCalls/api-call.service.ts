@@ -249,6 +249,29 @@ insertnotifications(data){
   return this.http.post(environment.apiBaseUrl + '/insertnotifications',data)
 
 }
+
+registeredcontactstracking(data){
+  return this.http.post(environment.apiBaseUrl + '/registeredcontactstracking',data)
+}
+
+getTodayregisterdData(){
+  return this.http.get(environment.apiBaseUrl + '/getTodayregisterdData')
+
+}
+
+getAllpremiumplans(){
+  return this.http.get(environment.apiBaseUrl + '/getAllpremiumplans')
+
+}
+
+getpremiumplandetails(data){
+  return this.http.post(environment.apiBaseUrl + '/getpremiumplandetails',data)
+}
+
+fetchProfessions(){
+  return this.http.get(environment.apiBaseUrl + '/fetchProfessions')
+
+}
   // Helper Methods
 
   setToken(token: string) {

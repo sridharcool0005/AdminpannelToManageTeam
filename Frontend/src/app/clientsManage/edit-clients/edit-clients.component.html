@@ -53,6 +53,7 @@
     AccountType<input type="text" disabled class="form-control mb-4" placeholder="AccountType" name="account_type"
       [(ngModel)]="user.account_type">
 </div>
+
 <div class="col-md-4">
     AccountStatus
     <select class="browser-default custom-select" name="account_status" [(ngModel)]="user.account_status">
@@ -63,18 +64,19 @@
       <option value="disable" [disabled]="user.account_status=='active'">Disable</option>
     </select>
 </div>
+
  <div class="col-md-6">
     SIM Allowed<select class="browser-default custom-select" name="is_sim_allowed" [(ngModel)]="user.is_sim_allowed">
       <option value="" selected>select</option>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
+      <option value="YES">Yes</option>
+      <option value="NO">No</option>
     </select>
 </div>
     <div class="col-md-6">
     MinBalance Required<select class="browser-default custom-select" name="is_min_bal_req" [(ngModel)]="user.is_min_bal_req">
       <option value="" selected>select</option>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
+      <option value="YES">Yes</option>
+      <option value="NO">No</option>
 
     </select>
 </div>

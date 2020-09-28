@@ -4,17 +4,25 @@
 
     <img src="assets/img/newagenticon.png" width="25%">
 
+
+    <select class="browser-default custom-select" name="profession_id" ngModel>
+      <option selected value="" default>Select Profession</option>
+      <option value="{{item.profession_id}}" *ngFor="let item of professions">{{item.profession_name}}</option>
+    </select>
+    <br><br>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="firstName" #firstName="ngModel"  [(ngModel)]="model.firstName" name="client_firstname"
-        required [ngClass]="{'invalid-textbox' :regform.submitted && !firstName.valid }">
+        <input type="text" class="form-control mb-4" placeholder="firstName" #firstName="ngModel"
+          [(ngModel)]="model.firstName" name="client_firstname" required
+          [ngClass]="{'invalid-textbox' :regform.submitted && !firstName.valid }">
         <div *ngIf="regform.submitted && firstName.errors?.pattern">
           <label class="validation-message">first Name is required.</label>
         </div>
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="lastName" #lastName="ngModel"   [(ngModel)]="model.lastName"  name="client_lastname"
-        required [ngClass]="{'invalid-textbox' :regform.submitted && !lastName.valid }">
+        <input type="text" class="form-control mb-4" placeholder="lastName" #lastName="ngModel"
+          [(ngModel)]="model.lastName" name="client_lastname" required
+          [ngClass]="{'invalid-textbox' :regform.submitted && !lastName.valid }">
         <div *ngIf="regform.submitted && lastName.errors?.pattern">
           <label class="validation-message">lastName is required.</label>
         </div>
@@ -22,17 +30,20 @@
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="mobileNumber" name="client_mobile_number" minlength="10" maxlength="10" ngModel>
+        <input type="text" class="form-control mb-4" placeholder="mobileNumber" name="client_mobile_number"
+          minlength="10" maxlength="10" ngModel>
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="whatsaapNumber" name="client_whatsapp_number" minlength="10" maxlength="10" ngModel>
+        <input type="text" class="form-control mb-4" placeholder="whatsaapNumber" name="client_whatsapp_number"
+          minlength="10" maxlength="10" ngModel>
       </div>
     </div>
-      <input type="text" class="form-control mb-4" placeholder="Email" #email="ngModel"  [(ngModel)]="model.email" name="client_email" [pattern]="emailRegex"
-      required [ngClass]="{'invalid-textbox' :regform.submitted && !email.valid }">
-      <div *ngIf="regform.submitted && email.errors?.pattern">
-        <label class="validation-message">Invalid email address.</label>
-      </div>
+    <input type="text" class="form-control mb-4" placeholder="Email" #email="ngModel" [(ngModel)]="model.email"
+      name="client_email" [pattern]="emailRegex" required
+      [ngClass]="{'invalid-textbox' :regform.submitted && !email.valid }">
+    <div *ngIf="regform.submitted && email.errors?.pattern">
+      <label class="validation-message">Invalid email address.</label>
+    </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <input type="text" class="form-control mb-4" placeholder="client_address1" name="address1" ngModel>
@@ -47,17 +58,20 @@
         <input type="text" class="form-control mb-4" placeholder="client_city" name="client_city" ngModel>
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="client_pincode" name="client_pincode" maxlength="6" ngModel (input)="postofficeApi($event.target.value)">
+        <input type="text" class="form-control mb-4" placeholder="client_pincode" name="client_pincode" maxlength="6"
+          ngModel (input)="postofficeApi($event.target.value)">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
 
-        <input type="text" class="form-control mb-4" placeholder="client_postoffice" name="client_postoffice" [(ngModel)]="postoffice"  >
+        <input type="text" class="form-control mb-4" placeholder="client_postoffice" name="client_postoffice"
+          [(ngModel)]="postoffice">
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="client_district" name="client_district" [(ngModel)]="district">
+        <input type="text" class="form-control mb-4" placeholder="client_district" name="client_district"
+          [(ngModel)]="district">
       </div>
     </div>
     <input type="text" class="form-control mb-4" placeholder="client_state" name="client_state" [(ngModel)]="state">

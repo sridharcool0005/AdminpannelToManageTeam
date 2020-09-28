@@ -44,6 +44,12 @@ import { ViewapksComponent } from './apkupload/viewapks/viewapks.component';
 import { BillingComponent } from './billing/billing/billing.component';
 import { SmspackagelistComponent } from './billing/smspackagelist/smspackagelist.component';
 import { PaymentdetailsupdateComponent } from './billing/paymentdetailsupdate/paymentdetailsupdate.component';
+import { CampaignManagementComponent } from './campaign/campaign-management/campaign-management.component';
+import { AddpushnotificationComponent } from './campaign/addpushnotification/addpushnotification.component';
+import { PacktabsComponent } from './PackageManage/packtabs/packtabs.component';
+import { UpdatepremiumplanComponent } from './PackageManage/updatepremiumplan/updatepremiumplan.component';
+import { PushnotifyComponent } from './campaign/pushnotify/pushnotify.component';
+import { NotifytemplatesComponent } from './campaign/notifytemplates/notifytemplates.component';
 
 
 const routes: Routes = [{
@@ -75,15 +81,18 @@ const routes: Routes = [{
 {path:'packageMange',component:PackManageComponent,children:[
   {path:'addPacks',component:AddPackageComponent},
   {path:'editPacks/:package_id',component:UpdatePackageComponent},
-  {path:'ViewPacks',component:ViewPackageComponent}
+  {path:'ViewPacks',component:ViewPackageComponent},
+  {path:'editpremiumPlan/:package_id',component:UpdatepremiumplanComponent}
 ]},
+
+{path:'packagemanagement', component:PacktabsComponent},
 
 {path:'analytics',component:AnalyticComponent,children:[
   {path:'purchaseAnalysis',component:PurchaseAnalysisComponent},
   {path:'salesAnalysis',component:SalesAnalysisComponent},
   {path:'usageAnalysis',component:SalesAnalysisComponent},
-
 ]},
+
 {path:'helpdesk',component:HelpdeskComponent,children:[
   {path:'viewhelpdesk',component:ViewhelpdeskComponent},
   {path:'updateticket',component:UpdateticketComponent}
@@ -110,7 +119,10 @@ path:'templates',component:TemplatesComponent,children:[
 
 {path:'apkUpload',component:ApkuploadsComponent},
 {path:'viewapklist',component:ViewapksComponent},
-
+{path:'campaignManage', component:CampaignManagementComponent},
+{path:'addpushnotify',component:AddpushnotificationComponent},
+{path:'pushnotify',component:PushnotifyComponent},
+{path:'viewnotifyTemplates',component:NotifytemplatesComponent},
 {path:'ViewUsageDetailed', component:UsageDetailedComponent},
 {path:'viewPurchaseDetailed/:package_id/:order_id',component:PurchaseDetailedComponent},
  ],

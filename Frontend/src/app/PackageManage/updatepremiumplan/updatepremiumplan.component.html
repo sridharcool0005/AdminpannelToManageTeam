@@ -1,0 +1,21 @@
+<form    (ngSubmit)="updatePackage(regform.form.value)" #regform="ngForm">
+  <div class="medias mymedia text-center border border-light p-5 " *ngFor="let pack of packageDetails">
+
+
+      <img src="assets/img/addsmspack.jpg" width="25%">
+
+
+        <input type="text"  class="form-control mb-4" placeholder="package_name" name="package_name" [(ngModel)]="pack.package_name">
+        <input type="text"   class="form-control mb-4" placeholder="free_sms_credits " name="free_sms_credits" [(ngModel)]="pack.free_sms_credits">
+
+          <input type="text"   class="form-control mb-4" placeholder="package_list_price" name="package_list_price" [(ngModel)]="pack.package_list_price">
+          <input type="text"   class="form-control mb-4" placeholder="package_offered_price" name="package_offered_price" [(ngModel)]="pack.package_offered_price">
+      <input type="text"   class="form-control mb-4" placeholder="total_package_price" name="total_package_price" [(ngModel)]="pack.total_package_price">
+
+
+      <input type="text"   class="form-control mb-4" placeholder="package_status" name="package_status" [(ngModel)]="pack.package_status">
+
+      <!-- Sign up button -->
+      <button mdbBtn color="info" block="true" class="my-4" type="submit">Update</button>
+  </div>
+  </form>

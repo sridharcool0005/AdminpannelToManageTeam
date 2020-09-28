@@ -2,18 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { ExcelService } from 'src/app/apiCalls/excel.service';
 @Component({
-  selector: 'app-registrationtracking',
-  templateUrl: './registrationtracking.component.html',
-  styleUrls: ['./registrationtracking.component.scss']
+  selector: 'app-campaign-management',
+  templateUrl: './campaign-management.component.html',
+  styleUrls: ['./campaign-management.component.scss']
 })
-export class RegistrationtrackingComponent implements OnInit {
-  public searchText : string;
+export class CampaignManagementComponent implements OnInit {
   personList;
   editField: string;
+  client_firstname: string;
   awaitingPersonList: Array<any> = [];
-  message:'';
-
-
+  selectedToppings = [];
+  toppingList;
+  allToppings = false;
+  errorMessage: any;
+  curDate=new Date();
   constructor(private apiCall: ApiCallService, private excelservice: ExcelService) { }
 
   ngOnInit() {
@@ -46,14 +48,9 @@ export class RegistrationtrackingComponent implements OnInit {
 
 
   getClients() {
-    this.apiCall.getTodayregisterdData().subscribe((res: any) => {
-if (res.status === 'false') {
-this.message = res.message;
+    this.apiCall.getplanexpirycontactsAll().subscribe((res: any) => {
 
-} else {
-  this.personList = res.data;
-
-}
+      this.personList = res.data;
 
     });
   }
@@ -64,19 +61,19 @@ this.message = res.message;
     this.excelservice.exportAsExcelFile(this.personList, 'sample');
   }
 
-//   search() {
-// if (this.client_firstname !='') {
-//   this.personList = this.personList.filter(res => {
-//     return res.client_firstname.toLocaleLowerCase().match(this.client_firstname.toLocaleLowerCase());
-//   });
-// } else if (this.client_firstname == '') {
-//   this.ngOnInit();
-// }
+  search() {
+if (this.client_firstname !='') {
+  this.personList = this.personList.filter(res => {
+    return res.client_firstname.toLocaleLowerCase().match(this.client_firstname.toLocaleLowerCase());
+  });
+} else if (this.client_firstname == '') {
+  this.ngOnInit();
+}
 
-//   }
+  }
 
   getplanexpirycontacts(data) {
-    this.apiCall.registeredcontactstracking(data).subscribe((res: any) => {
+    this.apiCall.getplanexpirycontacts(data).subscribe((res: any) => {
       this.personList = res.data;
     });
   }
@@ -101,5 +98,40 @@ this.message = res.message;
       alert(res.message);
     });
   }
+}
+
+getclientsbyfilter(value) {
+  console.log(value)
+  const data = { account_status: value }
+  this.apiCall.getclientsbyfilter(data).subscribe((res: any) => {
+    this.personList = res.data;
+    if (res.status == "false") {
+      this.errorMessage = res.message
+    }
+    if (value === 'All') {
+      this.ngOnInit()
+    }
+  })
+}
+
+selectAllToppings(checked) {
+  this.selectedToppings = [];
+  if (checked) {
+    this.allToppings = true;
+    this.selectedToppings = this.toppingList;
+  } else {
+    console.log(this.allToppings);
+    this.allToppings = false;
+  }
+}
+
+selectNewTopping(checked, topping) {
+  if (checked) {
+  this.selectedToppings.push(topping);
+  console.log(this.selectedToppings);
+  } else {
+    this.selectedToppings = this.selectedToppings.filter(top => top.client_id !== topping.client_id);
+  }
+  console.log(this.selectedToppings);
 }
 }
