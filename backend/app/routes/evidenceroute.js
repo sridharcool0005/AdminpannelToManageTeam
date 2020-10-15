@@ -51,7 +51,7 @@ var upload = multer({
     // }
 });
 
-postPaymentTransactionApi = 'https://www.portalapi.nutansms.in/postPaymentTransaction.php';
+postPaymentTransactionApi = 'https://www.portalapi.nutansms.in/postPaymentTransactionV4.php';
 
 router.post('/postPaymentTransaction', upload.single('avatar'), (req, res, next) => {
     const { TxnOrderId, payment_mode,discountAmount,totalamount, payment_gateway_txn_ref, notes, payment_gateway_txn_id,client_id,authkey } = req.body;

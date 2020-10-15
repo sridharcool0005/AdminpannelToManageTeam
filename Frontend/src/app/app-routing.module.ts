@@ -50,6 +50,8 @@ import { PacktabsComponent } from './PackageManage/packtabs/packtabs.component';
 import { UpdatepremiumplanComponent } from './PackageManage/updatepremiumplan/updatepremiumplan.component';
 import { PushnotifyComponent } from './campaign/pushnotify/pushnotify.component';
 import { NotifytemplatesComponent } from './campaign/notifytemplates/notifytemplates.component';
+import { SendnotificationComponent } from './campaign/sendnotification/sendnotification.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 
 const routes: Routes = [{
@@ -63,6 +65,7 @@ const routes: Routes = [{
     path: 'posts',
     component: PostsComponent
   },
+  {path:'changepassword', component:ChangepasswordComponent},
   { path: 'userprofile', component: ProfileComponent },
 
 {path:'client',component:ClientComponent,children:[
@@ -116,13 +119,13 @@ path:'templates',component:TemplatesComponent,children:[
   {path:'smspackagelist',component:SmspackagelistComponent},
   ]},
 {path:'paymentdetails/:package_id/:package_price/:package_gst_rate', component:PaymentdetailsupdateComponent},
-
 {path:'apkUpload',component:ApkuploadsComponent},
 {path:'viewapklist',component:ViewapksComponent},
 {path:'campaignManage', component:CampaignManagementComponent},
 {path:'addpushnotify',component:AddpushnotificationComponent},
 {path:'pushnotify',component:PushnotifyComponent},
 {path:'viewnotifyTemplates',component:NotifytemplatesComponent},
+{path:'sendnotify',component:SendnotificationComponent},
 {path:'ViewUsageDetailed', component:UsageDetailedComponent},
 {path:'viewPurchaseDetailed/:package_id/:order_id',component:PurchaseDetailedComponent},
  ],

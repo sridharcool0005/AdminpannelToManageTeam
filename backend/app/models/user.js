@@ -13,7 +13,7 @@ var modelDefinition = {
         type: Sequelize.STRING,
         allowNull: false
     },
-    user_id:{
+    partner_id:{
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -27,7 +27,7 @@ var modelDefinition = {
         allowNull: false
     },
     role: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         defaultValue: config.userRoles.user
     },
     mobile_number:{

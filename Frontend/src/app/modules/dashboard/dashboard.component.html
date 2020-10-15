@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <app-widget-area [data]="bigChart"></app-widget-area>
 </div>
 
@@ -6,71 +6,200 @@
 
 <mat-divider></mat-divider>
 
-<br>
-
+<br> -->
+<!--
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
-    <mat-card fxFlex="25">
-        <app-widget-card label="New Users" total="12k" percentage="50" [data]="cards"></app-widget-card>
-    </mat-card>
-    <mat-card fxFlex="25">
-        <app-widget-card label="Users retention" total="10k" percentage="40" [data]="cards"></app-widget-card>
-    </mat-card>
-    <mat-card fxFlex="25">
-        <app-widget-card label="Users engagement" total="8k" percentage="30" [data]="cards"></app-widget-card>
-    </mat-card>
-    <mat-card fxFlex="25">
-        <app-widget-card label="Referral" total="6k" percentage="20" [data]="cards"></app-widget-card>
-    </mat-card>
-</div>
+  <mat-card fxFlex="25">
+      <app-widget-card label="New Users" total="12" percentage="50" [data]="cards"></app-widget-card>
+  </mat-card>
+  <mat-card fxFlex="25">
+      <app-widget-card label="Plan Expiring " total="22" percentage="40" [data]="cards"></app-widget-card>
+  </mat-card>
+  <mat-card fxFlex="25">
+      <app-widget-card label="Upgrades  " total="8" percentage="30" [data]="cards"></app-widget-card>
+  </mat-card>
+  <mat-card fxFlex="25">
+      <app-widget-card label="SMS Credits Sold" total="10" percentage="20" [data]="cards"></app-widget-card>
+  </mat-card>
+</div> -->
 
-<br>
+<!-- <br>
 
 <mat-divider></mat-divider>
 
 <br>
 
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
-    <div fxFlex="60">
-        <div class="mat-elevation-z8">
-            <table mat-table [dataSource]="dataSource">
+  <div fxFlex="60">
+      <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource">
 
-                <!-- Position Column -->
-                <ng-container matColumnDef="position">
-                    <th mat-header-cell *matHeaderCellDef> No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-                </ng-container>
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                </ng-container>
+              <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+              </ng-container>
 
-                <!-- Weight Column -->
-                <ng-container matColumnDef="weight">
-                    <th mat-header-cell *matHeaderCellDef> Weight </th>
-                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-                </ng-container>
+              <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              </ng-container>
 
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="symbol">
-                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-                </ng-container>
+              <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef> Weight </th>
+                  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+              </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+              <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+              </ng-container>
 
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
-        </div>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
 
-    </div>
-    <div fxFlex="40">
-        <app-widget-pie [data]="pieChart"></app-widget-pie>
-    </div>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+      </div>
+
+  </div>
+  <div fxFlex="40">
+      <app-widget-pie [data]="pieChart"></app-widget-pie>
+  </div>
 </div>
 
 <br>
 <br>
-<br>
+<br> -->
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-info card-header-icon">
+
+          <div>
+            <i class="fas fa-user-plus">&nbsp;New Clients</i>
+            <p class="card-category"></p>
+            <ul class="list-group list-group-horizontal-md" >
+              <div class="list">
+                <li >Today</li>
+                <h4 class="card-title" >{{newclients}}</h4>
+              </div>
+
+              <div class="weak">
+                <li >This Week</li>
+                <h4 class="card-title" >{{newusersweekly}}</h4>
+              </div>
+            </ul>
+
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">update</i> Just Updated
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-success card-header-icon">
+          <div >
+            <div class="card-icon">
+              <i class="fas fa-users">&nbsp;Total Clients</i>
+            </div>
+            <p class="card-category"></p>
+
+
+          <ul class="list-group list-group-horizontal-md" *ngIf="userdata">
+            <div class="list">
+              <li >Freedom    </li>
+              <h4 class="card-title" >{{userdata.Freedom}}</h4>
+            </div>
+&nbsp;&nbsp;      &nbsp;&nbsp;
+            <div class="list">
+              <li >Silver    </li>
+              <h4 class="card-title" >{{userdata.Silver}}</h4>
+            </div>
+            &nbsp;&nbsp;      &nbsp;&nbsp;
+            <div class="list">
+              <li >Gold  </li>
+              <h4 class="card-title" >{{userdata.Gold}}</h4>
+            </div>
+            &nbsp;&nbsp;  &nbsp;&nbsp;
+            <div class="list">
+              <li >Diamond  </li>
+              <h4 class="card-title" >{{userdata.Diamond}}</h4>
+            </div>
+          </ul>
+        </div>
+
+        </div>
+
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">date_range</i> Last 24 Hours
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-danger card-header-icon" >
+          <div >
+          <div class="card-icon">
+            <i class="fas fa-briefcase">&nbsp; Plan Expiring</i>
+          </div>
+          <p class="card-category"></p>
+          <ul class="list-group list-group-horizontal-md">
+            <div class="list">
+              <li >Today</li>
+              <h4 class="card-title" >{{planexpirytdy}}</h4>
+            </div>
+
+            <div class="weak">
+              <li >This Week</li>
+              <h4 class="card-title" >{{planexpiryweekly}}</h4>
+            </div>
+          </ul>
+        </div>
+
+
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">date_range</i> Last 24 Hours
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats" >
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="fas fa-hand-holding-usd"></i>
+          </div>
+            <p class="card-category"> Payments Received</p>
+
+            <h4 class="card-title" >   20 </h4>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">date_range</i> 10  validity
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</div>

@@ -67,6 +67,8 @@ import { PacktabsComponent } from './PackageManage/packtabs/packtabs.component';
 import { UpdatepremiumplanComponent } from './PackageManage/updatepremiumplan/updatepremiumplan.component';
 import { PushnotifyComponent } from './campaign/pushnotify/pushnotify.component';
 import { NotifytemplatesComponent } from './campaign/notifytemplates/notifytemplates.component';
+import { SendnotificationComponent } from './campaign/sendnotification/sendnotification.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +125,8 @@ import { NotifytemplatesComponent } from './campaign/notifytemplates/notifytempl
     UpdatepremiumplanComponent,
     PushnotifyComponent,
     NotifytemplatesComponent,
+    SendnotificationComponent,
+    ChangepasswordComponent,
 
 
 

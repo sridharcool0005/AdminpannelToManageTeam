@@ -168,3 +168,32 @@ module.exports.getpremiumplandetails = async function (req, res) {
         });
     });
 }
+
+module.exports.updatePremiumPlan = async function (req, res) {
+
+    const { package_name, free_sms_credits,package_list_price, package_offered_price,total_package_price,is_sim_allowed,is_min_bal_req,package_validity_in_months ,package_status, package_id } = req.body
+    const values = [package_name, free_sms_credits,package_list_price, package_offered_price,total_package_price,is_sim_allowed,is_min_bal_req,package_validity_in_months ,package_status, package_id ];
+    console.log(values)
+    const sql = "UPDATE portal_premiumplans_master SET  package_name =?, free_sms_credits =?, package_list_price =?, package_offered_price =?, total_package_price =?, is_sim_allowed =?, is_min_bal_req =?,package_validity_in_months =?,package_status =? WHERE package_id =?";
+    await database.query(sql, values, function (err, result, fields) {
+
+        if (err) throw err;
+        res.send({
+            "code": 200,
+            "success": "Data updated Sucessfully",
+        });
+    });
+}
+
+module.exports.deletePremiumPack = (req, res) => {
+    const package_id=req.body.package_id;
+    database.query('DELETE FROM `portal_premiumplans_master` WHERE `package_id`=?', 
+        [package_id], function (error, results, fields) {
+            if (error) throw error;
+            res.send({
+                "code": 200,
+                "success": "Data updated Sucessfully",
+            });
+    });
+};
+

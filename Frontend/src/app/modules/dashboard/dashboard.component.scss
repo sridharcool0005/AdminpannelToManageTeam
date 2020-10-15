@@ -1,9 +1,256 @@
-.stats-cards {
-  .mat-card {
-    overflow: hidden;
-  }
+table {
+  border: 1px solid silver;
 }
 
-table {
+th {
+  border: 1px solid silver;
+}
+
+td {
+  border: 1px solid silver;
+}
+
+tr.table-bgrnd {
+  background-color: darkblue;
+  color: white;
+}
+
+.h3, h3 {
+background-color: darkblue;
+width: 100%;
+font-size: 1.75rem;
+color: white;
+padding: 1%;
+margin-top: -1%;
+}
+
+th.crs {
+  width: 15%;
+}
+
+td.mrs {
+  width: 30%;
+}
+h2 {
+  background-color: darkblue;
+  color: white;
+  padding: -3pxpx;
+  border-radius: 4px;
+}
+
+
+td.drs {
+  width: 10%;
+}
+
+
+table.title-1 {
+  width: 70%;
+  margin-top: 1%;
+  margin-left: 15%;
+}
+h5.text-bst {
+  margin-left: 25%;
+  background-color: gray;
+  color: white;
+  padding: 0.2%;
+  text-align: center;
+  width: 50%;
+  margin-top: 1%;
+  border-radius: 4px;
+}
+
+
+
+h5.tite-1 {
+  /* background-color: cadetblue; */
+  color:black;
+}
+table.tble-2 {
+
   width: 100%;
+}
+h5.cmmdate{
+  background-color:darkblue;
+  color: white;
+  padding: 1%;
+  width: 50%;
+  text-align: center;
+  margin-left: 26%;
+  margin-top: 3%;
+    padding: 10px;
+    border-radius: 4px;
+}
+h6.single {
+  background-color: #2980B9;
+  color: white;
+  padding: 1%;
+  text-align: center;
+  font-size: larger;
+  margin-top:1%;
+  padding: 10px;
+  border-radius: 4px;
+}
+h6.polcy-1 {
+  margin-left: -2%;
+  margin-top: 6%;
+  background-color: cadetblue;
+  color: white;
+  width: 93%;
+  padding: 1%;
+  text-align: center;
+}
+h6.polcy-2 {
+  width: 93%;
+  margin-top: 6%;
+
+  background-color: cadetblue;
+  color: white;
+  padding: 1%;
+  text-align: center;
+}
+
+.card.card-stats {
+
+  margin-bottom: 6%;
+}
+.card-header.card-header-warning.card-header-icon {
+  background-color: darkorange;
+  color: white;
+}
+.card-header.card-header-success.card-header-icon {
+  color: white;
+  background-color: green;
+}
+.card-header.card-header-danger.card-header-icon {
+  color: white;
+  background-color: rebeccapurple;
+}
+.card-header.card-header-info.card-header-icon {
+  color: white;
+  background-color: lightseagreen;
+}
+
+.card.card-cascade.wider.reverse {
+  margin-bottom: 2%;
+}
+.agewnt {
+  float: right;
+  margin-top: -45%;
+}
+
+.weak {
+  margin-left: 40%;
+}
+
+ul.list-group.list-group-horizontal-md {
+  list-style: none;
+}
+@media screen and (max-width: 1060px){
+  .wiedsa.smscredit.meida {
+    margin-top: -26%;
+}
+  .wiedsa.credits {
+    float: right;
+    margin-top: -32%;
+  }
+  /* .wiedsa.balance {
+    margin-top: -37%;
+} */
+.chartwidth.media{
+
+
+  width:100%;
+  margin-left: 1%;
+margin-bottom: 5%;
+
+}
+h6.amount.media {
+  width: 45%;
+  margin-left: 27%;
+}
+
+h5.text-bst.media {
+  width: 100%;
+  margin-left: 1%;
+  margin-top: 5%;
+}
+
+h5.txt-1.medis-1 {
+  width: 100%;
+}
+}
+
+
+h4.pack {
+  text-align: center;
+  color: blue;
+}
+
+.circle_container
+{
+	width : 128px;
+	height : 128px;
+	margin : 0;
+	padding : 0;
+/*	border : 1px solid red; */
+}
+
+/* Circle Main draws the actual circle */
+.circle_main
+{
+	width : 100%;
+	height : 100%;
+	border-radius : 50%;
+	border : 2px solid blue;	/* can alter thickness and colour of circle on this line */
+	margin : 0;
+	padding : 0;
+}
+
+/* Circle Text Container - constrains text area to within the circle */
+.circle_text_container
+{
+	/* area constraints */
+	width : 70%;
+	height : 70%;
+	max-width : 70%;
+	max-height : 70%;
+	margin : 0;
+	padding : 0;
+
+	/* some position nudging to center the text area */
+	position : relative;
+	left : 15%;
+	top : 15%;
+
+	/* preserve 3d prevents blurring sometimes caused by the text centering in the next class */
+	transform-style : preserve-3d;
+
+	/*border : 1px solid green;*/
+}
+
+/* Circle Text - the appearance of the text within the circle plus vertical centering */
+.circle_text
+{
+	/* change font/size/etc here */
+	font: 20px "Tahoma", Arial, Serif;
+	text-align : center;
+
+	/* vertical centering technique */
+	position : relative;
+	top : 50%;
+	transform : translateY(-50%);
+}
+.col-md-3.starter {
+  margin-left: 5%;
+}
+@media screen and (max-width: 1060px){
+  h5.mediA-2 {
+    margin-bottom: 20%;
+  }
+  h2.ng-star-inserted.finyear {
+    width: 100%;
+    padding: -7%;
+    font-size: 150%;
+}
 }

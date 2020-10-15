@@ -10,10 +10,13 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
+  role: string;
 
   constructor(private userService: ApiCallService,private router : Router) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.role=this.userService.getRole();
+  }
 
   toggleSideBar() {
     this.toggleSideBarForMe.emit();

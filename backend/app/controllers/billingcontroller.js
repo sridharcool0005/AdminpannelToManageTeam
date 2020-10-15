@@ -79,9 +79,10 @@ module.exports.getpremiumplanlist = async function (req, res) {
 
 
 module.exports.getclientdetails= async function (req, res) {
+  const partner_id=req.params.partner_id;
 const {mobilenumber}=req.body;
-const query="select a.client_id,a.user_regn_channel,a.user_authkey_old,b.client_firstname, b.client_lastname from portal_users a,clients_master b where a.user_mobile_number =? and b.client_mobile_number =?"
-await database.query(query, [mobilenumber,mobilenumber], function (err, result, fields) {
+const query="select a.client_id,a.user_regn_channel,a.user_authkey_old,b.client_firstname, b.client_lastname from portal_users a,clients_master b where a.user_mobile_number =? and b.client_mobile_number =? and a.partner_id =?"
+await database.query(query, [mobilenumber,mobilenumber,partner_id], function (err, result, fields) {
   if (err) throw err;
 
   if (!result.length) {

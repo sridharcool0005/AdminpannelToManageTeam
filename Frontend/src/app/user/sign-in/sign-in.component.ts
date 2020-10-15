@@ -28,6 +28,9 @@ export class SignInComponent implements OnInit {
     this.userService.login(form.value).subscribe(
       res => {
         this.userService.setToken(res['token']);
+        this.userService.setRole(res['role']);
+        this.userService.setName(res['name']);
+        this.userService.setPartner_id(res['partner_id']);
         this.router.navigateByUrl('/home');
       },
       err => {

@@ -36,13 +36,17 @@ export class ViewpremiumplansComponent implements OnInit {
     })
   }
 
-  deletePackage(package_id, id) {
+  deletePackage(package_id,id) {
     const data = { package_id: package_id }
-    this.apiCall.deletePackage(data).subscribe((res: any) => {
+    const yes = confirm('Are you sure want to Delete?');
+    if(yes){
+    this.apiCall.deletePremiumPack(data).subscribe((res: any) => {
       console.log(res);
       alert('Package Deleted Sucessfully')
       this.remove(id);
+
     })
+  }
   }
 
   exportAsXLSX(): void {

@@ -44,21 +44,21 @@
     <div *ngIf="regform.submitted && email.errors?.pattern">
       <label class="validation-message">Invalid email address.</label>
     </div>
-    <div class="form-row">
+    <!-- <div class="form-row">
       <div class="form-group col-md-6">
         <input type="text" class="form-control mb-4" placeholder="client_address1" name="address1" ngModel>
       </div>
       <div class="form-group col-md-6">
         <input type="text" class="form-control mb-4" placeholder="client_address2" name="address2" ngModel>
       </div>
-    </div>
+    </div> -->
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="client_city" name="client_city" ngModel>
+        <input type="text" class="form-control mb-4" placeholder="City" name="client_city" ngModel>
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="client_pincode" name="client_pincode" maxlength="6"
+        <input type="text" class="form-control mb-4" placeholder="Pincode" name="client_pincode" maxlength="6"
           ngModel (input)="postofficeApi($event.target.value)">
       </div>
     </div>
@@ -66,15 +66,17 @@
     <div class="form-row">
       <div class="form-group col-md-6">
 
-        <input type="text" class="form-control mb-4" placeholder="client_postoffice" name="client_postoffice"
-          [(ngModel)]="postoffice">
+    <select class="browser-default custom-select" name="postoffice" ngModel>
+      <option selected value="" default>Post Office</option>
+      <option value="{{item.postoffice}}" *ngFor="let item of postoffice">{{item.postoffice}}</option>
+    </select>
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control mb-4" placeholder="client_district" name="client_district"
+        <input type="text" class="form-control mb-4" placeholder="Dstrict" name="client_district"
           [(ngModel)]="district">
       </div>
     </div>
-    <input type="text" class="form-control mb-4" placeholder="client_state" name="client_state" [(ngModel)]="state">
+    <input type="text" class="form-control mb-4" placeholder="State" name="client_state" [(ngModel)]="state">
     <!-- Sign up button -->
     <button mdbBtn color="info" block="true" class="my-4" type="submit">Add</button>
   </div>

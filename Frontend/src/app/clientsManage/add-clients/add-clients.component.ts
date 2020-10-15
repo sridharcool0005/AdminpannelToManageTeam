@@ -29,6 +29,7 @@ export class AddClientsComponent implements OnInit {
       console.log(res)
       if (res.status == "success") {
         alert('new client added Sucessfully')
+        this.router.navigate(['/client/viewclient'])
       } else if (res.status == "error") {
         alert(res.message)
       }
@@ -41,7 +42,7 @@ export class AddClientsComponent implements OnInit {
       console.log(res)
       this.state=res.state;
       this.district=res[0].district;
-      this.postoffice=res[0].postoffice[0].postoffice
+      this.postoffice=res[0].postoffice;
 
     })
 

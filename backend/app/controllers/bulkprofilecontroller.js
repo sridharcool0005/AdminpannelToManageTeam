@@ -21,13 +21,13 @@ var database = mysql.createConnection({
 //   const hash = bcrypt.hashSync(password, saltRounds);
 
 //   const { formdata } = req.body;
- 
+
 //   var count = '';
 //   var promiseSaveArr = [];
 //   if (Array.isArray(formdata)) {
 //     formdata.forEach(obj => {
 //       count = formdata.length
-      
+
 //       const smsportal_authkey = crypto.randomBytes(16).toString("hex");
 //       const agent_id = crypto.randomBytes(4).toString("hex");
 //       // create excel model
@@ -55,7 +55,7 @@ var database = mysql.createConnection({
 
 //     res.status(200).send({ success: true, message: count + ' ' + 'profiles created  sucessfully' });
 //   }).catch((err) => {
-   
+
 //     res.status(400).send({ success: false, message: err.message })
 //   });
 
@@ -63,17 +63,16 @@ var database = mysql.createConnection({
 
 
 module.exports.createbulkprofiles = async (req, res) => {
-
+const partner_id=req.params.partner_id;
   const api = 'https://www.portalapi.nutansms.in/addNewClient.php?sales_channel=smsportal';
-  
+
   const { formdata } = req.body;
- 
+
   var count = '';
   var promiseSaveArr = [];
   if (Array.isArray(formdata)) {
     formdata.forEach(obj => {
       count = formdata.length
-      
       const smsportal_authkey = crypto.randomBytes(16).toString("hex");
       const agent_id = crypto.randomBytes(4).toString("hex");
 
@@ -85,9 +84,8 @@ module.exports.createbulkprofiles = async (req, res) => {
           client_firstname: obj.firstname,
           client_lastname: obj.lastname,
           client_mobile_number: obj.mobilenumber,
-          client_country_code: " 91",
-          client_smsgateway: "pending",
-          client_role:1
+          client_role: obj.profession,
+          partner_id: partner_id
         },
         headers: {
           'Authorization': 'bh#xg6sf(gs67nsbsf99gsf%nn'
@@ -101,19 +99,19 @@ module.exports.createbulkprofiles = async (req, res) => {
         if (err) {
           res.json(err)
         } else {
-         console.log(body)
+          console.log(body)
         }
       });
 
     });
 
   }
- 
- return await Promise.all(promiseSaveArr).then(result => {
-  //  console.log(result,'result')
-   res.status(200).send({ success: true, message: count + ' ' + 'profiles created  sucessfully' });
+
+  return await Promise.all(promiseSaveArr).then(result => {
+    //  console.log(result,'result')
+    res.status(200).send({ success: true, message: count + ' ' + 'profiles created  sucessfully' });
   }).catch((err) => {
-   
+
     res.status(400).send({ success: false, message: err.message })
   });
 

@@ -32,7 +32,7 @@
           <span class="material-icons">
             add
           </span></button>
-          <button mat-stroked-button color="primary" routerLink="/client/createprofile">
+          <button mat-stroked-button color="primary" routerLink="/client/createprofile" *ngIf="role =='admin'">
             Bulkprofile Create
               <span class="material-icons">
                 add
@@ -57,7 +57,7 @@
           </th>
 
         </tr>
-        <tr *ngFor="let person of personList| filter: {client_id: searchText, client_firstname:searchText,  client_lastname: searchText,user_mobile_number:searchText}; let i=index;" #loaded>
+        <tr *ngFor="let person of personList| filter: {client_id: searchText, client_firstname:searchText,  client_lastname: searchText,user_mobile_number:searchText}; let id=index;" #loaded>
           <td>
             {{person.client_id}}
           </td>
@@ -102,7 +102,7 @@
               <i class="fas fa-user-edit" ></i>
             </span></a>
           </td>
-          <td>
+          <td *ngIf="role=='admin'">
             <a (click)="deleteclient(person.client_id)">
               <span class="material-icons"      matTooltip="Delete User"
               matTooltipClass="example-tooltip-red"

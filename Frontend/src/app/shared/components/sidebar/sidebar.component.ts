@@ -9,9 +9,13 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
   userDetails;
+  role: string;
+  name: string;
   constructor(private userService: ApiCallService, private router: Router ) { }
 
   ngOnInit() {
+    this.role=this.userService.getRole();
+    this.name=this.userService.getName();
     this.userService.getUserProfile().subscribe(
       res => {
         this.userDetails = res['user'];

@@ -40,7 +40,7 @@
     PID<input type="text" class="form-control mb-4" placeholder="PID" name="user_smsgateway_pid"
       [(ngModel)]="user.user_smsgateway_pid">
 </div>
-<div class="col-md-4">
+<div class="col-md-6">
     Unicode
     <select class="browser-default custom-select" name="user_smsgateway_unicode"
       [(ngModel)]="user.user_smsgateway_unicode">
@@ -49,12 +49,12 @@
       <option value="0">0-English</option>
     </select>
     </div>
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
     AccountType<input type="text" disabled class="form-control mb-4" placeholder="AccountType" name="account_type"
-      [(ngModel)]="user.account_type">
-</div>
+      [(ngModel)]="user.account_type" value="user.account_type">
+</div> -->
 
-<div class="col-md-4">
+<div class="col-md-6">
     AccountStatus
     <select class="browser-default custom-select" name="account_status" [(ngModel)]="user.account_status">
       <option selected value="">Select</option>
@@ -83,12 +83,12 @@
 
 <div class="col-md-6">
   <br>
-  Account_plan_id<input type="text" class="form-control mb-4" placeholder="account_plan_id" [(ngModel)]="user.account_plan_id" name="account_plan_id">
+  Account_plan_id<input type="text" class="form-control mb-4" placeholder="account_plan_id" [(ngModel)]="user.account_plan_id" name="account_plan_id" disabled>
   </div>
 
   <div class="col-md-6">
     <br>
-    plan_expiry_date<input type="date" class="form-control mb-4"  [(ngModel)]="user.plan_expiry_date" name="plan_expiry_date">
+    plan_expiry_date<input type="date" class="form-control mb-4"   [ngModel]="user.plan_expiry_date| date:'y-MM-dd'" (ngModelChange)="user.plan_expiry_date = $event" name="plan_expiry_date" >
 
     </div>
     <!-- Sign up button -->

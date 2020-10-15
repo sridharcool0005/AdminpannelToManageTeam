@@ -18,11 +18,12 @@ export class ViewclientsComponent implements OnInit {
   clientsdata: any;
   accountStatus: any;
   errorMessage: any;
+  role:any;
 
   constructor(private apiCall: ApiCallService, private excelservice: ExcelService) { }
 
   ngOnInit() {
-
+this.role=this.apiCall.getRole();
     this.getClients();
   }
 
@@ -58,7 +59,8 @@ export class ViewclientsComponent implements OnInit {
     })
   }
 
-  deleteclient(client_id, id) {
+  deleteclient(client_id,id) {
+    console.log(id)
     const yes = confirm('Are you sure want to Delete?');
     if(yes){
     const data = { client_id: client_id }
@@ -66,9 +68,11 @@ export class ViewclientsComponent implements OnInit {
       console.log(res);
       alert('User Deleted Sucessfully')
       this.remove(id);
+      this.getClients();
     })
   }
   }
+
 
   exportAsXLSX(): void {
     this.excelservice.exportAsExcelFile(this.personList, 'sample');
@@ -82,18 +86,15 @@ export class ViewclientsComponent implements OnInit {
     if (yes) {
       const data = { account_status: person.account_status, client_id: person.client_id, user_regn_channel: person.user_regn_channel }
       console.log(data)
-
       this.apiCall.updateclientStatus(data).subscribe((res: any) => {
         if (res.status == 'true') {
           alert(res.message)
         } else if (res.status == 'false') {
           alert(res.message)
         }
-
       })
     }
   }
-
 
   getclientsbyfilter(value) {
     console.log(value)
@@ -108,6 +109,4 @@ export class ViewclientsComponent implements OnInit {
       }
     })
   }
-
-
 }

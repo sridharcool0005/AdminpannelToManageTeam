@@ -26,11 +26,11 @@ export class UpdatepremiumplanComponent implements OnInit {
 
   updatePackage(packData) {
     packData.package_id = this.package_id;
-    this.apiCall.updatePackage(packData).subscribe((res: any) => {
+    this.apiCall.updatePremiumPlan(packData).subscribe((res: any) => {
       console.log(res)
       if (res.code == '200') {
         alert(res.success)
-        this.router.navigate(['/packageMange/ViewPacks']);
+        this.router.navigate(['/packagemanagement']);
       }
 
     })

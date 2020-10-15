@@ -33,23 +33,23 @@ export class ApiCallService {
   }
 
   getuserdata() {
-    return this.http.get(environment.apiBaseUrl + '/getuserdata');
+    return this.http.get(environment.apiBaseUrl +'/getuserdata');
   }
 
   getClients(){
-    return this.http.get(environment.apiBaseUrl + '/getClients');
+    return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +  '/getClients');
   }
 
   getuserDetails(data){
-    return this.http.post(environment.apiBaseUrl + '/getuserDetails',data);
+    return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/getuserDetails',data);
   }
 
   updateclientData(data){
-    return this.http.put(environment.apiBaseUrl + '/updateclientData',data);
+    return this.http.put(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +  '/updateclientData',data);
   }
 
   deleteclient(data){
-    return this.http.post(environment.apiBaseUrl + '/deleteclient',data);
+    return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/deleteclient',data);
   }
 
   getAllPackages(){
@@ -100,7 +100,7 @@ export class ApiCallService {
   }
 
   addnewClient(data){
-    return this.http.post(environment.apiBaseUrl + '/addnewClient',data);
+    return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/addnewClient',data);
   }
 
   getAllTickets(){
@@ -197,7 +197,7 @@ export class ApiCallService {
   }
 
   createbulkcontacts(data){
-    return this.http.post(environment.apiBaseUrl + '/createbulkprofiles',data)
+    return this.http.post(environment.apiBaseUrl +'/createbulkprofiles',data)
   }
 
   getallapkslist(){
@@ -213,7 +213,7 @@ export class ApiCallService {
   }
 
   getclientsbyfilter(data){
-    return this.http.post(environment.apiBaseUrl + '/getclientsbyfilter',data)
+    return this.http.post(environment.apiBaseUrl +'/getclientsbyfilter',data)
   }
 
 getsmspackagelist(){
@@ -221,7 +221,7 @@ getsmspackagelist(){
 }
 
 getclientdetails(data){
-  return this.http.post(environment.apiBaseUrl + '/getclientdetails',data)
+  return this.http.post(environment.apiBaseUrl +'/partner/' + this.getPartner_id() + '/getclientdetails',data)
 }
 getOrderId(data){
   return this.http.post(environment.apiBaseUrl + '/getOrderId',data)
@@ -236,12 +236,12 @@ postofficeApi(data){
 }
 
 getplanexpirycontacts(data){
-  return this.http.post(environment.apiBaseUrl + '/getplanexpirycontacts',data)
+  return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() +  '/getplanexpirycontacts',data)
 
 }
 
 getplanexpirycontactsAll(){
-  return this.http.get(environment.apiBaseUrl + '/getplanexpirycontactsAll')
+  return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +   '/getplanexpirycontactsAll')
 
 }
 
@@ -251,11 +251,11 @@ insertnotifications(data){
 }
 
 registeredcontactstracking(data){
-  return this.http.post(environment.apiBaseUrl + '/registeredcontactstracking',data)
+  return this.http.post(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +   '/registeredcontactstracking',data)
 }
 
 getTodayregisterdData(){
-  return this.http.get(environment.apiBaseUrl + '/getTodayregisterdData')
+  return this.http.get(environment.apiBaseUrl + '/partner/' + this.getPartner_id() +  '/getTodayregisterdData')
 
 }
 
@@ -269,7 +269,40 @@ getpremiumplandetails(data){
 }
 
 fetchProfessions(){
-  return this.http.get(environment.apiBaseUrl + '/fetchProfessions')
+  return this.http.get(environment.apiBaseUrl + '/fetchProfessions');
+}
+
+updatePremiumPlan(data){
+  return this.http.post(environment.apiBaseUrl + '/updatePremiumPlan',data)
+
+}
+
+deletePremiumPack(data){
+  return this.http.post(environment.apiBaseUrl + '/deletePremiumPack',data)
+
+}
+
+getuserdataCount() {
+  return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +  '/getuserdataCount');
+
+}
+userdataCountweekly() {
+  return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +  '/userdataCountweekly');
+}
+
+getplanexpirytoday() {
+  return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +  '/getplanexpirytoday');
+}
+getplanexpirynextweek() {
+  return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +  '/getplanexpirynextweek');
+}
+
+getclientscount() {
+  return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +  '/getclientscount');
+}
+
+resetPassword(data) {
+  return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/ChangePassword', data)
 
 }
   // Helper Methods
@@ -282,8 +315,35 @@ fetchProfessions(){
     return localStorage.getItem('token');
   }
 
+  setRole(role: string) {
+    localStorage.setItem('role', role);
+  }
+
+  getRole() {
+    return localStorage.getItem('role');
+  }
+
+  setName(name: string) {
+    localStorage.setItem('name', name);
+  }
+
+  getName() {
+    return localStorage.getItem('name');
+  }
+  setPartner_id(partner_id: string) {
+    localStorage.setItem('partner_id', partner_id);
+  }
+
+  getPartner_id() {
+    return localStorage.getItem('partner_id');
+  }
+
   deleteToken() {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('partner_id');
+    localStorage.removeItem('name');
+
   }
 
 

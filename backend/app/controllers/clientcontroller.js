@@ -15,8 +15,10 @@ var db = mysql.createConnection({
 });
 
 module.exports.getclients = async function (req, res) {
-  query = "select a.client_id,b.client_firstname, b.client_lastname,a.user_mobile_number,a.account_status,a.user_regn_channel  from portal_users a, clients_master b  where (a.client_id = b.client_id)order by a.created_on desc"
-  await db.query(query, function (err, result, fields) {
+  const partner_id=req.params.partner_id;
+  console.log(partner_id,'partner_id')
+  query = "select a.client_id,b.client_firstname, b.client_lastname,a.user_mobile_number,a.account_status,a.user_regn_channel  from portal_users a, clients_master b  where (a.client_id = b.client_id and  a.partner_id =?)order by a.created_on desc"
+  await db.query(query,[partner_id] ,function (err, result, fields) {
     if (err) throw err;
 
     res.send({
@@ -30,9 +32,11 @@ module.exports.getclients = async function (req, res) {
 
 
 module.exports.getclientsbyfilter = async function (req, res) {
+  const partner_id=req.params.partner_id;
+  console.log(partner_id,'partner_id')
   const account_status = req.body.account_status;
-  query = "select a.client_id,b.client_firstname, b.client_lastname,a.user_mobile_number,a.account_status,a.user_regn_channel from portal_users a, clients_master b where (a.account_status = ? and a.client_id=b.client_id)"
-  await db.query(query, [account_status], function (err, result, fields) {
+  query = "select a.client_id,b.client_firstname, b.client_lastname,a.user_mobile_number,a.account_status,a.user_regn_channel from portal_users a, clients_master b where (a.account_status = ? and a.partner_id =? and a.client_id=b.client_id )"
+  await db.query(query, [account_status,partner_id], function (err, result, fields) {
     if (err) throw err;
     if (!result.length) {
       res.status(201).send({ status: 'false', message: 'No data found' });
@@ -49,14 +53,12 @@ module.exports.getclientsbyfilter = async function (req, res) {
 
 }
 
-
-
 module.exports.getclientsDetailed = async function (req, res) {
-  query = "SELECT * FROM clients_master"
-  await db.query(query, function (err, result, fields) {
+  const partner_id=req.params.partner_id;
+  console.log(partner_id,'partner_id')
+  query = "SELECT * FROM clients_master WHERE partner_id =?"
+  await db.query(query,[partner_id], function (err, result, fields) {
     if (err) throw err;
-
-
     res.send({
       "code": 200,
       "success": "clients data ",
@@ -67,8 +69,9 @@ module.exports.getclientsDetailed = async function (req, res) {
 }
 
 module.exports.getuserdata = async function (req, res) {
-  query = "SELECT * FROM users"
-  await db.query(query, function (err, result, fields) {
+  const partner_id=req.params.partner_id;
+  query = "SELECT * FROM portal_users WHERE partner_id =?"
+  await db.query(query,[partner_id], function (err, result, fields) {
     if (err) throw err;
     res.send({
       "code": 200,
@@ -78,26 +81,32 @@ module.exports.getuserdata = async function (req, res) {
   });
 }
 
-// module.exports.getuserDetails = async function (req, res) {
-//     const client_id=req.body.client_id;
-//     query = "SELECT * FROM users WHERE client_id=?"
-//     await db.query(query,[client_id] ,function (err, result, fields) {
-//         if (err) throw err;
-//         res.send({
-//             "code": 200,
-//             "success": "users data ",
-//             "data": result
-//         });
-//     });
-// }
+
+
+
+module.exports.getResellerCount = async function (req, res) {
+  const partner_id=req.params.partner_id;
+  // query = "SELECT * FROM portal_users WHERE partner_id =?"
+  countQuery = "SELECT COUNT(role ='partner') AS NumberOfResellers FROM portalusers WHERE partner_id =?"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      "success": "users data ",
+      "data": result
+    });
+  });
+}
+
 
 module.exports.updateclientData = async function (req, res) {
+  const partner_id=req.params.partner_id;
 
-  const { client_id, account_plan_id, plan_expiry_date, user_smsgateway_id, is_sim_allowed, is_min_bal_req, user_smsgateway_authkey, user_smsgateway_sender_id1, user_smsgateway_sender_id2, user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_type, account_status, user_smsgateway_pid } = req.body
-  var sql = "UPDATE portal_users SET ? where client_id =?";
+  const { client_id, plan_expiry_date, user_smsgateway_id, is_sim_allowed, is_min_bal_req, user_smsgateway_authkey, user_smsgateway_sender_id1, user_smsgateway_sender_id2, user_smsgateway_route, user_smsgateway_sender_id, user_smsgateway_unicode, account_status, user_smsgateway_pid } = req.body
+  var sql = "UPDATE portal_users SET ? where client_id =? and partner_id =?";
 
   var newTemplate = {
-    account_plan_id: account_plan_id,
+  
     plan_expiry_date: plan_expiry_date,
     is_sim_allowed: is_sim_allowed,
     is_min_bal_req: is_min_bal_req,
@@ -108,11 +117,10 @@ module.exports.updateclientData = async function (req, res) {
     user_smsgateway_sender_id1: user_smsgateway_sender_id1,
     user_smsgateway_sender_id2: user_smsgateway_sender_id2,
     user_smsgateway_route: user_smsgateway_route,
-    account_type: account_type,
     account_status: account_status,
     user_smsgateway_id: user_smsgateway_id
   }
-  await db.query(sql, [newTemplate, client_id], function (err, result, fields) {
+  await db.query(sql, [newTemplate, client_id,partner_id], function (err, result, fields) {
 
     if (err) throw err;
     res.send({
@@ -124,9 +132,10 @@ module.exports.updateclientData = async function (req, res) {
 
 
 module.exports.deleteclient = (req, res) => {
+  const partner_id=req.params.partner_id;
   const client_id = req.body.client_id;
-  db.query('DELETE FROM `users` WHERE `client_id`=?',
-    [client_id], function (error, results, fields) {
+  db.query('DELETE FROM `portal_users` WHERE `client_id`=? and partner_id =?',
+    [client_id,partner_id], function (error, results, fields) {
       if (error) throw error;
       res.send({
         "code": 200,
@@ -136,9 +145,10 @@ module.exports.deleteclient = (req, res) => {
 };
 
 module.exports.getuserDetails = async function (req, res) {
+  const partner_id=req.params.partner_id;
   const client_id = req.body.client_id;
-  query = "select a.client_id,a.user_smsgateway_pid,a.is_sim_allowed,a.is_min_bal_req,a.account_plan_id,a.plan_expiry_date,a.user_smsgateway_id,a.user_smsgateway_sender_id1,a.user_smsgateway_sender_id2,a.user_smsgateway_sender_id,a.user_smsgateway_regn_status,a.user_smsgateway_authkey,a.user_smsgateway_route,a.user_smsgateway_unicode,a.user_cross_regn_status, a.user_mobile_number, a.user_email, a.user_regn_channel, a.account_type, a.account_status, b.client_firstname, b.client_lastname, b.client_whatsapp_number, b.client_telegram_number, b.client_company_name, b.client_address1, b.client_address2, b.client_city, b.client_district, b.client_postoffice, b.client_pincode, b.client_state, b.client_industry,b.client_gst_number, b.client_expiry from portal_users a, clients_master b where a.client_id =? and b.client_id =? "
-  await db.query(query, [client_id, client_id], function (err, result, fields) {
+  query = "select a.client_id,a.plan_activation_date, a.user_smsgateway_sender_id, a.smspackage_act_date, a.smspackage_exp_date,a.user_smsgateway_pid,a.is_sim_allowed,a.is_min_bal_req,a.account_plan_id,a.plan_expiry_date,a.user_smsgateway_id,a.user_smsgateway_sender_id1,a.user_smsgateway_sender_id2,a.user_smsgateway_sender_id,a.user_smsgateway_regn_status,a.user_smsgateway_authkey,a.user_smsgateway_route,a.user_smsgateway_unicode,a.user_cross_regn_status, a.user_mobile_number, a.user_email, a.user_regn_channel, a.account_type, a.account_status, b.client_firstname, b.client_lastname, b.client_whatsapp_number, b.client_telegram_number, b.client_company_name, b.client_address1, b.client_address2, b.client_city, b.client_district, b.client_postoffice, b.client_pincode, b.client_state, b.client_industry,b.client_gst_number, b.client_expiry from portal_users a, clients_master b where a.client_id =? and b.client_id =? "
+  await db.query(query, [client_id, client_id,partner_id], function (err, result, fields) {
     if (err) throw err;
     res.send({
       "code": 200,
@@ -149,6 +159,7 @@ module.exports.getuserDetails = async function (req, res) {
 }
 
 module.exports.sendSMS = async (req, response) => {
+
 
   const { mobile, message } = req.body;
 
@@ -204,7 +215,7 @@ module.exports.activationEmail = async (req, res) => {
 
 
 module.exports.addnewClient = async (req, res) => {
-
+  const partner_id=req.params.partner_id;
   const api = 'https://www.nutansms.nutantek.com/clients/addNewClient.php?sales_channel=smsportal';
   let client_id = crypto.randomBytes(6).toString("hex");
   let authkey = crypto.randomBytes(8).toString("hex");
@@ -219,8 +230,6 @@ module.exports.addnewClient = async (req, res) => {
       client_mobile_number: req.body.client_mobile_number,
       client_whatsapp_number: req.body.client_whatsapp_number,
       client_email: req.body.client_email,
-      client_address1: req.body.client_address1,
-      client_address2: req.body.client_address2,
       client_city: req.body.client_city,
       client_pincode: req.body.client_pincode,
       client_postoffice: req.body.client_postoffice,
@@ -235,7 +244,9 @@ module.exports.addnewClient = async (req, res) => {
       client_facebook: " ",
       client_linkedin: " ",
       client_gst_number: " ",
-      client_smsgateway: "pending"
+      client_smsgateway: "pending",
+      client_role:req.body.profession_id,
+      partner_id:partner_id
     },
     headers: {
       'Authorization': 'bh#xg6sf(gs67nsbsf99gsf%nn'
@@ -267,16 +278,18 @@ module.exports.updateclientStatus = async function (req, res) {
   await db.query(campaign_status, [today_date, today_date], function (err, result, fields) {
     if (err) throw err;
     if (!result.length) {
-      const query = "select * from portal_premiumplans where package_id='P1005'";
+      const query = "select * from portal_premiumplans_master where package_id='P1005'";
       const curDate= new Date();
       db.query(query,function (err, result, fields) {
         if (err) throw err;
-        const updatequery="INSERT INTO portal_users SET ?"
+        const updatequery="INSERT INTO portal_users  SET ?"
         var newTemplate = {
           account_status :'active',
-          account_plan_id :null,
+          account_plan_id :'',
           plan_activation_date : curDate,
-          plan_expiry_date :'99 Months'
+          plan_expiry_date :'99 Months',
+          client_id:client_id
+         
         }
         db.query(updatequery,[newTemplate],function (err, result, fields) {
           if (err) throw err;
@@ -424,5 +437,96 @@ module.exports.fetchProfessions = async (req, res) => {
       res.send(body)
 
     }
+  });
+}
+
+
+module.exports.getuserdataCount = async function (req, res) {
+  const partner_id=req.params.partner_id;
+  
+  countQuery = "SELECT COUNT(client_id) AS NumberOfclients FROM users WHERE partner_id =? and  (created_on between CURRENT_date and CURRENT_DATE  + interval 1 day) order by created_on asc"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+     status: "success",
+      result
+    });
+  });
+}
+
+
+
+module.exports.getuserdataCountweekly = async function (req, res) {
+  const partner_id=req.params.partner_id;
+ 
+  countQuery = "SELECT COUNT(client_id) AS NumberOfclients FROM users WHERE partner_id =? and  (created_on between CURRENT_date and CURRENT_DATE - interval 7 day) order by created_on asc"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      status: "success",
+       result
+    });
+  });
+}
+
+module.exports.getplanexpirytoday= async function (req, res) {
+  const partner_id=req.params.partner_id;
+  
+  countQuery = "SELECT COUNT(client_id) AS NumberOfclients FROM users WHERE partner_id =? and  (plan_expiry_date between CURRENT_date and CURRENT_DATE  + interval 1 day) order by created_on asc"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      status: "success",
+       result
+    });
+  });
+}
+
+module.exports.getplanexpirynextweek= async function (req, res) {
+  const partner_id=req.params.partner_id;
+  
+  countQuery = "SELECT COUNT(client_id) AS NumberOfclients FROM users WHERE partner_id =? and  (plan_expiry_date between CURRENT_date and CURRENT_DATE  + interval 7 day) order by created_on asc"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      status: "success",
+       result
+    });
+  });
+}
+
+module.exports.getclientscount= async function (req, res) {
+  const partner_id=req.params.partner_id;
+  
+  countQuery = "SELECT  COUNT(IF(account_plan_id = 'P1005', 1, NULL)) 'Freedom',  COUNT(IF(account_plan_id = 'P1008', 1, NULL)) 'Silver', COUNT(IF(account_plan_id = 'P1016', 1, NULL)) 'Gold',COUNT(IF(account_plan_id = 'P1020', 1, NULL)) 'Diamond' FROM portal_users where partner_id =?"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      status: "success",
+     result
+    });
+  });
+}
+
+module.exports.ChangePassword = async (req, res) => {
+  const partner_id = req.params.partner_id;
+console.log(req.body.password,partner_id);
+  bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+    var sql = "UPDATE portal_adminusers SET  password =? WHERE  partner_id =?";
+console.log(hash)
+   db.query(sql,[hash,partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+   status: 'success',
+      message:"Password changed successfully"
+    });
+  })
+
   });
 }

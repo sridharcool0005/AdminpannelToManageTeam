@@ -8,8 +8,9 @@
       <div class="conatiner">
         <div class="row">
           <div class="col-md-6">
+            <h4>Personal Details</h4>
             <ul class="list-group list-group-flush">
-              <h4>Personal Details</h4>
+
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">ClientId</strong>:
@@ -47,14 +48,73 @@
                   <span class="list-group-right">{{personList.client_telegram_number}}</span>
                 </div>
               </li>
-
-
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">City</strong>:
                   <span class="list-group-right">{{personList.client_city}}</span>
                 </div>
               </li>
+
+              <h4>Gateway Details</h4>
+
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">SenderId 2</strong>:
+                  <span class="list-group-right">{{personList.user_smsgateway_sender_id2}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">Route</strong>:
+                  <span class="list-group-right">{{personList.user_smsgateway_route}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">Gateway Status</strong>:
+                  <span class="list-group-right">{{personList.user_smsgateway_regn_status}}</span>
+                </div>
+              </li>
+              <h4>Plan Details</h4>
+
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">Account-Type</strong>:
+                  <span class="list-group-right">{{personList.account_type}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">Act Date</strong>:
+                  <span class="list-group-right">{{personList.plan_activation_date|date: 'dd/MM/yyyy'}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">Exp date</strong>:
+                  <span class="list-group-right">{{personList.plan_expiry_date|date: 'dd/MM/yyyy'}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">SMS-Act-Date</strong>:
+                  <span class="list-group-right">{{personList.smspackage_act_date|date}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">SMS-Exp-Date</strong>:
+                  <span class="list-group-right">{{personList.smspackage_exp_date|date}}</span>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+
+          <div class="col-md-6">
+            <h4>Personal Details</h4>
+            <ul class="list-group list-group-flush">
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">Address1</strong>:
@@ -104,51 +164,7 @@
                 </div>
               </li>
 
-            </ul>
-          </div>
-
-
-          <div class="col-md-6">
-
-            <ul class="list-group list-group-flush">
               <h4>Gateway Details</h4>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">UserId</strong>:
-                  <span class="list-group-right">{{personList.smsgateway_user_id}}</span>
-                </div>
-              </li>
-
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">smsgateway_authkey</strong>:
-                  <span class="list-group-right">{{personList.user_smsgateway_authkey}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">SenderId</strong>:
-                  <span class="list-group-right">{{personList.user_smsgateway_sender_id}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">SenderId 1</strong>:
-                  <span class="list-group-right">{{personList.user_smsgateway_sender_id1}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">SenderId 2</strong>:
-                  <span class="list-group-right">{{personList.user_smsgateway_sender_id2}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">Route</strong>:
-                  <span class="list-group-right">{{personList.user_smsgateway_route}}</span>
-                </div>
-              </li>
 
 
               <li class="list-group-item">
@@ -173,53 +189,12 @@
 
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
-                  <strong class="list-group-left">Account-Type</strong>:
-                  <span class="list-group-right">{{personList.account_type}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">Act Date</strong>:
-                  <span class="list-group-right">{{personList.plan_activation_date|date: 'dd/MM/yyyy'}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">Exp date</strong>:
-                  <span class="list-group-right">{{personList.plan_expiry_date|date: 'dd/MM/yyyy'}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">SMS-Act-Date</strong>:
-                  <span class="list-group-right">{{personList.client_sms_act_date}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">SMS-Exp-Date</strong>:
-                  <span class="list-group-right">{{personList.client_sms_exp_date}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">ClientIndustry</strong>:
-                  <span class="list-group-right">{{personList.client_industry}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
                   <strong class="list-group-left">Cross-RegStatus</strong>:
                   <span class="list-group-right">{{personList.user_cross_regn_status}}</span>
                 </div>
               </li>
 
-              <li class="list-group-item">
-                <div class="list-group-item-fixed">
-                  <strong class="list-group-left">Gateway Status</strong>:
-                  <span class="list-group-right">{{personList.user_smsgateway_regn_status}}</span>
-                </div>
-              </li>
+
               <li class="list-group-item">
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">SIM Allowed </strong>:
@@ -236,6 +211,12 @@
                 <div class="list-group-item-fixed">
                   <strong class="list-group-left">Account Status</strong>:
                   <span class="list-group-right">{{personList.account_status}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">ClientIndustry</strong>:
+                  <span class="list-group-right">{{personList.client_industry}}</span>
                 </div>
               </li>
             </ul>
