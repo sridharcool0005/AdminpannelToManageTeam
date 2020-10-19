@@ -303,7 +303,23 @@ getclientscount() {
 
 resetPassword(data) {
   return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/ChangePassword', data)
+}
 
+getrateCards() {
+  return this.http.get(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/getrateCards')
+}
+
+getpacksbyratecard(data) {
+  return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/getpacksbyratecard',data)
+}
+
+getPremiumRatecards() {
+  return this.http.get(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/getPremiumRatecards')
+}
+
+
+getPremiumpacksByRateCard(data) {
+  return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/getPremiumpacksByRateCard',data)
 }
   // Helper Methods
 

@@ -56,7 +56,7 @@
           <th class="text-center">Date of Activation</th>
           <th class="text-center">Date of Expiry</th>
           <th  class="text-center">
-            Select All<input type="checkbox" name="all" (change)="selectAllToppings($event.target.checked)"/>
+            Select All<input type="checkbox" name="all" [checked]="allToppings" (change)="selectAllToppings($event.target.checked,personList)"/>
           </th>
         </tr>
         <tr *ngFor="let person of personList; let id = index">

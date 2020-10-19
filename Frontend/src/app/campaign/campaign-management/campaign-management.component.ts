@@ -15,7 +15,7 @@ export class CampaignManagementComponent implements OnInit {
   toppingList;
   allToppings = false;
   errorMessage: any;
-  curDate=new Date();
+  curDate = new Date();
   constructor(private apiCall: ApiCallService, private excelservice: ExcelService) { }
 
   ngOnInit() {
@@ -62,13 +62,13 @@ export class CampaignManagementComponent implements OnInit {
   }
 
   search() {
-if (this.client_firstname !='') {
-  this.personList = this.personList.filter(res => {
-    return res.client_firstname.toLocaleLowerCase().match(this.client_firstname.toLocaleLowerCase());
-  });
-} else if (this.client_firstname == '') {
-  this.ngOnInit();
-}
+    if (this.client_firstname != '') {
+      this.personList = this.personList.filter(res => {
+        return res.client_firstname.toLocaleLowerCase().match(this.client_firstname.toLocaleLowerCase());
+      });
+    } else if (this.client_firstname == '') {
+      this.ngOnInit();
+    }
 
   }
 
@@ -81,57 +81,65 @@ if (this.client_firstname !='') {
   updateclientData(data) {
     alert('Ensure you have added SMS balance to client account in SMS Gateway Portal');
     console.log(data);
-    const userData = {client_id: data.client_id, order_id: data.order_id, add_balance: data.add_balance, payment_status: data.payment_status_code};
+    const userData = { client_id: data.client_id, order_id: data.order_id, add_balance: data.add_balance, payment_status: data.payment_status_code };
     this.apiCall.updatePaymentStatus(userData).subscribe((res: any) => {
-    alert('Data updated Sucessfully');
+      alert('Data updated Sucessfully');
     });
 
   }
 
 
   insertnotifications() {
-    const agree=confirm("Are sure to add push notifications ?")
-    if(agree){
-   const data = this.personList.map(person => person.client_id);
- const userData={client_ids:data}
-   this.apiCall.insertnotifications(userData).subscribe((res: any) => {
-      alert(res.message);
-    });
-  }
-}
-
-getclientsbyfilter(value) {
-  console.log(value)
-  const data = { account_status: value }
-  this.apiCall.getclientsbyfilter(data).subscribe((res: any) => {
-    this.personList = res.data;
-    if (res.status == "false") {
-      this.errorMessage = res.message
+    const agree = confirm("Are sure to add push notifications ?")
+    if (agree) {
+      const data = this.personList.map(person => person.client_id);
+      const userData = { client_ids: data }
+      this.apiCall.insertnotifications(userData).subscribe((res: any) => {
+        alert(res.message);
+      });
     }
-    if (value === 'All') {
-      this.ngOnInit()
+  }
+
+  getclientsbyfilter(value) {
+    console.log(value)
+    const data = { account_status: value }
+    this.apiCall.getclientsbyfilter(data).subscribe((res: any) => {
+      this.personList = res.data;
+      if (res.status == "false") {
+        this.errorMessage = res.message
+      }
+      if (value === 'All') {
+        this.ngOnInit()
+      }
+    })
+  }
+
+  selectAllToppings(checked, topping) {
+    this.selectedToppings = [];
+    if (checked) {
+      this.allToppings = true;
+      this.selectedToppings.push(topping);
+      console.log(this.selectedToppings);
+      this.selectedToppings.map(el => {
+        const id = el.client_id;
+        console.log( el.client_id);
+      })
+    } else {
+      console.log(this.selectedToppings);
+      this.allToppings = false;
     }
-  })
-}
-
-selectAllToppings(checked) {
-  this.selectedToppings = [];
-  if (checked) {
-    this.allToppings = true;
-    this.selectedToppings = this.toppingList;
-  } else {
-    console.log(this.allToppings);
-    this.allToppings = false;
   }
-}
 
-selectNewTopping(checked, topping) {
-  if (checked) {
-  this.selectedToppings.push(topping);
-  console.log(this.selectedToppings);
-  } else {
-    this.selectedToppings = this.selectedToppings.filter(top => top.client_id !== topping.client_id);
+  selectNewTopping(checked, topping) {
+    if (checked) {
+      this.selectedToppings.push(topping);
+      console.log(this.selectedToppings);
+      this.selectedToppings.map(el => {
+        const id = el.client_id;
+        console.log( el.client_id);
+      })
+    } else {
+      this.selectedToppings = this.selectedToppings.filter(top => top.client_id !== topping.client_id);
+    }
   }
-  console.log(this.selectedToppings);
-}
 }
