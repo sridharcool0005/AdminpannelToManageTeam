@@ -2,11 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiCallService {
+
+  private clientSource = new BehaviorSubject<string>(null);
+  client_idArray = this.clientSource.asObservable();
+  private packSource = new BehaviorSubject<string>(null);
+  packArray = this.packSource.asObservable();
   selectedUser: User = {
     mobile_number: '',
     email_id: '',
@@ -18,6 +23,14 @@ export class ApiCallService {
 
   constructor(private http: HttpClient) { }
 
+
+  getclientids(client_idArray): void {
+    this.clientSource.next(client_idArray);
+  }
+
+  confirmpackage(packData): void {
+    this.packSource.next(packData);
+  }
   // HttpMethods
 
   postUser(user: User) {
@@ -320,6 +333,12 @@ getPremiumRatecards() {
 
 getPremiumpacksByRateCard(data) {
   return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/getPremiumpacksByRateCard',data)
+}
+
+
+sendpushnotification(data){
+  return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/sendpushnotification',data)
+
 }
   // Helper Methods
 

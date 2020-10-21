@@ -13,6 +13,8 @@ const analyticsController = require('../controllers/analyticsController');
 const helpdeskController = require('../controllers/helpdeskController');
 const bulkprofilecontroller = require('../controllers/bulkprofilecontroller');
 const billingcontroller = require('../controllers/billingcontroller');
+const bulksmsController = require('../controllers/bulksmsController');
+
 
 var APIRoutes = function (passport) {
   // POST Routes.
@@ -57,21 +59,23 @@ var APIRoutes = function (passport) {
   router.get('/fetchProfessions', ClientController.fetchProfessions);
   router.post('/updatePremiumPlan', packageController.updatePremiumPlan);
   router.post('/deletePremiumPack', packageController.deletePremiumPack);
-  router.get('/partner/:partner_id/getuserdataCount',ClientController.getuserdataCount);
-  router.get('/partner/:partner_id/getResellerCount',ClientController.getResellerCount);
-  router.get('/partner/:partner_id/userdataCountweekly',ClientController.getuserdataCountweekly);
-  router.get('/partner/:partner_id/getplanexpirytoday',ClientController.getplanexpirytoday);
-  router.get('/partner/:partner_id/getplanexpirynextweek',ClientController.getplanexpirynextweek);
-  router.get('/partner/:partner_id/getclientscount',ClientController.getclientscount);
+  router.get('/partner/:partner_id/getuserdataCount', ClientController.getuserdataCount);
+  router.get('/partner/:partner_id/getResellerCount', ClientController.getResellerCount);
+  router.get('/partner/:partner_id/userdataCountweekly', ClientController.getuserdataCountweekly);
+  router.get('/partner/:partner_id/getplanexpirytoday', ClientController.getplanexpirytoday);
+  router.get('/partner/:partner_id/getplanexpirynextweek', ClientController.getplanexpirynextweek);
+  router.get('/partner/:partner_id/getclientscount', ClientController.getclientscount);
   router.post('/partner/:partner_id/ChangePassword', ClientController.ChangePassword);
-  router.get('/partner/:partner_id/getrateCards',packageController.getrateCards);
-  router.post('/partner/:partner_id/getpacksbyratecard',packageController.getpacksBYRatecard);
-  router.get('/partner/:partner_id/getPremiumRatecards',packageController.getPremiumRatecards);
-  router.post('/partner/:partner_id/getPremiumpacksByRateCard',packageController.getPremiumpacksByRateCard);
+  router.get('/partner/:partner_id/getrateCards', packageController.getrateCards);
+  router.post('/partner/:partner_id/getpacksbyratecard', packageController.getpacksBYRatecard);
+  router.get('/partner/:partner_id/getPremiumRatecards', packageController.getPremiumRatecards);
+  router.post('/partner/:partner_id/getPremiumpacksByRateCard', packageController.getPremiumpacksByRateCard);
+  router.post('/sendSMS', bulksmsController.sendSMS);
+  router.post('/partner/:partner_id/sendpushnotification', bulksmsController.insertnotifications);
 
   
-  
-  
+
+
 
   // GET Routes.
   router.get('/profile', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.user, UserController.index));

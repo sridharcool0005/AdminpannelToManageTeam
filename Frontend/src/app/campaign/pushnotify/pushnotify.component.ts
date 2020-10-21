@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { ExcelService } from 'src/app/apiCalls/excel.service';
+import { isArray } from 'util';
 
 @Component({
   selector: 'app-pushnotify',
@@ -12,22 +13,20 @@ export class PushnotifyComponent implements OnInit {
   personList: any;
   smspackratecards: any;
   premiumpackratecards: any;
+  premiumpacks: any;
+  clientsData: any;
 
   constructor(private apiCall: ApiCallService, private router: Router, private excelservice: ExcelService) { }
 
   ngOnInit() {
-    this.getAllPackages();
+
     this.getrateCards();
     this.getPremiumRatecards();
+    this.getMyContacts();
   }
 
 
-  getAllPackages() {
-    this.apiCall.getAllPackages().subscribe((res: any) => {
-      console.log(res);
-      this.personList = res.data;
-    });
-  }
+
 
   getrateCards() {
     this.apiCall.getrateCards().subscribe((res: any) => {
@@ -41,7 +40,9 @@ export class PushnotifyComponent implements OnInit {
    this.apiCall.getpacksbyratecard(userData).subscribe((res: any) => {
       console.log(res);
       this.personList = res.result;
+      this.premiumpacks = '';
     });
+
   }
 
 
@@ -50,6 +51,7 @@ export class PushnotifyComponent implements OnInit {
       console.log(res);
       this.premiumpackratecards = res.result;
     });
+
   }
 
 
@@ -58,9 +60,22 @@ export class PushnotifyComponent implements OnInit {
   getPremiumpacksByRateCard(data) {
     const userData = {ratecard_name: data};
     this.apiCall.getPremiumpacksByRateCard(userData).subscribe((res: any) => {
-       console.log(res);
-       this.personList = res.result;
+       this.premiumpacks = res.result;
+       this.personList = '';
      });
+
    }
+
+   getMyContacts() {
+    this.apiCall.client_idArray.subscribe((res: any = []) => {
+     this.clientsData = res;
+    });
+  }
+
+  confirmpackages(data) {
+    data.userData = {clientdata: this.clientsData};
+    this.apiCall.confirmpackage(data);
+    this.router.navigate(['/sendnotify']);
+  }
 }
 

@@ -1,3 +1,6 @@
+
+
+<h3>Select One RateCard</h3>
 <div class="container">
   <div class="row">
     <div class="col-md-3">
@@ -15,13 +18,14 @@
       </select>
     </div>
     <div class="col-md-3">
-      <!-- <button mdbBtn color="info" block="true" type="button" routerLink="/viewnotifyTemplates">Templates</button> -->
+
     </div>
     <div class="col-md-4">
     </div>
     <div class="card-body">
       <div id="table" class="table-editable">
-        <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+        <div *ngIf="personList">
+        <table  class="table table-bordered table-responsive-md table-striped text-center table-media">
           <tr style="background-color: darkblue;color:white">
             <th class="text-center">
               PackageID</th>
@@ -57,7 +61,56 @@
             </td>
           </tr>
         </table>
-        <button mdbBtn color="success" block="true" type="submit" routerLink="/sendnotify">Proceed</button>
+        <button mdbBtn color="success" block="true" type="submit" routerLink="/sendnotify" (click)="confirmpackages(personList)">Proceed</button>
+      </div>
+
+        <div *ngIf="premiumpacks">
+          <table  class="table table-bordered table-responsive-md table-striped text-center table-media" >
+            <tr style="background-color: darkblue;color:white" >
+              <th class="text-center">
+                PackageID</th>
+              <th class="text-center">
+                PackageName</th>
+              <th class="text-center">Credits</th>
+              <th class="text-center">list Price </th>
+              <th class="text-center">offered Price</th>
+              <th class="text-center">packagePrice</th>
+              <th class="text-center">Validity</th>
+              <th class="text-center">status</th>
+
+            </tr>
+            <tr *ngFor="let person of premiumpacks; let id = index" >
+              <td >
+
+           {{person.package_id}}
+              </td>
+              <td >
+             {{person.package_name}}
+                 </td>
+
+              <td >
+          {{person.	free_sms_credits}}
+              </td>
+              <td >
+           {{person.package_list_price}}
+              </td>
+              <td >
+                {{person.	package_offered_price}}
+                   </td>
+              <td name="city">
+                {{person.	total_package_price}}
+              </td>
+              <td name="state">
+           {{person.package_validity_in_months	}}
+              </td>
+              <td name="state">
+                {{person.package_status}}
+                   </td>
+            </tr>
+          </table>
+
+          <button mdbBtn color="success" block="true" type="submit" routerLink="/sendnotify" (click)="confirmpackages(premiumpacks)">Proceed</button>
+        </div>
       </div>
     </div>
   </div>

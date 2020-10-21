@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { ExcelService } from 'src/app/apiCalls/excel.service';
 @Component({
@@ -16,7 +17,9 @@ export class CampaignManagementComponent implements OnInit {
   allToppings = false;
   errorMessage: any;
   curDate = new Date();
-  constructor(private apiCall: ApiCallService, private excelservice: ExcelService) { }
+  selectedclients: any[];
+
+  constructor(private apiCall: ApiCallService, private excelservice: ExcelService, private router: Router) { }
 
   ngOnInit() {
     this.getClients();
@@ -90,10 +93,10 @@ export class CampaignManagementComponent implements OnInit {
 
 
   insertnotifications() {
-    const agree = confirm("Are sure to add push notifications ?")
+    const agree = confirm('Are sure to add push notifications ?');
     if (agree) {
       const data = this.personList.map(person => person.client_id);
-      const userData = { client_ids: data }
+      const userData = { client_ids: data };
       this.apiCall.insertnotifications(userData).subscribe((res: any) => {
         alert(res.message);
       });
@@ -101,29 +104,25 @@ export class CampaignManagementComponent implements OnInit {
   }
 
   getclientsbyfilter(value) {
-    console.log(value)
-    const data = { account_status: value }
+    console.log(value);
+    const data = { account_status: value };
     this.apiCall.getclientsbyfilter(data).subscribe((res: any) => {
       this.personList = res.data;
-      if (res.status == "false") {
-        this.errorMessage = res.message
+      if (res.status == 'false') {
+        this.errorMessage = res.message;
       }
       if (value === 'All') {
-        this.ngOnInit()
+        this.ngOnInit();
       }
-    })
+    });
   }
 
-  selectAllToppings(checked, topping) {
-    this.selectedToppings = [];
+  selectAllToppings(checked, toppings) {
+    this.selectedToppings = toppings;
     if (checked) {
       this.allToppings = true;
-      this.selectedToppings.push(topping);
-      console.log(this.selectedToppings);
-      this.selectedToppings.map(el => {
-        const id = el.client_id;
-        console.log( el.client_id);
-      })
+
+      this.selectedclients = this.selectedToppings;
     } else {
       console.log(this.selectedToppings);
       this.allToppings = false;
@@ -133,13 +132,14 @@ export class CampaignManagementComponent implements OnInit {
   selectNewTopping(checked, topping) {
     if (checked) {
       this.selectedToppings.push(topping);
-      console.log(this.selectedToppings);
-      this.selectedToppings.map(el => {
-        const id = el.client_id;
-        console.log( el.client_id);
-      })
+      this.selectedclients = this.selectedToppings;
     } else {
       this.selectedToppings = this.selectedToppings.filter(top => top.client_id !== topping.client_id);
     }
+  }
+
+  selectclients() {
+    this.apiCall.getclientids(this.selectedclients);
+    this.router.navigate(['/pushnotify']);
   }
 }
