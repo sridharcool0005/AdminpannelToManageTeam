@@ -70,7 +70,7 @@ var APIRoutes = function (passport) {
   router.post('/partner/:partner_id/getpacksbyratecard', packageController.getpacksBYRatecard);
   router.get('/partner/:partner_id/getPremiumRatecards', packageController.getPremiumRatecards);
   router.post('/partner/:partner_id/getPremiumpacksByRateCard', packageController.getPremiumpacksByRateCard);
-  router.post('/sendSMS', bulksmsController.sendSMS);
+  router.post('/sendPushnotifySMS', bulksmsController.sendSMS);
   router.post('/partner/:partner_id/sendpushnotification', bulksmsController.insertnotifications);
 
   

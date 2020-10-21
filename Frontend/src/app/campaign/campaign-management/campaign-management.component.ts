@@ -139,7 +139,11 @@ export class CampaignManagementComponent implements OnInit {
   }
 
   selectclients() {
-    this.apiCall.getclientids(this.selectedclients);
-    this.router.navigate(['/pushnotify']);
+    const notify=confirm("Are you sure you want to send notification");
+    if(notify){
+      this.apiCall.getclientids(this.selectedclients);
+      this.router.navigate(['/pushnotify']);
+    }
+
   }
 }

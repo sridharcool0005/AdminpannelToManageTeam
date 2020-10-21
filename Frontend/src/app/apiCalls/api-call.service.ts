@@ -340,6 +340,11 @@ sendpushnotification(data){
   return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() + '/sendpushnotification',data)
 
 }
+
+sendPushnotifySMS(data){
+  return this.http.post(environment.apiBaseUrl +  '/sendPushnotifySMS',data)
+
+}
   // Helper Methods
 
   setToken(token: string) {

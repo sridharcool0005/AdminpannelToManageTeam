@@ -15,7 +15,9 @@ var db = mysql.createConnection({
 module.exports.sendSMS = async (req, response) => {
 
 
-  const { mobile, message } = req.body;
+  const { mobilenumbers, message } = req.body;
+  const mobile=mobilenumbers.toString();
+  console.log(mobile)
 
   var options = {
     "method": "POST",
