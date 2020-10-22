@@ -16,6 +16,8 @@ export class PushnotifyComponent implements OnInit {
   premiumpacks: any;
   clientsData: any;
   message: any;
+  premiumplan_ratecard: any;
+  smspackage_ratecard: any;
 
   constructor(private apiCall: ApiCallService, private router: Router, private excelservice: ExcelService) { }
 
@@ -41,6 +43,8 @@ export class PushnotifyComponent implements OnInit {
    this.apiCall.getpacksbyratecard(userData).subscribe((res: any) => {
       console.log(res);
       this.personList = res.result;
+      this.smspackage_ratecard =res.result[0].ratecard_id;
+      console.log(this.smspackage_ratecard)
       this.premiumpacks = '';
       if(res.status=='false'){
        alert(res.message)
@@ -65,6 +69,9 @@ export class PushnotifyComponent implements OnInit {
     const userData = {ratecard_id: data};
     this.apiCall.getPremiumpacksByRateCard(userData).subscribe((res: any) => {
        this.premiumpacks = res.result;
+       console.log(res)
+       this.premiumplan_ratecard =res.result[0].ratecard_id;
+       console.log(this.premiumplan_ratecard)
        this.personList = '';
      });
 
@@ -77,7 +84,8 @@ export class PushnotifyComponent implements OnInit {
   }
 
   confirmpackages(data) {
-    data.userData = {clientdata: this.clientsData};
+    data.userData = {clientdata: this.clientsData,premiumplan_ratecard:this.premiumplan_ratecard,smspackage_ratecard:this.smspackage_ratecard};
+    console.log(data)
     this.apiCall.confirmpackage(data);
     this.router.navigate(['/sendnotify']);
   }

@@ -12,6 +12,8 @@ export class SendnotificationComponent implements OnInit {
   mobilenumbers: any;
   ratecard_id: any;
   boolean=false;
+  smspackage_ratecard: any;
+  premiumplan_ratecard: any;
 
   constructor(private apiCall: ApiCallService, private router: Router,) { }
 
@@ -21,18 +23,20 @@ export class SendnotificationComponent implements OnInit {
 
   getMyContacts() {
     this.apiCall.packArray.subscribe((res: any = []) => {
-      this.ratecard_id = res[0].ratecard_id;
       this.client_ids = res.userData.clientdata.map(el => el.client_id);
       this.mobilenumbers = res.userData.clientdata.map(el => el.user_mobile_number);
-
+      this.smspackage_ratecard = res.userData.smspackage_ratecard;
+      this.premiumplan_ratecard  = res.userData.premiumplan_ratecard;
+      console.log(this.premiumplan_ratecard,this.smspackage_ratecard)
     });
   }
 
   pushnotify(data) {
-
-    data.ratecard_id = this.ratecard_id;
     data.client_ids = this.client_ids;
     data.mobilenumbers = this.mobilenumbers;
+    data.smspackage_ratecard = this.smspackage_ratecard;
+    data.premiumplan_ratecard = this.premiumplan_ratecard;
+    console.log(data);
     if (this.boolean) {
       this.apiCall.sendpushnotification(data).subscribe((res: any) => {
         console.log(res);

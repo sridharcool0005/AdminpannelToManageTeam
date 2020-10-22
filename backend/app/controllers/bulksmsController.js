@@ -61,7 +61,8 @@ module.exports.sendSMS = async (req, response) => {
 module.exports.insertnotifications = (req, res) => {
   
   const partner_id=req.params.partner_id;
-  const {client_ids,message,ratecard_id}= req.body;
+  const {client_ids,message,premiumplan_ratecard,smspackage_ratecard}= req.body;
+  console.log(premiumplan_ratecard,smspackage_ratecard)
 
   if(!client_ids){
       res.status(200).send({status:false, message:'error in adding push notifications'})
@@ -86,8 +87,8 @@ else{
       if (error) throw error;
      
   });
-  var updateuserQuery="UPDATE portal_users SET ratecard_id =? WHERE client_id =? and partner_id =?"
-  db.query(updateuserQuery, [ratecard_id,item,partner_id], function (error, results, fields) {
+  var updateuserQuery="UPDATE portal_users SET  smspackage_ratecard =?,premiumplan_ratecard =? WHERE client_id =? and partner_id =?"
+  db.query(updateuserQuery, [smspackage_ratecard,premiumplan_ratecard,item,partner_id], function (error, results, fields) {
     if (error) throw error;
    
 });
