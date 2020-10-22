@@ -202,7 +202,7 @@ module.exports.deletePremiumPack = (req, res) => {
 module.exports.getrateCards = async function (req, res) {
     const partner_id = req.params.partner_id;
 
-    query = "SELECT ratecard_name FROM portal_smspackage_master where partner_id=?"
+    query = "SELECT * FROM portal_smspackage_ratecard where partner_id =? and ratecard_status <> 'expired'"
 
     await database.query(query, [partner_id], function (err, result, fields) {
         if (err) throw err;
@@ -216,10 +216,10 @@ module.exports.getrateCards = async function (req, res) {
 
 module.exports.getpacksBYRatecard = async function (req, res) {
     const partner_id = req.params.partner_id;
-    const { ratecard_name } = req.body;
+    const { ratecard_id} = req.body;
 
-    query = "SELECT * FROM portal_smspackage_master where partner_id =? and ratecard_name =?"
-    await database.query(query, [partner_id, ratecard_name], function (err, result, fields) {
+    query = "SELECT * FROM portal_smspackage_master where partner_id =? and ratecard_id =?"
+    await database.query(query, [partner_id,ratecard_id], function (err, result, fields) {
         if (!result.length) {
             res.send({
                 "code": 200,
@@ -241,7 +241,7 @@ module.exports.getpacksBYRatecard = async function (req, res) {
 module.exports.getPremiumRatecards = async function (req, res) {
     const partner_id = req.params.partner_id;
 
-    query = "SELECT ratecard_name FROM portal_premiumplans_master where partner_id=?"
+    query = "SELECT * FROM portal_premiumplan_ratecard where partner_id =? and ratecard_status <> 'expired'"
 
     await database.query(query, [partner_id], function (err, result, fields) {
         if (err) throw err;
@@ -255,10 +255,10 @@ module.exports.getPremiumRatecards = async function (req, res) {
 
 module.exports.getPremiumpacksByRateCard = async function (req, res) {
     const partner_id = req.params.partner_id;
-    const { ratecard_name } = req.body;
-
-    query = "SELECT * FROM portal_premiumplans_master where partner_id =? and ratecard_name =?"
-    await database.query(query, [partner_id, ratecard_name], function (err, result, fields) {
+    const { ratecard_id} = req.body;
+console.log(ratecard_id)
+    query = "SELECT * FROM portal_premiumplans_master_test where partner_id =? and ratecard_id =?"
+    await database.query(query, [partner_id,ratecard_id], function (err, result, fields) {
         if (!result.length) {
             res.send({
                 "code": 200,

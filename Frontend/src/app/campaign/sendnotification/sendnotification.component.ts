@@ -10,7 +10,7 @@ import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 export class SendnotificationComponent implements OnInit {
   client_ids: any;
   mobilenumbers: any;
-  ratecard_name: any;
+  ratecard_id: any;
   boolean=false;
 
   constructor(private apiCall: ApiCallService, private router: Router,) { }
@@ -21,7 +21,7 @@ export class SendnotificationComponent implements OnInit {
 
   getMyContacts() {
     this.apiCall.packArray.subscribe((res: any = []) => {
-      this.ratecard_name = res[0].ratecard_name;
+      this.ratecard_id = res[0].ratecard_id;
       this.client_ids = res.userData.clientdata.map(el => el.client_id);
       this.mobilenumbers = res.userData.clientdata.map(el => el.user_mobile_number);
 
@@ -30,7 +30,7 @@ export class SendnotificationComponent implements OnInit {
 
   pushnotify(data) {
 
-    data.ratecard_name = this.ratecard_name;
+    data.ratecard_id = this.ratecard_id;
     data.client_ids = this.client_ids;
     data.mobilenumbers = this.mobilenumbers;
     if (this.boolean) {

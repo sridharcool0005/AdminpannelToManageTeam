@@ -6,14 +6,14 @@
     <div class="col-md-3">
       <select class="browser-default custom-select" (input)="getpacksbyratecard($event.target.value)">
         <option selected>Select Package</option>
-        <option value="{{item.ratecard_name}}" *ngFor="let item of smspackratecards">{{item.ratecard_name}}</option>
+        <option value="{{item.ratecard_id}}" *ngFor="let item of smspackratecards">{{item.ratecard_name}}</option>
 
       </select>
     </div>
     <div class="col-md-3">
       <select class="browser-default custom-select" (input)="getPremiumpacksByRateCard($event.target.value)">
         <option selected>Select Premium Plan</option>
-        <option value="{{item.ratecard_name}}" *ngFor="let item of premiumpackratecards">{{item.ratecard_name}}</option>
+        <option value="{{item.ratecard_id}}" *ngFor="let item of premiumpackratecards">{{item.ratecard_name}}</option>
 
       </select>
     </div>
