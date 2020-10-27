@@ -52,6 +52,10 @@ import { PushnotifyComponent } from './campaign/pushnotify/pushnotify.component'
 import { NotifytemplatesComponent } from './campaign/notifytemplates/notifytemplates.component';
 import { SendnotificationComponent } from './campaign/sendnotification/sendnotification.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { ViewapkdownloadComponent } from './viewapkdownload/viewapkdownload.component';
+import { DwnldapksendsmsComponent } from './dwnldapksendsms/dwnldapksendsms.component';
+import { ViewusersfeedbackComponent } from './viewusersfeedback/viewusersfeedback.component';
+import { SendpushnotificationComponent } from './Analytics/sendpushnotification/sendpushnotification.component';
 
 
 const routes: Routes = [{
@@ -89,6 +93,10 @@ const routes: Routes = [{
 ]},
 
 {path:'packagemanagement', component:PacktabsComponent},
+{path:'viewdownloadapklist',component:ViewapkdownloadComponent},
+{path:'downloadapksendsms/:mobilenumber',component:DwnldapksendsmsComponent},
+{path:'viewusersfeedback',component:ViewusersfeedbackComponent},
+{path:'sendpushnotification',component:SendpushnotificationComponent},
 
 {path:'analytics',component:AnalyticComponent,children:[
   {path:'purchaseAnalysis',component:PurchaseAnalysisComponent},

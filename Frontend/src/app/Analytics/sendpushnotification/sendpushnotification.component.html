@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+
+      <form class="text-center border border-light p-5"  (ngSubmit)=" regform.form.valid&&pushnotify(regform.form.value)" #regform="ngForm">
+
+        <p class="h4 mb-4">Send Push Notification</p>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="defaultChecked2" (change)="checkbox($event.target.checked)" unchecked>
+          <label class="custom-control-label" for="defaultChecked2">Push Notification</label>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
+            placeholder="Message" name="message" ngModel></textarea>
+        </div>
+
+          <!-- <button mdbBtn color="info"  type="button" routerLink="/viewnotifyTemplates">Select Template</button> -->
+
+          <button mdbBtn color="info" type="submit">Send</button>
+
+      </form>
+
+  </div>
+</div>

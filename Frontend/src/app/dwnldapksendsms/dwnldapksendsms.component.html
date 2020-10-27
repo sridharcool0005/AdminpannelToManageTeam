@@ -1,0 +1,29 @@
+
+<!-- <form (ngSubmit)=" share(regform.form.value)" #regform="ngForm">
+  <input class="mobileShow"
+  type="text" name="message" ngModel>
+<button  type="submit" class="mobileShow">
+  Share to whatsapp
+</button>
+</form> -->
+
+<h3>Send SMS To Whatsapp </h3>
+<div class="medias mymedia text-center border border-light p-5 ">
+  <form (ngSubmit)="regform.form.valid && share(regform.form.value)" #regform="ngForm">
+
+    <img src="assets/img/whatsaapicon.webp" width="25%"><br><br>
+
+    <ng-container>
+
+      <div>
+        <textarea class="form-control mb-4" [(ngModel)]="message" #text=ngModel name="message" placeholder="message"
+          [ngClass]="{ 'is-invalid': regform.submitted && text.invalid }" required></textarea>
+        <div *ngIf="regform.submitted && text.invalid" class="invalid-feedback">
+          <div *ngIf="text.errors.required">Message is required</div>
+        </div>
+      </div>
+    </ng-container>
+
+    <button mdbBtn color="info" block="true" class="my-4" type="submit">SendSMS</button>
+  </form>
+</div>

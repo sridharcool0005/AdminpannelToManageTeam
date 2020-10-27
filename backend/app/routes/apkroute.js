@@ -75,6 +75,7 @@ const apkcontroller=require('../controllers/apkcontroller');
 router.get('/getallapkslist',apkcontroller.getallapkslist);
 
 router.post('/deleteapk',apkcontroller.deleteapk);
+router.get('/partner/:partner_id/getallapkDownloadlist', apkcontroller.getallapkDownloadlist)
 
 
 module.exports = router;

@@ -69,6 +69,10 @@ import { PushnotifyComponent } from './campaign/pushnotify/pushnotify.component'
 import { NotifytemplatesComponent } from './campaign/notifytemplates/notifytemplates.component';
 import { SendnotificationComponent } from './campaign/sendnotification/sendnotification.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { ViewapkdownloadComponent } from './viewapkdownload/viewapkdownload.component';
+import { ViewusersfeedbackComponent } from './viewusersfeedback/viewusersfeedback.component';
+import { DwnldapksendsmsComponent } from './dwnldapksendsms/dwnldapksendsms.component';
+import { SendpushnotificationComponent } from './Analytics/sendpushnotification/sendpushnotification.component';
 
 @NgModule({
   declarations: [
@@ -127,6 +131,10 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
     NotifytemplatesComponent,
     SendnotificationComponent,
     ChangepasswordComponent,
+    ViewapkdownloadComponent,
+    ViewusersfeedbackComponent,
+    DwnldapksendsmsComponent,
+    SendpushnotificationComponent,
 
 
 

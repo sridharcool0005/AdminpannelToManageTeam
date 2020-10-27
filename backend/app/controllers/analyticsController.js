@@ -98,7 +98,7 @@ module.exports.getplanexpirycontacts = async function (req, res) {
 }
 
 module.exports.getplanexpirycontactsAll = async function (req, res) {
-    query = "SELECT a.client_id, b.client_firstname, b.client_lastname, b.client_district,a.user_mobile_number, a.account_type, a.account_plan_id, a.plan_activation_date, a.plan_expiry_date FROM `portal_users` a, clients_master b where a.client_id=b.client_id"
+    query = "SELECT a.client_id, b.client_firstname, b.client_lastname, b.client_district,a.user_mobile_number, a.account_type, a.account_plan_id, a.plan_activation_date, a.plan_expiry_date FROM `portal_users` a, clients_master b where a.client_id=b.client_id order by a.plan_expiry_date asc"
     await db.query(query, function (err, result, fields) {
         if (err) throw err;
         res.send({
@@ -111,9 +111,8 @@ module.exports.getplanexpirycontactsAll = async function (req, res) {
 
 
 module.exports.insertnotifications = (req, res) => {
-   
-    const curDate = new Date();
-    const {client_ids}= req.body;
+    const partner_id=req.params.partner_id;
+    const {client_ids,message}= req.body;
 
     if(!client_ids){
         res.status(200).send({status:false, message:'error in adding push notifications'})
@@ -125,9 +124,10 @@ else{
         
         var values = {
             nid: nid,
+            partner_id: partner_id,
             client_id: item,
             title: 'Upgrade Premium',
-            message: 'Your Free Demo Plan is about to expire on'+' '+curDate+ 'Please upgrade to Premium to continue service without any interruption.',
+            message: message,
             action: '11',
             url: 'nil',
             status: 'new'

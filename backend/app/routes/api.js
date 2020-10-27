@@ -51,7 +51,7 @@ var APIRoutes = function (passport) {
   router.post('/postofficeApi', ClientController.postofficeApi);
   router.post('/partner/:partner_id/getplanexpirycontacts', analyticsController.getplanexpirycontacts);
   router.get('/partner/:partner_id/getplanexpirycontactsAll', analyticsController.getplanexpirycontactsAll);
-  router.post('/insertnotifications', analyticsController.insertnotifications);
+  router.post('/partner/:partner_id/insertnotifications', analyticsController.insertnotifications);
   router.post('/partner/:partner_id/registeredcontactstracking', analyticsController.registeredcontactstracking);
   router.get('/partner/:partner_id/getTodayregisterdData', analyticsController.getTodayregisterdData);
   router.get('/getAllpremiumplans', packageController.getAllportal_premiumplans_master);
@@ -72,6 +72,7 @@ var APIRoutes = function (passport) {
   router.post('/partner/:partner_id/getPremiumpacksByRateCard', packageController.getPremiumpacksByRateCard);
   router.post('/sendPushnotifySMS', bulksmsController.sendSMS);
   router.post('/partner/:partner_id/sendpushnotification', bulksmsController.insertnotifications);
+  router.get('/partner/:partner_id/getusersfeedbackqueries',ClientController.getusersfeedbackqueries);
 
   
 

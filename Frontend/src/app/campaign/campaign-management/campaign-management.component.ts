@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { ExcelService } from 'src/app/apiCalls/excel.service';
+import { FilterPipe} from './filter.pipe';
+
 @Component({
   selector: 'app-campaign-management',
   templateUrl: './campaign-management.component.html',
   styleUrls: ['./campaign-management.component.scss']
 })
 export class CampaignManagementComponent implements OnInit {
+  public searchText : string;
   personList;
   editField: string;
   client_firstname: string;
@@ -105,7 +108,7 @@ export class CampaignManagementComponent implements OnInit {
 
   getclientsbyfilter(value) {
     console.log(value);
-    const data = { account_status: value };
+    const data = { account_type: value };
     this.apiCall.getclientsbyfilter(data).subscribe((res: any) => {
       this.personList = res.data;
       if (res.status == 'false') {

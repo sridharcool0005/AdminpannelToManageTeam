@@ -1,0 +1,84 @@
+
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+    View Download Apk</h3>
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-6">
+        <form (ngSubmit)="regform.form.valid&&getplanexpirycontacts(regform.form.value)" #regform="ngForm">
+
+          <input type="date"  name="fromDate" placeholder="FromDate" ngModel>&nbsp;
+          <input type="date" name="toDate" placeholder="ToDate" ngModel>&nbsp;
+
+          <input type="submit">
+        </form>
+      </div> -->
+      <div class="col-md-6 mubutn" >
+
+        <!-- <select class="browser-default custom-select filter" (change)="getclientsbyfilter($event.target.value)">
+          <option selected value="">select</option>
+          <option  value="All">ALL</option>
+          <option value="Demo" >Demo</option>
+          <option value="Business">Business </option>
+          <option value="Express">Express</option>
+          <option value="Business Plus">Business Plus</option>
+          <option value="Business Express">Business Express</option>
+
+        </select> -->
+
+
+
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+        <tr style="background-color: darkblue;color:white">
+          <th class="text-center">
+            Query Id</th>
+          <th class="text-center">
+            FullName</th>
+            <th class="text-center">
+              MobileNumber</th>
+          <th class="text-center">message</th>
+          <th class="text-center">created_on</th>
+          <th class="text-center whatsapicon">Action</th>
+
+
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+
+          <td>
+            {{person.query_id}}
+          </td>
+          <td>
+            {{person.name}}
+          </td>
+          <td>
+            {{person.mobilenumber}}
+          </td>
+          <td>
+             {{person.message}}
+          </td>
+          <td>
+            {{person.created_on| date: 'dd/MM/yyyy'}}
+         </td>
+         <td >
+          <img class="pointer" src="assets/img/whatsaapicon.webp" width="75%" [routerLink]="['/downloadapksendsms',person.mobilenumber]">
+        </td>
+       <!-- <td>
+
+        <span class="material-icons">
+          sms
+          </span>
+      </td> -->
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+

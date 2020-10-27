@@ -226,7 +226,7 @@ export class ApiCallService {
   }
 
   getclientsbyfilter(data){
-    return this.http.post(environment.apiBaseUrl +'/getclientsbyfilter',data)
+    return this.http.post(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +'/getclientsbyfilter',data)
   }
 
 getsmspackagelist(){
@@ -259,7 +259,7 @@ getplanexpirycontactsAll(){
 }
 
 insertnotifications(data){
-  return this.http.post(environment.apiBaseUrl + '/insertnotifications',data)
+  return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() +   '/insertnotifications',data)
 
 }
 
@@ -343,6 +343,16 @@ sendpushnotification(data){
 
 sendPushnotifySMS(data){
   return this.http.post(environment.apiBaseUrl +  '/sendPushnotifySMS',data)
+
+}
+
+getallapkDownloadlist(){
+  return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +  '/getallapkDownloadlist');
+
+}
+
+getusersfeedbackqueries(){
+  return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +  '/getusersfeedbackqueries');
 
 }
   // Helper Methods
