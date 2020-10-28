@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { ExcelService } from '../../apiCalls/excel.service';
 import { FilterPipe} from './filter.pipe';
@@ -20,7 +21,12 @@ export class ViewclientsComponent implements OnInit {
   errorMessage: any;
   role:any;
 
-  constructor(private apiCall: ApiCallService, private excelservice: ExcelService) { }
+  selectedToppings = [];
+  toppingList;
+  allToppings = false;
+  curDate = new Date();
+  selectedclients: any[];
+  constructor(private apiCall: ApiCallService, private excelservice: ExcelService,private router: Router) { }
 
   ngOnInit() {
 this.role=this.apiCall.getRole();
@@ -108,5 +114,36 @@ this.role=this.apiCall.getRole();
         this.ngOnInit()
       }
     })
+  }
+
+
+  selectAllToppings(checked, toppings) {
+    this.selectedToppings = toppings;
+    if (checked) {
+      this.allToppings = true;
+
+      this.selectedclients = this.selectedToppings;
+    } else {
+      console.log(this.selectedToppings);
+      this.allToppings = false;
+    }
+  }
+
+  selectNewTopping(checked, topping) {
+    if (checked) {
+      this.selectedToppings.push(topping);
+      this.selectedclients = this.selectedToppings;
+    } else {
+      this.selectedToppings = this.selectedToppings.filter(top => top.client_id !== topping.client_id);
+    }
+  }
+
+  selectclients() {
+    const notify=confirm("Are you sure you want to send Bulksms");
+    if(notify){
+      this.apiCall.getclientids(this.selectedclients);
+      this.router.navigate(['/client/sendbulksms']);
+    }
+
   }
 }

@@ -45,8 +45,8 @@
           <th class="text-center">Account_Type</th>
           <th class="text-center">Date of Activation</th>
           <th class="text-center">Date of Expiry</th>
-          <!-- <th  class="text-center">Action
-          </th> -->
+          <th  class="text-center">Action
+          </th>
           <th  class="text-center">
             Select All<input type="checkbox" name="all" [checked]="allToppings" (change)="selectAllToppings($event.target.checked,personList)"/>
           </th>
@@ -81,7 +81,9 @@
               </span>
             </a>
           </td> -->
-
+          <td>
+            <img class="pointer" src="assets/img/whatsaapicon.webp" width="80%" [routerLink]="['/downloadapksendsms',person.user_mobile_number]">
+          </td>
 
           <td>
             <input type="checkbox" name="sizecb[]" value="{{person.id}}" [checked]="allToppings" (change)="selectNewTopping($event.target.checked,person)"/>

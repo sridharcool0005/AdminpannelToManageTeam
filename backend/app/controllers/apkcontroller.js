@@ -41,7 +41,7 @@ module.exports.getallapkDownloadlist = async function (req, res) {
     const partner_id=req.params.partner_id;
     console.log(partner_id)
     const subject="APK Download"
-    query = "SELECT * FROM  portal_users_query_feedback01 WHERE  partner_id =? and subject =?"
+    query = "SELECT * FROM  portal_users_query_feedback_test WHERE  partner_id =? and subject =?"
     await db.query(query,[partner_id,subject], function (err, result, fields) {
         if (err) throw err;
         if (!result.length)  {

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+
+      <form class="text-center border border-light p-5"  (ngSubmit)=" regform.form.valid&&sendsms(regform.form.value)" #regform="ngForm">
+
+        <p class="h4 mb-4">Send SMS To Clients</p>
+        <!-- <div class="custom-control custom-checkbox">
+          <label class="custom-control-label" for="defaultChecked2">Push Notification</label>
+        </div> -->
+        <div class="form-group">
+<h5><b>Send To:</b>&nbsp;{{mobilenumbers}}</h5>
+          <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
+            placeholder="Message" name="message" ngModel></textarea>
+        </div>
+
+          <!-- <button mdbBtn color="info"  type="button" routerLink="/viewnotifyTemplates">Select Template</button> -->
+
+          <button mdbBtn color="info" type="submit">Send SMS</button>
+
+      </form>
+
+  </div>
+</div>

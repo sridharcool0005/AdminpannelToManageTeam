@@ -8,12 +8,12 @@
     </div>
 
     <mat-divider></mat-divider>
-
-    <h2 matSubheader>Pages</h2>
+<!--
+    <h2 matSubheader>Pages</h2> -->
 
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/home" routerLinkActive="active"><i class="fas fa-chart-line"></i> &nbsp; Dashboard</a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/client/viewclient" routerLinkActive="active" ><i class="fas fa-users" ></i> &nbsp; Client Management</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/attedance/attendanceReport" routerLinkActive="active" *ngIf="role =='admin'"> <i class="fas fa-chart-area" ></i>&nbsp; Users Mangement</a>
+    <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/attedance/attendanceReport" routerLinkActive="active" *ngIf="role =='admin'"> <i class="fas fa-chart-area" ></i>&nbsp; Users Mangement</a> -->
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/packagemanagement"  routerLinkActive="active" *ngIf="role =='admin'"> <i class="fas fa-tasks" ></i>&nbsp; Package Management</a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/campaignManage"  routerLinkActive="active" *ngIf="role =='admin'"> <i class="fas fa-tasks" ></i>&nbsp; Campaign Management</a>
 
@@ -24,15 +24,14 @@
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/card/viewcards" *ngIf="role =='admin'"><i class="fas fa-images"></i>&nbsp; cards</a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/viewapklist" *ngIf="role =='admin'"><span class="material-icons">
       android
-      </span> ViewApkList</a>
+      </span> View Apk List</a>
 
       <a mat-list-item routerLinkActive="list-item-active" routerLink="/viewdownloadapklist" *ngIf="role =='Partner'||role =='admin'"><span class="material-icons">
         android
-        </span> viewdownloadapklist</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/viewusersfeedback" *ngIf="role =='Partner'||role =='admin'"><i class="fas fa-comment-alt"></i> ViewUsersFeedbackQueries</a>
+        </span>&nbsp; Download APK List</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/viewusersfeedback" *ngIf="role =='Partner'||role =='admin'"><i class="fas fa-comment-alt"></i>&nbsp; Users Queries List</a>
     <!-- <mat-divider></mat-divider> -->
 
-    <h2 matSubheader *ngIf="role =='admin'">Tools</h2>
 
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts" *ngIf="role =='admin'">
         <mat-icon>import_contacts</mat-icon>

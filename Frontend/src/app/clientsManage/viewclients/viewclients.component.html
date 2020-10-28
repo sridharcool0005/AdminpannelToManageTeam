@@ -22,8 +22,11 @@
             <option value="pending">Pending</option>
             <option value="disable">Disable</option>
           </select>
+          &nbsp;&nbsp;
+<img src="assets/img/bulksmsicon.png" width="12%" (click)="selectclients()">
       </div>
       <div class="col-md-6 mubutn">
+
 
 
 
@@ -53,8 +56,10 @@
             FullName</th>
           <th class="text-center">Mobile</th>
           <th class="text-center">Status</th>
+          <th colspan="2" class="text-center">whatsaap/SMS</th>
           <th colspan="4" class="text-center">Action
           </th>
+          <th class="text-center">select All <input type="checkbox" name="all" [checked]="allToppings" (change)="selectAllToppings($event.target.checked,personList)"/></th>
 
         </tr>
         <tr *ngFor="let person of personList| filter: {client_id: searchText, client_firstname:searchText,  client_lastname: searchText,user_mobile_number:searchText}; let id=index;" #loaded>
@@ -77,6 +82,15 @@
             </select>
           </td>
 
+          <td>
+            <img class="pointer" src="assets/img/whatsaapicon.webp" width="100%" [routerLink]="['/downloadapksendsms',person.user_mobile_number]">
+          </td>
+          <td class="pointer">
+           <a [routerLink]="['/client/sendsms/',person.user_mobile_number]"><span class="material-icons">
+              sms
+              </span>
+            </a>
+            </td>
           <td>
             <a>
               <span class="material-icons" (click)="updatestatus(person)" matTooltip="Save"
@@ -111,8 +125,9 @@
                 </span>
             </a>
           </td>
-
-
+          <td>
+            <input type="checkbox" name="sizecb[]" value="{{person.id}}" [checked]="allToppings" (change)="selectNewTopping($event.target.checked,person)"/>
+          </td>
         </tr>
       </table>
 

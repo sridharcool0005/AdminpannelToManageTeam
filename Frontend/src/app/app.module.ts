@@ -73,6 +73,8 @@ import { ViewapkdownloadComponent } from './viewapkdownload/viewapkdownload.comp
 import { ViewusersfeedbackComponent } from './viewusersfeedback/viewusersfeedback.component';
 import { DwnldapksendsmsComponent } from './dwnldapksendsms/dwnldapksendsms.component';
 import { SendpushnotificationComponent } from './Analytics/sendpushnotification/sendpushnotification.component';
+import { SendsmstoclientsComponent } from './clientsManage/sendsmstoclients/sendsmstoclients.component';
+import { SendbulksmsComponent } from './clientsManage/sendbulksms/sendbulksms.component';
 
 @NgModule({
   declarations: [
@@ -135,6 +137,8 @@ import { SendpushnotificationComponent } from './Analytics/sendpushnotification/
     ViewusersfeedbackComponent,
     DwnldapksendsmsComponent,
     SendpushnotificationComponent,
+    SendsmstoclientsComponent,
+    SendbulksmsComponent,
 
 
 

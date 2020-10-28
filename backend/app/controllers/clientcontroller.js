@@ -534,7 +534,7 @@ console.log(hash)
 module.exports.getusersfeedbackqueries= async function (req, res) {
   const partner_id=req.params.partner_id;
   
-  Query = "SELECT  * FROM portal_users_query_feedback  where partner_id =? and subject <> 'APK Download'"
+  Query = "SELECT  * FROM portal_users_query_feedback_test  where partner_id =? and subject <> 'APK Download'"
   await db.query(Query,[partner_id], function (err, result, fields) {
     if (err) throw err;
     res.send({

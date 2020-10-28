@@ -56,6 +56,8 @@ import { ViewapkdownloadComponent } from './viewapkdownload/viewapkdownload.comp
 import { DwnldapksendsmsComponent } from './dwnldapksendsms/dwnldapksendsms.component';
 import { ViewusersfeedbackComponent } from './viewusersfeedback/viewusersfeedback.component';
 import { SendpushnotificationComponent } from './Analytics/sendpushnotification/sendpushnotification.component';
+import { SendsmstoclientsComponent } from './clientsManage/sendsmstoclients/sendsmstoclients.component';
+import { SendbulksmsComponent } from './clientsManage/sendbulksms/sendbulksms.component';
 
 
 const routes: Routes = [{
@@ -77,7 +79,9 @@ const routes: Routes = [{
   {path:'editclient/:client_id',component:EditClientsComponent},
   {path:'viewclient',component:ViewclientsComponent},
   {path:'viewDetail/:client_id',component:ViewDetailComponent},
-  {path:'createprofile', component:BulkprofileCreateComponent}
+  {path:'createprofile', component:BulkprofileCreateComponent},
+  {path:'sendsms/:mobilenumber',component:SendsmstoclientsComponent},
+  {path:'sendbulksms',component:SendbulksmsComponent}
 ]},
 {path:'user',component:UserManageComponent,children:[
   {path:'adduser',component:AddUsersComponent},

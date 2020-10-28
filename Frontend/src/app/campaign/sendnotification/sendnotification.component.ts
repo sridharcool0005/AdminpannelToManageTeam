@@ -42,7 +42,7 @@ export class SendnotificationComponent implements OnInit {
         console.log(res);
         if (res.status == 'success') {
           alert(res.message);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/campaignManage']);
         }else{
           alert(res.message);
 
