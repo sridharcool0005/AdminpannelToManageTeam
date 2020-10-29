@@ -105,7 +105,7 @@ export class ApiCallService {
   }
 
   sendSMS(data){
-    return this.http.post(environment.apiBaseUrl + '/sendSMS',data);
+    return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() +'/sendSMS',data);
   }
 
   activationEmail(data){
@@ -342,8 +342,11 @@ sendpushnotification(data){
 }
 
 sendPushnotifySMS(data){
-  return this.http.post(environment.apiBaseUrl +  '/sendPushnotifySMS',data)
+  return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() +  '/sendPushnotifySMS',data)
 
+}
+sendSingleSMS(data){
+  return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() +  '/sendSingleSMS',data)
 }
 
 getallapkDownloadlist(){

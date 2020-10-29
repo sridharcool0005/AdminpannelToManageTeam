@@ -160,16 +160,22 @@ module.exports.getuserDetails = async function (req, res) {
 
 module.exports.sendSMS = async (req, response) => {
 
-
+const partner_id=req.params.partner_id;
   const { mobile, message } = req.body;
 
+  var sql = "select reseller_authkey, reseller_sender_id from portal_counterV2 where partner_id =?"
+  db.query(sql, [partner_id], function (error, results, fields) {
+    console.log(results)
+    const reseller_authkey=results[0].reseller_authkey;
+    const reseller_sender_id=results[0].reseller_sender_id;
+      if (error) throw error;
   var options = {
     "method": "POST",
     "hostname": "api.msg91.com",
     "port": null,
     "path": "/api/v2/sendsms",
     "headers": {
-      "authkey": '316115AorUQYTq5e351ea1P1',
+      "authkey": reseller_authkey,
       "content-type": "application/json"
     }
   };
@@ -190,7 +196,7 @@ module.exports.sendSMS = async (req, response) => {
   });
 
   req.write(JSON.stringify({
-    sender: 'NUTANS',
+    sender: reseller_sender_id,
     route: '4',
     country: '+91',
     sms:
@@ -199,7 +205,9 @@ module.exports.sendSMS = async (req, response) => {
       ]
   }));
   req.end();
+});
 }
+
 
 module.exports.activationEmail = async (req, res) => {
   const email = req.body.email;

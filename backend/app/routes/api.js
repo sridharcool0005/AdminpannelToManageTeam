@@ -30,7 +30,7 @@ var APIRoutes = function (passport) {
   router.get('/getAllPackages', packageController.getAllPackages);
   router.post('/getPackageDetails', packageController.getPackageDetails);
   router.post('/deletePackage', packageController.deletePackage);
-  router.post('/sendSMS', ClientController.sendSMS);
+  router.post('/partner/:partner_id/sendSMS', ClientController.sendSMS);
   router.get('/getpurchaseData', analyticsController.getpurchaseData);
   router.post('/getpurchaseDetailed', analyticsController.getpurchaseDetailed);
   router.post('/getSalesData', analyticsController.getSalesData);
@@ -70,7 +70,8 @@ var APIRoutes = function (passport) {
   router.post('/partner/:partner_id/getpacksbyratecard', packageController.getpacksBYRatecard);
   router.get('/partner/:partner_id/getPremiumRatecards', packageController.getPremiumRatecards);
   router.post('/partner/:partner_id/getPremiumpacksByRateCard', packageController.getPremiumpacksByRateCard);
-  router.post('/sendPushnotifySMS', bulksmsController.sendSMS);
+  router.post('/partner/:partner_id/sendPushnotifySMS', bulksmsController.sendBulkSMS);
+  router.post('/partner/:partner_id/sendSingleSMS', bulksmsController.sendSMS);
   router.post('/partner/:partner_id/sendpushnotification', bulksmsController.insertnotifications);
   router.get('/partner/:partner_id/getusersfeedbackqueries',ClientController.getusersfeedbackqueries);
 

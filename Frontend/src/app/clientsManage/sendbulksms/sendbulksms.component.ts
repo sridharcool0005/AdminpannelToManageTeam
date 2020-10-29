@@ -8,7 +8,7 @@ import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 })
 export class SendbulksmsComponent implements OnInit {
   client_ids: any;
-  mobilenumbers: any;
+  mobilenumbers:Number;
  boolean=false;
   constructor(private apiCall: ApiCallService, private router: Router,private route:ActivatedRoute) { }
 
@@ -29,7 +29,7 @@ this.getMyContacts()
 
   getMyContacts() {
     this.apiCall.client_idArray.subscribe((res: any = []) => {
-      this.mobilenumbers = res.map(el => el.user_mobile_number);
+      this.mobilenumbers = res.map(el => Number(el.user_mobile_number));
       console.log(this.mobilenumbers);
     });
   }

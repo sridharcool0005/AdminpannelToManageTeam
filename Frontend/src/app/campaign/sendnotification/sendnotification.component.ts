@@ -24,7 +24,7 @@ export class SendnotificationComponent implements OnInit {
   getMyContacts() {
     this.apiCall.packArray.subscribe((res: any = []) => {
       this.client_ids = res.userData.clientdata.map(el => el.client_id);
-      this.mobilenumbers = res.userData.clientdata.map(el => el.user_mobile_number);
+      this.mobilenumbers = res.userData.clientdata.map(el =>Number( el.user_mobile_number));
       this.smspackage_ratecard = res.userData.smspackage_ratecard;
       this.premiumplan_ratecard  = res.userData.premiumplan_ratecard;
       console.log(this.premiumplan_ratecard,this.smspackage_ratecard)

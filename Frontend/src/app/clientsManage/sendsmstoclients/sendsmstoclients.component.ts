@@ -21,7 +21,7 @@ export class SendsmstoclientsComponent implements OnInit {
 
   sendsms(data) {
     data.mobilenumbers = this.mobilenumbers;
-    this.apiCall.sendPushnotifySMS(data).subscribe((res: any)=>{
+    this.apiCall.sendSingleSMS(data).subscribe((res: any)=>{
       console.log(res);
       if(res.type=='success'){
         alert('sms sent successfully');
