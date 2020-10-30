@@ -13,9 +13,16 @@
         </form>
       </div>
       <div class="col-md-6 mubutn" >
-        <input  type="text" [(ngModel)]="searchText" placeholder=" Search By Filter"
+        <input class="search"  type="text" [(ngModel)]="searchText" placeholder=" Search By Filter"
         aria-label="Search" >
 &nbsp;
+
+
+<select class="browser-default custom-select filter" (change)="getclientsbyfilter($event.target.value)">
+  <option selected value="">Select Partner</option>
+  <option  value="All">ALL</option>
+  <option value="{{partner.partner_id}}" *ngFor="let partner of partnerData">{{partner.user_name}}</option>
+</select>
 
   <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="selectclients()" matTooltip=" Add Push notification"
   matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip">
@@ -27,6 +34,8 @@
 
 
         <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+
+
       </div>
     </div>
   </div>
@@ -51,7 +60,7 @@
             Select All<input type="checkbox" name="all" [checked]="allToppings" (change)="selectAllToppings($event.target.checked,personList)"/>
           </th>
         </tr>
-        <tr *ngFor="let person of personList| filter: {client_id: searchText, client_firstname:searchText,  client_lastname: searchText,user_mobile_number:searchText}; let id=index;" #loaded>          <td>
+        <tr *ngFor="let person of personList| filter: {client_id: searchText, client_firstname:searchText,  client_lastname: searchText,user_mobile_number:searchText,account_type:searchText}; let id=index;" #loaded>          <td>
             {{person.client_id}}
           </td>
           <td>

@@ -22,10 +22,14 @@ export class PlanexpirytrackingComponent implements OnInit {
   errorMessage: any;
   curDate = new Date();
   selectedclients: any[];
+  partnerData: any;
+  partner_id: string;
   constructor(private apiCall: ApiCallService, private excelservice: ExcelService,private router: Router) { }
 
   ngOnInit() {
+    this.partner_id=this.apiCall.getPartner_id()
     this.getClients();
+    this.getPartnerData();
   }
 
   updateList(id: number, property: string, event: any) {
@@ -53,13 +57,18 @@ export class PlanexpirytrackingComponent implements OnInit {
 
 
   getClients() {
-    this.apiCall.getplanexpirycontactsAll().subscribe((res: any) => {
-
+   const partner_id ={partner_id:this.partner_id}
+    this.apiCall.getplanexpirycontactsAll(partner_id).subscribe((res: any) => {
       this.personList = res.data;
-
     });
   }
 
+  getPartnerData(){
+    this.apiCall.getPartnerData().subscribe((res: any) =>{
+      this.partnerData=res.result;
+      console.log(this.partnerData)
+    })
+  }
 
 
   exportAsXLSX(): void {
@@ -78,6 +87,7 @@ if (this.client_firstname !='') {
   }
 
   getplanexpirycontacts(data) {
+    data.partner_id=this.partner_id;
     this.apiCall.getplanexpirycontacts(data).subscribe((res: any) => {
       this.personList = res.data;
     });
@@ -107,14 +117,13 @@ if (this.client_firstname !='') {
 
   getclientsbyfilter(value) {
     console.log(value);
-    const data = { account_status: value };
-    this.apiCall.getclientsbyfilter(data).subscribe((res: any) => {
+    this.partner_id=value;
+    const partner_id ={partner_id:this.partner_id}
+    this.apiCall.getplanexpirycontactsAll(partner_id).subscribe((res: any) => {
       this.personList = res.data;
-      if (res.status == 'false') {
-        this.errorMessage = res.message;
-      }
+
       if (value === 'All') {
-        this.ngOnInit();
+        this.ngOnInit()
       }
     });
   }

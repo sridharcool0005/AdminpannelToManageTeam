@@ -1,0 +1,89 @@
+
+
+
+
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">View Reseller</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 search">
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="getClients()">
+          <mdb-icon fas icon="sync-alt"></mdb-icon>
+        </button>&nbsp;
+          <input  type="text" [(ngModel)]="searchText" placeholder=" Search By Filter"
+            aria-label="Search" >
+
+&nbsp;
+<img src="assets/img/bulksmsicon.png" width="12%" (click)="selectclients()">
+      </div>
+      <div class="col-md-6 mubutn">
+
+
+
+
+        <button mat-stroked-button color="primary" routerLink="/client/addclient">
+          Add
+          <span class="material-icons">
+            add
+          </span></button>
+          <button mat-stroked-button color="primary" routerLink="/client/createprofile" *ngIf="role =='admin'">
+            Bulkprofile Create
+              <span class="material-icons">
+                add
+              </span></button>
+
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+        <tr style="background-color: darkblue;color:white">
+          <th class="text-center">
+           Partner ID</th>
+          <th class="text-center">
+            FullName</th>
+          <th class="text-center">Mobile</th>
+          <th class="text-center">Email</th>
+          <th colspan="2" class="text-center">whatsaap/SMS</th>
+
+          <th class="text-center">select All <input type="checkbox" name="all" [checked]="allToppings" (change)="selectAllToppings($event.target.checked,personList)"/></th>
+
+        </tr>
+        <tr *ngFor="let person of personList| filter: {client_id: searchText, client_firstname:searchText,  client_lastname: searchText,user_mobile_number:searchText}; let id=index;" #loaded>
+          <td>
+            {{person.client_id}}
+          </td>
+          <td>
+            {{person.client_firstname}}&nbsp;{{person.client_lastname}}
+          </td>
+          <td name="name">
+            {{person.user_mobile_number}}
+          </td>
+          <td name="name">
+            {{person.email}}
+          </td>
+          <td>
+            <img class="pointer" src="assets/img/whatsaapicon.webp" width="100%" [routerLink]="['/downloadapksendsms',person.user_mobile_number]">
+          </td>
+          <td class="pointer">
+           <a [routerLink]="['/client/sendsms/',person.user_mobile_number]"><span class="material-icons">
+              sms
+              </span>
+            </a>
+            </td>
+
+          <td>
+            <input type="checkbox" name="sizecb[]" value="{{person.id}}" [checked]="allToppings" (change)="selectNewTopping($event.target.checked,person)"/>
+          </td>
+        </tr>
+      </table>
+
+
+      <h6 class="errorMessage" *ngIf="errorMessage">{{errorMessage}}</h6>
+
+    </div>
+  </div>
+</div>

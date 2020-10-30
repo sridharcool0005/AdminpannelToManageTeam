@@ -58,6 +58,8 @@ import { ViewusersfeedbackComponent } from './viewusersfeedback/viewusersfeedbac
 import { SendpushnotificationComponent } from './Analytics/sendpushnotification/sendpushnotification.component';
 import { SendsmstoclientsComponent } from './clientsManage/sendsmstoclients/sendsmstoclients.component';
 import { SendbulksmsComponent } from './clientsManage/sendbulksms/sendbulksms.component';
+import { ResellerviewComponent } from './Reseller/resellerview/resellerview.component';
+import { ResellerComponent } from './Reseller/reseller/reseller.component';
 
 
 const routes: Routes = [{
@@ -87,6 +89,11 @@ const routes: Routes = [{
   {path:'adduser',component:AddUsersComponent},
   {path:'editUser',component:EditusersComponent},
   {path:'viewUsers',component:ViewusersComponent}
+]},
+
+{path:'reseller',component:ResellerComponent,children:[
+  {path:'view',component:ResellerviewComponent},
+
 ]},
 
 {path:'packageMange',component:PackManageComponent,children:[

@@ -62,7 +62,7 @@
           <th class="text-center">select All <input type="checkbox" name="all" [checked]="allToppings" (change)="selectAllToppings($event.target.checked,personList)"/></th>
 
         </tr>
-        <tr *ngFor="let person of personList| filter: {client_id: searchText, client_firstname:searchText,  client_lastname: searchText,user_mobile_number:searchText}; let id=index;" #loaded>
+        <tr *ngFor="let person of personList| filter: {client_id: searchText, client_firstname:searchText,  client_lastname: searchText,user_mobile_number:searchText,account_type:searchText}; let id=index;" #loaded>
           <td>
             {{person.client_id}}
           </td>

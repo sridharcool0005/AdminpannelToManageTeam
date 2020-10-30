@@ -75,6 +75,8 @@ import { DwnldapksendsmsComponent } from './dwnldapksendsms/dwnldapksendsms.comp
 import { SendpushnotificationComponent } from './Analytics/sendpushnotification/sendpushnotification.component';
 import { SendsmstoclientsComponent } from './clientsManage/sendsmstoclients/sendsmstoclients.component';
 import { SendbulksmsComponent } from './clientsManage/sendbulksms/sendbulksms.component';
+import { ResellerComponent } from './Reseller/reseller/reseller.component';
+import { ResellerviewComponent } from './Reseller/resellerview/resellerview.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +141,8 @@ import { SendbulksmsComponent } from './clientsManage/sendbulksms/sendbulksms.co
     SendpushnotificationComponent,
     SendsmstoclientsComponent,
     SendbulksmsComponent,
+    ResellerComponent,
+    ResellerviewComponent,
 
 
 

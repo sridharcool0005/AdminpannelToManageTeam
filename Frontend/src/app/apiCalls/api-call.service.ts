@@ -249,12 +249,11 @@ postofficeApi(data){
 }
 
 getplanexpirycontacts(data){
-  return this.http.post(environment.apiBaseUrl + '/partner/' + this.getPartner_id() +  '/getplanexpirycontacts',data)
-
+  return this.http.post(environment.apiBaseUrl + '/getplanexpirycontacts',data)
 }
 
-getplanexpirycontactsAll(){
-  return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +   '/getplanexpirycontactsAll')
+getplanexpirycontactsAll(data){
+  return this.http.post(environment.apiBaseUrl +  '/getplanexpirycontactsAll',data)
 
 }
 
@@ -356,6 +355,11 @@ getallapkDownloadlist(){
 
 getusersfeedbackqueries(){
   return this.http.get(environment.apiBaseUrl +'/partner/' + this.getPartner_id() +  '/getusersfeedbackqueries');
+
+}
+
+getPartnerData(){
+  return this.http.get(environment.apiBaseUrl +  '/getPartnerData');
 
 }
   // Helper Methods

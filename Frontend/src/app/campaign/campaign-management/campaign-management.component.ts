@@ -21,10 +21,12 @@ export class CampaignManagementComponent implements OnInit {
   errorMessage: any;
   curDate = new Date();
   selectedclients: any[];
+  partner_id: any;
 
   constructor(private apiCall: ApiCallService, private excelservice: ExcelService, private router: Router) { }
 
   ngOnInit() {
+    this.partner_id=this.apiCall.getPartner_id();
     this.getClients();
 
   }
@@ -54,10 +56,9 @@ export class CampaignManagementComponent implements OnInit {
 
 
   getClients() {
-    this.apiCall.getplanexpirycontactsAll().subscribe((res: any) => {
-
+    const partner_id ={partner_id:this.partner_id}
+    this.apiCall.getplanexpirycontactsAll(partner_id).subscribe((res: any) => {
       this.personList = res.data;
-
     });
   }
 
@@ -79,6 +80,7 @@ export class CampaignManagementComponent implements OnInit {
   }
 
   getplanexpirycontacts(data) {
+    data.partner_id=this.partner_id;
     this.apiCall.getplanexpirycontacts(data).subscribe((res: any) => {
       this.personList = res.data;
     });

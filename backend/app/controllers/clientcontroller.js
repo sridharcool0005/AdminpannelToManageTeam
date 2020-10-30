@@ -553,3 +553,28 @@ module.exports.getusersfeedbackqueries= async function (req, res) {
   });
 }
 
+
+module.exports.getPartnerData= async function (req, res) {
+  
+  const role='Partner'
+  Query = "SELECT  partner_id,user_name FROM portalusers   where role =?"
+  await db.query(Query,[role], function (err, result, fields) {
+    if (err) throw err;
+    if (!result.length) {
+      res.status(400).send({
+        status: "error",
+       message:'No data found'
+      });
+    }
+    else{
+      res.send({
+        "code": 200,
+        status: "success",
+       result
+      });
+    }
+  
+  });
+}
+
+
