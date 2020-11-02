@@ -77,6 +77,8 @@ import { SendsmstoclientsComponent } from './clientsManage/sendsmstoclients/send
 import { SendbulksmsComponent } from './clientsManage/sendbulksms/sendbulksms.component';
 import { ResellerComponent } from './Reseller/reseller/reseller.component';
 import { ResellerviewComponent } from './Reseller/resellerview/resellerview.component';
+import { DigitalcardsComponent } from './DigitalCards/digitalcards/digitalcards.component';
+import { ViewdigitalcardsComponent } from './DigitalCards/viewdigitalcards/viewdigitalcards.component';
 
 @NgModule({
   declarations: [
@@ -143,6 +145,8 @@ import { ResellerviewComponent } from './Reseller/resellerview/resellerview.comp
     SendbulksmsComponent,
     ResellerComponent,
     ResellerviewComponent,
+    DigitalcardsComponent,
+    ViewdigitalcardsComponent,
 
 
 

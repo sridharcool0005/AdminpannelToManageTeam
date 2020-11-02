@@ -60,6 +60,8 @@ import { SendsmstoclientsComponent } from './clientsManage/sendsmstoclients/send
 import { SendbulksmsComponent } from './clientsManage/sendbulksms/sendbulksms.component';
 import { ResellerviewComponent } from './Reseller/resellerview/resellerview.component';
 import { ResellerComponent } from './Reseller/reseller/reseller.component';
+import { DigitalcardsComponent } from './DigitalCards/digitalcards/digitalcards.component';
+import { ViewdigitalcardsComponent } from './DigitalCards/viewdigitalcards/viewdigitalcards.component';
 
 
 const routes: Routes = [{
@@ -84,6 +86,10 @@ const routes: Routes = [{
   {path:'createprofile', component:BulkprofileCreateComponent},
   {path:'sendsms/:mobilenumber',component:SendsmstoclientsComponent},
   {path:'sendbulksms',component:SendbulksmsComponent}
+]},
+
+{path:'digitalcards',component:DigitalcardsComponent,children:[
+  {path:'view',component:ViewdigitalcardsComponent}
 ]},
 {path:'user',component:UserManageComponent,children:[
   {path:'adduser',component:AddUsersComponent},
