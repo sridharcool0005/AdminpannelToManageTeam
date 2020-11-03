@@ -1,0 +1,94 @@
+
+
+img {
+  border-radius: 8px;
+  margin-top: 5%;
+  max-height: 450px;
+}
+
+
+button.btn.btn-success{
+  margin-left: 55%;
+  margin-top: -10%;
+}
+input.form-control {
+  width: 50%;
+}
+
+i.fab.fa-whatsapp {
+  font-size: 16px;
+}
+.container {
+  background-image: url('https://1.bp.blogspot.com/-no3OIU8ojXo/UiWTXw5dsTI/AAAAAAAACvg/DwgoJEY04ro/s1600/Brochure-Background-Design.jpg');
+}
+
+p {
+  color: white;
+}
+
+.round-contact-buttons {
+  display: flex;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--theme-color);
+}
+.round-contact-buttons a {
+  margin: 0 10px;
+}
+
+.contact-buttons-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  margin: 0 auto;
+  box-shadow: 1px 1px 5px rgba(107, 128, 168, 0.2);
+  border-radius: 100px;
+  margin-bottom: 10px;
+  background-color: var(--theme-color);
+  color: #ffffff;
+}
+.contact-buttons-text {
+  color:white;
+  text-decoration: none;
+  font-size: 13px;
+  font-family: 'Uniform Medium';
+}
+i.fas.fa-phone.fa-flip-horizontal.contact-buttons-icon {
+  background-color: brown;
+}
+
+i.fab.fa-whatsapp.contact-buttons-icon {
+  background-color: brown;
+}
+i.fas.fa-map-marker-alt.fa-flip-horizontal.contact-buttons-icon {
+  background-color: brown;
+}
+i.fas.fa-envelope.fa-flip-horizontal.contact-buttons-icon {
+  background-color: brown;
+}
+.w3-teal, .w3-hover-teal:hover {
+  color: #fff!important;
+  background-color: brown;
+}
+
+h3 {
+  color: white;
+}
+@media screen and (max-width: 1060px){
+
+  input.form-control.ng-untouched.ng-pristine.ng-valid.inptmida {
+    width: 100%;
+}
+button.btn.btn-success.btn-rounded.wtsmdia.waves-effect.waves-light {
+  margin-top: 5%;
+  width: 100%;
+  margin-left: 0%;
+}
+}

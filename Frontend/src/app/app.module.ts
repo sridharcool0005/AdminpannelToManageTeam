@@ -79,6 +79,9 @@ import { ResellerComponent } from './Reseller/reseller/reseller.component';
 import { ResellerviewComponent } from './Reseller/resellerview/resellerview.component';
 import { DigitalcardsComponent } from './DigitalCards/digitalcards/digitalcards.component';
 import { ViewdigitalcardsComponent } from './DigitalCards/viewdigitalcards/viewdigitalcards.component';
+import { Vcard01Component } from './DigitalCards/vcard01/vcard01.component';
+import { Vcard02Component } from './DigitalCards/vcard02/vcard02.component';
+import { Vcard03Component } from './DigitalCards/vcard03/vcard03.component';
 
 @NgModule({
   declarations: [
@@ -147,6 +150,9 @@ import { ViewdigitalcardsComponent } from './DigitalCards/viewdigitalcards/viewd
     ResellerviewComponent,
     DigitalcardsComponent,
     ViewdigitalcardsComponent,
+    Vcard01Component,
+    Vcard02Component,
+    Vcard03Component,
 
 
 

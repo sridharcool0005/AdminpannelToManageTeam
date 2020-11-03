@@ -62,6 +62,9 @@ import { ResellerviewComponent } from './Reseller/resellerview/resellerview.comp
 import { ResellerComponent } from './Reseller/reseller/reseller.component';
 import { DigitalcardsComponent } from './DigitalCards/digitalcards/digitalcards.component';
 import { ViewdigitalcardsComponent } from './DigitalCards/viewdigitalcards/viewdigitalcards.component';
+import { Vcard01Component } from './DigitalCards/vcard01/vcard01.component';
+import { Vcard02Component } from './DigitalCards/vcard02/vcard02.component';
+import { Vcard03Component } from './DigitalCards/vcard03/vcard03.component';
 
 
 const routes: Routes = [{
@@ -88,9 +91,6 @@ const routes: Routes = [{
   {path:'sendbulksms',component:SendbulksmsComponent}
 ]},
 
-{path:'digitalcards',component:DigitalcardsComponent,children:[
-  {path:'view',component:ViewdigitalcardsComponent}
-]},
 {path:'user',component:UserManageComponent,children:[
   {path:'adduser',component:AddUsersComponent},
   {path:'editUser',component:EditusersComponent},
@@ -166,6 +166,15 @@ path:'templates',component:TemplatesComponent,children:[
 {
   path: '', redirectTo: '/login', pathMatch: 'full'
 },
+
+{path:'digitalcards',component:DigitalcardsComponent,children:[
+  {path:'view',component:ViewdigitalcardsComponent},
+  {path:'vcard01',component:Vcard01Component},
+  {path:'vcard02',component:Vcard02Component},
+  {path:'vcard03',component:Vcard03Component},
+
+
+]},
 
 ];
 

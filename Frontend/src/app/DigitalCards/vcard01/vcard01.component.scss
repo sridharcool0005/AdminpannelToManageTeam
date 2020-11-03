@@ -1,0 +1,36 @@
+
+
+img {
+  border-radius: 8px;
+  margin-top: 5%;
+  max-height: 450px;
+}
+
+
+button.btn.btn-success{
+  margin-left: 55%;
+  margin-top: -10%;
+}
+input.form-control {
+  width: 50%;
+}
+
+i.fab.fa-whatsapp {
+  font-size: 16px;
+}
+// .container {
+//   background-image: url('https://i.pinimg.com/736x/20/7d/15/207d1551b0dca2061768170ca647f43f.jpg');
+// }
+
+
+@media screen and (max-width: 1060px){
+
+  input.form-control.ng-untouched.ng-pristine.ng-valid.inptmida {
+    width: 100%;
+}
+button.btn.btn-success.btn-rounded.wtsmdia.waves-effect.waves-light {
+  margin-top: 5%;
+  width: 100%;
+  margin-left: 0%;
+}
+}
