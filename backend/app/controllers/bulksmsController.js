@@ -15,9 +15,10 @@ var db = mysql.createConnection({
 module.exports.sendBulkSMS = async (req, response) => {
 const partner_id=req.params.partner_id;
 const { mobilenumbers, message } = req.body;
+console.log(message)
   var sql = "select reseller_authkey, reseller_sender_id from portal_counterV2 where partner_id =?"
   db.query(sql, [partner_id], function (error, results, fields) {
-    console.log(results)
+    // console.log(results)
     const reseller_authkey=results[0].reseller_authkey;
     const reseller_sender_id=results[0].reseller_sender_id;
       if (error) throw error;

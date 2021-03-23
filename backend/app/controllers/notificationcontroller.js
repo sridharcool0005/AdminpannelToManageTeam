@@ -28,8 +28,14 @@ fetch('https://fcm.googleapis.com/fcm/send', {
         },
          'body': JSON.stringify(notification_body)
       }).then(function(response) {
-        //   console.log(response)
-res.send({status:response.status,message:'notification sent successfully'})
+          // console.log(response)
+        if(response.status=='200'){
+          res.send({status:response.status,message:'Notification Sent  successfully'})
+
+        }else{
+          res.send({status:response.status,message:'Error in sending push notification'})
+
+        }
 
     }).catch(function(error) {
         console.error(error);
