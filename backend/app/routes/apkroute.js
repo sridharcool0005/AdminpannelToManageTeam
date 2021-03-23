@@ -72,7 +72,7 @@ router.post('/uploadapk', upload.single('avatar'), (req, res, next) => {
 
 const apkcontroller=require('../controllers/apkcontroller');
 
-router.get('/getallapkslist',apkcontroller.getallapkslist);
+router.get('/getallapkslist/:partner_id',apkcontroller.getallapkslist);
 
 router.post('/deleteapk',apkcontroller.deleteapk);
 router.get('/partner/:partner_id/getallapkDownloadlist', apkcontroller.getallapkDownloadlist)

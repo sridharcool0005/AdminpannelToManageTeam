@@ -7,7 +7,7 @@ const Jimp = require("jimp");
 var database = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: '',
     database: 'smsportal',
     debug: false,
 

@@ -9,13 +9,17 @@ var config = require('../config'),
 
 // 1: The model schema.
 var modelDefinition = {
-    authkey:{
+    auth_key:{
         type: Sequelize.STRING,
         allowNull: false
     },
     partner_id:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    dept:{
+        type: Sequelize.STRING,
+        allowNull: true
     },
     email_id: {
         type: Sequelize.STRING,
@@ -31,13 +35,14 @@ var modelDefinition = {
         defaultValue: config.userRoles.user
     },
     mobile_number:{
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.STRING,
+        allowNull: true
     },
     user_name:{
         type: Sequelize.STRING,
-        allowNull: false
-    }
+        allowNull: true
+    },
+   
 
 };
 
@@ -51,8 +56,9 @@ var modelOptions = {
     }
 };
 
+
 // 3: Define the User model.
-var UserModel = db.define('portalusers', modelDefinition, modelOptions);
+var UserModel = db.define('portal_adminusers', modelDefinition, modelOptions);
 
 // Compares two passwords.
 function comparePasswords(password, callback) {

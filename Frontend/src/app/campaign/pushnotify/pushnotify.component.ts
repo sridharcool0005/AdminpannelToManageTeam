@@ -85,8 +85,13 @@ export class PushnotifyComponent implements OnInit {
 
   confirmpackages(data) {
     data.userData = {clientdata: this.clientsData,premiumplan_ratecard:this.premiumplan_ratecard,smspackage_ratecard:this.smspackage_ratecard};
-    console.log(data)
     this.apiCall.confirmpackage(data);
+    this.router.navigate(['/sendnotify']);
+  }
+
+  sendpushnotify() {
+    const userData = this.clientsData;
+    this.apiCall.confirmpackage(userData);
     this.router.navigate(['/sendnotify']);
   }
 }

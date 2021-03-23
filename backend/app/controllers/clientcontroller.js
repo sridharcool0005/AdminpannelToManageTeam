@@ -4,11 +4,13 @@ var emailservice = require('../routes/mailer');
 var http = require('http');
 const crypto = require("crypto");
 const request = require('request');
+const bcrypt = require('bcrypt');
+
 
 var db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'root',
+  password: '',
   database: 'smsportal',
   debug: false,
 
@@ -17,7 +19,7 @@ var db = mysql.createConnection({
 module.exports.getclients = async function (req, res) {
   const partner_id=req.params.partner_id;
   console.log(partner_id,'partner_id')
-  query = "select a.client_id,b.client_firstname, b.client_lastname,a.user_mobile_number,a.account_status,a.user_regn_channel  from portal_users a, clients_master b  where (a.client_id = b.client_id and  a.partner_id =?)order by a.created_on desc"
+  query = "select a.client_id,b.client_firstname, b.client_lastname,a.user_mobile_number,a.account_status,a.user_regn_channel  from portal_users a, portal_clients_master b  where (a.client_id = b.client_id and  a.partner_id =?)order by a.created_on desc"
   await db.query(query,[partner_id] ,function (err, result, fields) {
     if (err) throw err;
 
@@ -35,7 +37,7 @@ module.exports.getclientsbyfilter = async function (req, res) {
   const partner_id=req.params.partner_id;
   console.log(partner_id,'partner_id')
   const account_status = req.body.account_status;
-  query = "select a.client_id,b.client_firstname, b.client_lastname,a.user_mobile_number,a.account_status,a.user_regn_channel from portal_users a, clients_master b where (a.account_status = ? and a.partner_id =? and a.client_id=b.client_id )"
+  query = "select a.client_id,b.client_firstname, b.client_lastname,a.user_mobile_number,a.account_status,a.user_regn_channel from portal_users a, portal_portal_clients_master b where (a.account_status = ? and a.partner_id =? and a.client_id=b.client_id )"
   await db.query(query, [account_status,partner_id], function (err, result, fields) {
     if (err) throw err;
     if (!result.length) {
@@ -56,7 +58,7 @@ module.exports.getclientsbyfilter = async function (req, res) {
 module.exports.getclientsDetailed = async function (req, res) {
   const partner_id=req.params.partner_id;
   console.log(partner_id,'partner_id')
-  query = "SELECT * FROM clients_master WHERE partner_id =?"
+  query = "SELECT * FROM portal_portal_clients_master WHERE partner_id =?"
   await db.query(query,[partner_id], function (err, result, fields) {
     if (err) throw err;
     res.send({
@@ -147,7 +149,7 @@ module.exports.deleteclient = (req, res) => {
 module.exports.getuserDetails = async function (req, res) {
   const partner_id=req.params.partner_id;
   const client_id = req.body.client_id;
-  query = "select a.client_id,a.plan_activation_date, a.user_smsgateway_sender_id, a.smspackage_act_date, a.smspackage_exp_date,a.user_smsgateway_pid,a.is_sim_allowed,a.is_min_bal_req,a.account_plan_id,a.plan_expiry_date,a.user_smsgateway_id,a.user_smsgateway_sender_id1,a.user_smsgateway_sender_id2,a.user_smsgateway_sender_id,a.user_smsgateway_regn_status,a.user_smsgateway_authkey,a.user_smsgateway_route,a.user_smsgateway_unicode,a.user_cross_regn_status, a.user_mobile_number, a.user_email, a.user_regn_channel, a.account_type, a.account_status, b.client_firstname, b.client_lastname, b.client_whatsapp_number, b.client_telegram_number, b.client_company_name, b.client_address1, b.client_address2, b.client_city, b.client_district, b.client_postoffice, b.client_pincode, b.client_state, b.client_industry,b.client_gst_number, b.client_expiry from portal_users a, clients_master b where a.client_id =? and b.client_id =? "
+  query = "select a.client_id,a.plan_activation_date, a.user_smsgateway_sender_id, a.smspackage_act_date, a.smspackage_exp_date,a.user_smsgateway_pid,a.is_sim_allowed,a.is_min_bal_req,a.account_plan_id,a.plan_expiry_date,a.user_smsgateway_id,a.user_smsgateway_sender_id1,a.user_smsgateway_sender_id2,a.user_smsgateway_sender_id,a.user_smsgateway_regn_status,a.user_smsgateway_authkey,a.user_smsgateway_route,a.user_smsgateway_unicode,a.user_cross_regn_status, a.user_mobile_number, a.user_email, a.user_regn_channel, a.account_type, a.account_status, b.client_firstname, b.client_lastname, b.client_whatsapp_number, b.client_telegram_number, b.client_company_name, b.client_address1, b.client_address2, b.client_city, b.client_district, b.client_postoffice, b.client_pincode, b.client_state, b.client_industry,b.client_gst_number, b.client_expiry from portal_users a, portal_clients_master b where a.client_id =? and b.client_id =? "
   await db.query(query, [client_id, client_id,partner_id], function (err, result, fields) {
     if (err) throw err;
     res.send({

@@ -6,7 +6,7 @@ const db = require('../services/database');
 var database = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: '',
     database: 'smsportal',
     debug: false,
 

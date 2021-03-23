@@ -14,6 +14,7 @@ const helpdeskController = require('../controllers/helpdeskController');
 const bulkprofilecontroller = require('../controllers/bulkprofilecontroller');
 const billingcontroller = require('../controllers/billingcontroller');
 const bulksmsController = require('../controllers/bulksmsController');
+const notificationController = require('../controllers/notificationcontroller');
 
 
 var APIRoutes = function (passport) {
@@ -75,6 +76,7 @@ var APIRoutes = function (passport) {
   router.post('/partner/:partner_id/sendpushnotification', bulksmsController.insertnotifications);
   router.get('/partner/:partner_id/getusersfeedbackqueries',ClientController.getusersfeedbackqueries);
   router.get('/getPartnerData',ClientController.getPartnerData);
+  router.post('/send_fcm_notifications', notificationController.send_fcm_notifications);
 
   
   

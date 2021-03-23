@@ -4,14 +4,14 @@ const crypto = require("crypto");
 var db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: '',
     database: 'smsportal',
     debug: false,
 
 });
 
 module.exports.getpurchaseData = async function (req, res) {
-    query = "select a.client_id, a.client_firstname, a.client_lastname, b.txn_date, b.order_id, b.package_id, c.package_sms_credits ,b.total_amount_paid, b.payment_status_code from clients_master a, clients_payments_history b, smspackage_master c where (a.client_id=b.client_id and b.package_id = c.package_id)"
+    query = "select a.client_id, a.client_firstname, a.client_lastname, b.txn_date, b.order_id, b.package_id, c.package_sms_credits ,b.total_amount_paid, b.payment_status_code from portal_clients_master a, clients_payments_history b, smspackage_master c where (a.client_id=b.client_id and b.package_id = c.package_id)"
     await db.query(query, function (err, result, fields) {
         if (err) throw err;
        
@@ -25,7 +25,7 @@ module.exports.getpurchaseData = async function (req, res) {
 
 module.exports.getpurchaseDataByDate = async function (req, res) {
     const { fromDate, toDate } = req.body;
-    query = "select a.client_id, a.client_firstname, a.client_lastname, b.txn_date, b.order_id, b.package_id, b.total_amount_paid, b.payment_status_code from clients_master a, clients_payments_history b where (a.client_id=b.client_id and ( b.txn_date BETWEEN ? AND ? + interval 1 day)) "
+    query = "select a.client_id, a.client_firstname, a.client_lastname, b.txn_date, b.order_id, b.package_id, b.total_amount_paid, b.payment_status_code from portal_clients_master a, clients_payments_history b where (a.client_id=b.client_id and ( b.txn_date BETWEEN ? AND ? + interval 1 day)) "
     await db.query(query, [fromDate, toDate], function (err, result, fields) {
         if (err) throw err;
         res.send({
@@ -40,7 +40,7 @@ module.exports.getpurchaseDataByDate = async function (req, res) {
 module.exports.getpurchaseDetailed = async function (req, res) {
     const { order_id, package_id } = req.body
     console.log(order_id, package_id)
-    query = "select a.client_id, a.client_firstname, a.client_lastname, a.client_email, a.client_mobile_number, a.client_city, a.client_state, b.coupon_id, b.coupon_amount, b.txn_date,b.order_id, c.package_name, c.package_sms_credits, b.payment_mode, b.payment_status_code, b.payment_gateway_txn_id, b.payment_gateway_txn_ref from clients_master a, clients_payments_history b, smspackage_master c where (a.client_id = b.client_id and b.order_id =? and c.package_id =? )"
+    query = "select a.client_id, a.client_firstname, a.client_lastname, a.client_email, a.client_mobile_number, a.client_city, a.client_state, b.coupon_id, b.coupon_amount, b.txn_date,b.order_id, c.package_name, c.package_sms_credits, b.payment_mode, b.payment_status_code, b.payment_gateway_txn_id, b.payment_gateway_txn_ref from portal_clients_master a, clients_payments_history b, smspackage_master c where (a.client_id = b.client_id and b.order_id =? and c.package_id =? )"
     await db.query(query, [order_id, package_id], function (err, result, fields) {
         if (err) throw err;
         res.send({
@@ -87,7 +87,7 @@ module.exports.getplanexpirycontacts = async function (req, res) {
     const {partner_id}=req.body;
     const { fromDate, toDate } = req.body;
 
-    query = "SELECT a.client_id, b.client_firstname, b.client_lastname, b.client_district,a.user_mobile_number, a.account_type, a.account_plan_id, a.plan_activation_date, a.plan_expiry_date FROM `portal_users` a, clients_master b where a.client_id=b.client_id and  (plan_expiry_date BETWEEN ? AND ? + interval 1 day ) and a.partner_id =?"
+    query = "SELECT a.client_id, b.client_firstname, b.client_lastname, b.client_district,a.user_mobile_number, a.account_type, a.account_plan_id, a.plan_activation_date, a.plan_expiry_date FROM `portal_users` a, portal_clients_master b where a.client_id=b.client_id and  (plan_expiry_date BETWEEN ? AND ? + interval 1 day ) and a.partner_id =?"
     await db.query(query, [fromDate, toDate,partner_id], function (err, result, fields) {
         if (err) throw err;
         res.send({
@@ -100,7 +100,7 @@ module.exports.getplanexpirycontacts = async function (req, res) {
 
 module.exports.getplanexpirycontactsAll = async function (req, res) {
     const {partner_id}=req.body;
-    query = "SELECT a.client_id, b.client_firstname, b.client_lastname, b.client_district,a.user_mobile_number, a.account_type, a.account_plan_id, a.plan_activation_date, a.plan_expiry_date FROM `portal_users` a, clients_master b where a.client_id=b.client_id and a.partner_id =? order by a.plan_expiry_date asc"
+    query = "SELECT a.client_id, b.client_firstname, b.client_lastname, b.client_district,a.user_mobile_number, a.account_type, a.account_plan_id, a.plan_activation_date, a.plan_expiry_date, c.fcm_token FROM `portal_users` a, portal_clients_master b, app_token_table c where a.client_id=b.client_id and a.partner_id =? and c.agent_id = a.client_id ORDER BY `a`.`plan_activation_date` DESC"
     await db.query(query,[partner_id] ,function (err, result, fields) {
         if (err) throw err;
         res.send({
@@ -156,7 +156,7 @@ module.exports.registeredcontactstracking= async function (req, res) {
     const { fromDate, toDate } = req.body;
 
     console.log(fromDate,toDate)
-    query = "SELECT a.CLIENT_id as 'ClientID', CONCAT(b.client_firstname, ' ', b.client_lastname) as 'ClientName', a.user_mobile_number as 'MobileNumber', b.client_district as 'District', a.account_plan_id as 'PlanID', a.account_type as 'AccountType', a.created_on as 'DateofRegn', a.plan_activation_date as 'DateofActivation', a.plan_expiry_date as 'DateofExpiry' FROM `portal_users` a, clients_master b where a.client_id=b.client_id and (a.created_on between ? and ? + interval 1 day) order by a.created_on asc, a.account_plan_id asc"
+    query = "SELECT a.CLIENT_id as 'ClientID', CONCAT(b.client_firstname, ' ', b.client_lastname) as 'ClientName', a.user_mobile_number as 'MobileNumber', b.client_district as 'District', a.account_plan_id as 'PlanID', a.account_type as 'AccountType', a.created_on as 'DateofRegn', a.plan_activation_date as 'DateofActivation', a.plan_expiry_date as 'DateofExpiry' FROM `portal_users` a, portal_clients_master b where a.client_id=b.client_id and (a.created_on between ? and ? + interval 1 day) order by a.created_on asc, a.account_plan_id asc"
     await db.query(query, [fromDate, toDate], function (err, result, fields) {
         if (err) throw err;
         res.send({

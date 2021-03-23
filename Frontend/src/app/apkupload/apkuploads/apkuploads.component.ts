@@ -52,6 +52,7 @@ export class ApkuploadsComponent implements OnInit {
       this.apiCall.uploadapk(
         this.form.value.title,
         this.form.value.avatar,
+        this.apiCall.getPartner_id()
 
       ).subscribe((event: HttpEvent<any>) => {
         switch (event.type) {

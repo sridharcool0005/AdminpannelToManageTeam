@@ -6,7 +6,7 @@ const crypto = require("crypto");
 var db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'root',
+  password: '',
   database: 'smsportal',
   debug: false,
 

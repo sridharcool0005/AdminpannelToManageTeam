@@ -194,10 +194,12 @@ export class ApiCallService {
     });
   }
 
-  uploadapk(title: string, profileImage: File): Observable<any> {
+  uploadapk(title: string, profileImage: File,partner_id): Observable<any> {
     const formData: any = new FormData();
     formData.append('title', title);
     formData.append('avatar', profileImage);
+    formData.append('partner_id', partner_id);
+
 
     return this.http.post<User>(environment.apiBaseUrl +  '/uploadapk', formData, {
       reportProgress: true,
@@ -210,11 +212,11 @@ export class ApiCallService {
   }
 
   createbulkcontacts(data){
-    return this.http.post(environment.apiBaseUrl +'/createbulkprofiles',data)
+    return this.http.post(environment.apiBaseUrl +'/createbulkprofiles/'+this.getPartner_id(),data)
   }
 
   getallapkslist(){
-    return this.http.get(environment.apiBaseUrl + '/getallapkslist')
+    return this.http.get(environment.apiBaseUrl + '/getallapkslist/'+this.getPartner_id())
   }
 
   deleteapk(data){
@@ -360,6 +362,11 @@ getusersfeedbackqueries(){
 
 getPartnerData(){
   return this.http.get(environment.apiBaseUrl +  '/getPartnerData');
+
+}
+
+send_fcm_notifications(data){
+  return this.http.post(environment.apiBaseUrl +  '/send_fcm_notifications',data);
 
 }
   // Helper Methods
