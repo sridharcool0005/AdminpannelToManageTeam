@@ -28,21 +28,15 @@ export class SendnotificationComponent implements OnInit {
       if (clientData) {
         this.client_ids = clientData.clientdata.map(el => el.client_id);
         this.mobilenumbers = clientData.clientdata.map(el => Number(el.user_mobile_number));
+        this.smspackage_ratecard = clientData.smspackage_ratecard;
+        this.premiumplan_ratecard = clientData.premiumplan_ratecard;
+        this.user_tokens = clientData.clientdata.map(el => el.fcm_token);
 
-      this.smspackage_ratecard =clientData.smspackage_ratecard;
-      this.premiumplan_ratecard = clientData.premiumplan_ratecard;
-      this.user_tokens = clientData.clientdata.map(el => el.fcm_token);
-
-      }else{
+      } else {
+        this.client_ids = res.map(el => el.client_id);
         this.user_tokens = res.map(el => el.fcm_token);
         this.mobilenumbers = res.map(el => Number(el.user_mobile_number));
-
-
       }
-
-
-
-
     });
   }
 
@@ -54,24 +48,25 @@ export class SendnotificationComponent implements OnInit {
     data.user_tokens = this.user_tokens;
 
     if (this.boolean) {
-
       this.apiCall.sendpushnotification(data).subscribe((res: any) => {
         if (res.status == 'success') {
           this.router.navigate(['/campaignManage']);
-        }else{
+        } else {
           alert(res.message);
 
         }
       });
 
+      this.apiCall.send_fcm_notifications(data).subscribe((res: any) => {
+        alert(res.message)
+      })
+    } else {
 
+      this.apiCall.sendPushnotifySMS(data).subscribe((res: any) => {
+        alert('sms sent successfully')
+      })
     }
-    this.apiCall.send_fcm_notifications(data).subscribe((res: any) => {
-      alert(res.message)
-    })
-    this.apiCall.sendPushnotifySMS(data).subscribe((res: any)=>{
 
-    })
 
   }
 

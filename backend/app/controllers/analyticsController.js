@@ -115,7 +115,7 @@ module.exports.getplanexpirycontactsAll = async function (req, res) {
 module.exports.insertnotifications = (req, res) => {
     const partner_id=req.params.partner_id;
     const {client_ids,message}= req.body;
-
+    console.log(client_ids)
     if(!client_ids){
         res.status(200).send({status:false, message:'error in adding push notifications'})
     }
@@ -123,7 +123,6 @@ else{
     client_ids.forEach(myFunction);
     function myFunction(item) {
         const nid = crypto.randomBytes(4).toString("hex");
-        
         var values = {
             nid: nid,
             partner_id: partner_id,
@@ -134,11 +133,10 @@ else{
             url: 'nil',
             status: 'new'
         }
-
+        console.log(values)
         var sql = "INSERT INTO portal_mynotifications SET ?"
     db.query(sql, [values], function (error, results, fields) {
         if (error) throw error;
-       
     });
     }
     res.send({
@@ -148,7 +146,6 @@ else{
     }); 
 }
     
-     
 };
 
 

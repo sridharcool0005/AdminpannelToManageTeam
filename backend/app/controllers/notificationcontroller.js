@@ -7,7 +7,7 @@ console.log(user_tokens)
 var notification = {
   'title':title,
   'text': message,
-//   'sound':'default',
+  'sound':'default',
 //   'image':'./images/nutantek.jpg'
 };
 
