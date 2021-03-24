@@ -77,7 +77,11 @@ var APIRoutes = function (passport) {
   router.get('/partner/:partner_id/getusersfeedbackqueries',ClientController.getusersfeedbackqueries);
   router.get('/getPartnerData',ClientController.getPartnerData);
   router.post('/send_fcm_notifications', notificationController.send_fcm_notifications);
+  router.post('/uploadaudiofile', notificationController.uploadaudiofile);
+  router.post('/imagefileupload', notificationController.imagefileupload);
 
+  
+  
   
   
 

@@ -114,7 +114,7 @@ module.exports.getplanexpirycontactsAll = async function (req, res) {
 
 module.exports.insertnotifications = (req, res) => {
     const partner_id=req.params.partner_id;
-    const {client_ids,message}= req.body;
+    const {client_ids,message,title}= req.body;
     console.log(client_ids)
     if(!client_ids){
         res.status(200).send({status:false, message:'error in adding push notifications'})
@@ -127,7 +127,7 @@ else{
             nid: nid,
             partner_id: partner_id,
             client_id: item,
-            title: 'Upgrade Premium',
+            title: title,
             message: message,
             action: '11',
             url: 'nil',

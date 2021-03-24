@@ -369,6 +369,24 @@ send_fcm_notifications(data){
   return this.http.post(environment.apiBaseUrl +  '/send_fcm_notifications',data);
 
 }
+
+uploadaudiofile(profileImage: File): Observable<any> {
+  const formData: any = new FormData();
+  formData.append('avatar', profileImage);
+  return this.http.post<User>(environment.apiBaseUrl +  '/uploadaudiofile', formData, {
+    reportProgress: true,
+    observe: 'events'
+  });
+}
+
+imagefileupload(profileImage: File): Observable<any> {
+  const formData: any = new FormData();
+  formData.append('image', profileImage);
+  return this.http.post<User>(environment.apiBaseUrl +  '/imagefileupload', formData, {
+    reportProgress: true,
+    observe: 'events'
+  });
+}
   // Helper Methods
 
   setToken(token: string) {

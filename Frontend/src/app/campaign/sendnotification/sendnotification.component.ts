@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
 @Component({
   selector: 'app-sendnotification',
   templateUrl: './sendnotification.component.html',
@@ -15,8 +16,16 @@ export class SendnotificationComponent implements OnInit {
   smspackage_ratecard: any;
   premiumplan_ratecard: any;
   user_tokens;
+  preview: string;
+  form: FormGroup;
+  percentDone: any = 0;
+  constructor(private apiCall: ApiCallService, private router: Router, public fb: FormBuilder) {
+    this.form = this.fb.group({
+      avatar: [null, Validators.required],
+      image: [null, Validators.required],
 
-  constructor(private apiCall: ApiCallService, private router: Router,) { }
+    })
+  }
 
   ngOnInit() {
     this.getMyContacts();
@@ -48,18 +57,12 @@ export class SendnotificationComponent implements OnInit {
     data.user_tokens = this.user_tokens;
 
     if (this.boolean) {
-      this.apiCall.sendpushnotification(data).subscribe((res: any) => {
-        if (res.status == 'success') {
-          this.router.navigate(['/campaignManage']);
-        } else {
-          alert(res.message);
-
-        }
-      });
-
       this.apiCall.send_fcm_notifications(data).subscribe((res: any) => {
         alert(res.message)
       })
+      this.submitForm();
+      this.uplaodimagefile();
+
     } else {
 
       this.apiCall.sendPushnotifySMS(data).subscribe((res: any) => {
@@ -74,4 +77,80 @@ export class SendnotificationComponent implements OnInit {
     console.log(event)
     this.boolean = event
   }
+
+
+  // Image Preview
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({
+      avatar: file
+    });
+    this.form.get('avatar').updateValueAndValidity();
+    // File Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.preview = reader.result as string;
+    }
+    reader.readAsDataURL(file)
+  }
+
+    // Image Preview
+    uploadimagefile(event) {
+      const file = (event.target as HTMLInputElement).files[0];
+      this.form.patchValue({
+        image: file
+      });
+      this.form.get('image').updateValueAndValidity();
+      // File Preview
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.preview = reader.result as string;
+      }
+      reader.readAsDataURL(file)
+    }
+
+  submitForm() {
+    this.apiCall.uploadaudiofile(
+      this.form.value.avatar
+    ).subscribe((event: HttpEvent<any>) => {
+      switch (event.type) {
+        case HttpEventType.Sent:
+          console.log('Request has been made!');
+          break;
+        case HttpEventType.ResponseHeader:
+          console.log('Response header has been received!');
+          break;
+        case HttpEventType.UploadProgress:
+          this.percentDone = Math.round(event.loaded / event.total * 100);
+          console.log(`Uploaded! ${this.percentDone}%`);
+          break;
+        case HttpEventType.Response:
+          console.log('User successfully created!', event.body);
+          this.percentDone = false;
+      }
+    })
+  }
+
+  uplaodimagefile() {
+    this.apiCall.imagefileupload(
+      this.form.value.image
+    ).subscribe((event: HttpEvent<any>) => {
+      switch (event.type) {
+        case HttpEventType.Sent:
+          console.log('Request has been made!');
+          break;
+        case HttpEventType.ResponseHeader:
+          console.log('Response header has been received!');
+          break;
+        case HttpEventType.UploadProgress:
+          this.percentDone = Math.round(event.loaded / event.total * 100);
+          console.log(`Uploaded! ${this.percentDone}%`);
+          break;
+        case HttpEventType.Response:
+          console.log('User successfully created!', event.body);
+          this.percentDone = false;
+      }
+    })
+  }
 }
+
