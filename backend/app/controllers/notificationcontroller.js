@@ -55,17 +55,27 @@ let imagefile="";
 
 console.log(middleware)
 module.exports.uploadaudiofile = (req, res, next) => {
-  let controller = () => {
-    console.log(req.body, req.files);
-    const url = req.protocol + '://' + req.get('host');
-    soundfile = url + '/' + req.file.filename;
-   res.send({ status:'success', message:'file uploaded successfully'})
-  };
-  middleware(req, res, controller);
+  if(!req.file){
+    res.send({ status:'error', message:'file is required'})
+
+  }else{
+    let controller = () => {
+      console.log(req.body, req.files);
+      const url = req.protocol + '://' + req.get('host');
+      soundfile = url + '/' + req.file.filename;
+     res.send({ status:'success', message:'file uploaded successfully'})
+    };
+    middleware(req, res, controller);
+  }
+ 
 }
 
 let imgmiddleware = upload.single('image');
 module.exports.imagefileupload = (req, res, next) => {
+  if(!req.file){
+    res.send({ status:'error', message:'file is required'})
+
+  }else{
   let controller = () => {
     console.log(req.body, req.files);
     const url = req.protocol + '://' + req.get('host');
@@ -74,11 +84,12 @@ module.exports.imagefileupload = (req, res, next) => {
   };
   imgmiddleware(req, res, controller);
 }
+}
 
 
 module.exports.send_fcm_notifications = async function (req, res) {
   const { title, message, user_tokens } = req.body;
-  console.log(user_tokens)
+  // console.log(user_tokens)
   // notification object with title and text
   var notification = {
     'title': title,
@@ -107,7 +118,7 @@ module.exports.send_fcm_notifications = async function (req, res) {
     // console.log(response)
     if (response.status == '200') {
        this.savenotifications(req)
-      res.send({ status: response.status, message: 'Notification Sent  successfully' });
+      res.send({ status: response.status, message: 'Push Notification Sent  Successfully' });
     } else {
       this.savenotifications(req)
       res.send({ status: response.status, message: 'Error in sending push notification' })
@@ -142,10 +153,11 @@ else{
           image_file_path:imagefile,
           push_status:'2'
       }
-      // console.log(values)
+      console.log(values)
       var sql = "INSERT INTO portal_mynotifications SET ?"
   database.query(sql, [values], function (error, results, fields) {
       if (error) throw error;
+      
   });
   }
 

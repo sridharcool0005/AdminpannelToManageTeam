@@ -5,15 +5,15 @@
     <div class="row">
       <div class="col-md-6">
         <form (ngSubmit)="regform.form.valid&&getplanexpirycontacts(regform.form.value)" #regform="ngForm">
-
           <input type="date"  name="fromDate" placeholder="FromDate" ngModel>&nbsp;
           <input type="date" name="toDate" placeholder="ToDate" ngModel>&nbsp;
-
           <input type="submit">
         </form>
       </div>
       <div class="col-md-6 mubutn" >
-
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="getClients()">
+          <mdb-icon fas icon="sync-alt"></mdb-icon>
+        </button>&nbsp;
         <input  type="text" [(ngModel)]="searchText" placeholder=" Search By Filter"
         aria-label="Search" >
   <!-- <button mat-fab color="primary" aria-label="Example icon button with a delete icon" routerLink="/addpushnotify" matTooltip=" Add Push notification"

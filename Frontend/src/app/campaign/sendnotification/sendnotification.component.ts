@@ -59,6 +59,7 @@ export class SendnotificationComponent implements OnInit {
     if (this.boolean) {
       this.apiCall.send_fcm_notifications(data).subscribe((res: any) => {
         alert(res.message)
+        this.router.navigate(['campaignManage'])
       })
       this.submitForm();
       this.uplaodimagefile();
@@ -66,7 +67,8 @@ export class SendnotificationComponent implements OnInit {
     } else {
 
       this.apiCall.sendPushnotifySMS(data).subscribe((res: any) => {
-        alert('sms sent successfully')
+        alert('Bulksms sent successfully');
+        this.router.navigate(['campaignManage'])
       })
     }
 
