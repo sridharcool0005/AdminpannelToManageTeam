@@ -15,6 +15,7 @@ const bulkprofilecontroller = require('../controllers/bulkprofilecontroller');
 const billingcontroller = require('../controllers/billingcontroller');
 const bulksmsController = require('../controllers/bulksmsController');
 const notificationController = require('../controllers/notificationcontroller');
+const dltapprovalcontroller = require('../controllers/dltapprovalcontroller');
 
 
 var APIRoutes = function (passport) {
@@ -79,6 +80,18 @@ var APIRoutes = function (passport) {
   router.post('/send_fcm_notifications', notificationController.send_fcm_notifications);
   router.post('/uploadaudiofile', notificationController.uploadaudiofile);
   router.post('/imagefileupload', notificationController.imagefileupload);
+
+  //dltapi////
+  router.post('/getdltlist', dltapprovalcontroller.getdltlist);
+  router.post('/getdltdocmentdetails', dltapprovalcontroller.getdltdocmentdetails);
+  router.post('/updatedltstatus', dltapprovalcontroller.updatedltstatus);
+  router.get('/getdltcumulativelist', dltapprovalcontroller.getdltcumulativelist);
+  router.post('/getdltcertificate', dltapprovalcontroller.getdltcertificate);
+
+
+  
+  
+  
 
   
   

@@ -82,6 +82,11 @@ import { ViewdigitalcardsComponent } from './DigitalCards/viewdigitalcards/viewd
 import { Vcard01Component } from './DigitalCards/vcard01/vcard01.component';
 import { Vcard02Component } from './DigitalCards/vcard02/vcard02.component';
 import { Vcard03Component } from './DigitalCards/vcard03/vcard03.component';
+import { ViewdltapprovelistComponent } from './viewdltapprovelist/viewdltapprovelist.component';
+import { SafePipePipe } from './pipes/safe-pipe.pipe';
+import { PromotionsComponent } from './promotions/promotions.component';
+import { BannerPromotionComponent } from './promotions/banner-promotion/banner-promotion.component';
+import { BeOntopPromotionComponent } from './promotions/be-ontop-promotion/be-ontop-promotion.component';
 
 @NgModule({
   declarations: [
@@ -153,11 +158,11 @@ import { Vcard03Component } from './DigitalCards/vcard03/vcard03.component';
     Vcard01Component,
     Vcard02Component,
     Vcard03Component,
-
-
-
-
-
+    ViewdltapprovelistComponent,
+    SafePipePipe,
+    PromotionsComponent,
+    BannerPromotionComponent,
+    BeOntopPromotionComponent
 
   ],
   imports: [
@@ -179,10 +184,8 @@ import { Vcard03Component } from './DigitalCards/vcard03/vcard03.component';
     MatSelectModule,
     MatExpansionModule,
     MaterialModule,
-    MDBBootstrapModule,
+    MDBBootstrapModule.forRoot(),
     WavesModule,TableModule,IconsModule,
-
-
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

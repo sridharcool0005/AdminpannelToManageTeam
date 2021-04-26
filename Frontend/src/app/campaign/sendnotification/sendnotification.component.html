@@ -1,32 +1,46 @@
 <div class="container">
   <div class="row">
 
-      <form class="text-center border border-light p-5"  (ngSubmit)=" regform.form.valid&&pushnotify(regform.form.value)" #regform="ngForm">
+    <form class="text-center border border-light p-5" (ngSubmit)=" regform.form.valid&&pushnotify(regform.form.value)"
+      #regform="ngForm">
 
-        <p class="h4 mb-4">Send Bulk SMS / Push Notification</p>
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="defaultChecked2" (change)="checkbox($event.target.checked)" unchecked>
-          <label class="custom-control-label" for="defaultChecked2">Push Notification</label>
+      <p class="h4 mb-4">Send Bulk SMS / Push Notification</p>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultChecked2"
+          (change)="checkbox($event.target.checked)" unchecked>
+        <label class="custom-control-label" for="defaultChecked2">Send BulkSMS </label>
+      </div>
+      <div class="form-group">
+        <!-- Default input -->
+        <input type="text" name="title" [(ngModel)]="title" #titlemsg=ngModel class="form-control" placeholder="Title"
+          [ngClass]="{ 'is-invalid': regform.submitted && titlemsg.invalid }" required><br>
+        <div *ngIf="regform.submitted && titlemsg.invalid" class="invalid-feedback">
+          <div *ngIf="titlemsg.errors.required">Title is required</div>
         </div>
-        <div class="form-group">
-          <!-- Default input -->
-<input type="text" name="title" ngModel class="form-control" placeholder="Title"><br>
-          <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
-            placeholder="Message" name="message" ngModel></textarea>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Message"
+          name="message" [(ngModel)]="message" #msg=ngModel
+          [ngClass]="{ 'is-invalid': regform.submitted && msg.invalid }" required></textarea>
+        <div *ngIf="regform.submitted && msg.invalid" class="invalid-feedback">
+          <div *ngIf="msg.errors.required">message is required</div>
         </div>
-        <div class="form-group">
+      </div>
+      <div class="form-group">
         <label class="form-label" for="customFile">Upload Image File</label>
-<input type="file" class="form-control" id="customFile" (change)="uploadimagefile($event)"/><p *ngIf="percentDone">{{percentDone}}</p>
-</div>
-<div class="form-group">
-  <label class="form-label" for="customFile">Upload Audio File</label>
-  <input type="file" class="form-control" id="customFile" (change)="uploadFile($event)" /><p *ngIf="percentDone">{{percentDone}}</p>
-  </div>
-          <!-- <button mdbBtn color="info"  type="button" routerLink="/viewnotifyTemplates">Select Template</button> -->
+        <input type="file" class="form-control" id="customFile" (change)="uploadimagefile($event)" />
+        <p *ngIf="percentDone">{{percentDone}}</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="customFile">Upload Audio File</label>
+        <input type="file" class="form-control" id="customFile" (change)="uploadFile($event)" />
+        <p *ngIf="percentDone">{{percentDone}}</p>
+      </div>
+      <!-- <button mdbBtn color="info"  type="button" routerLink="/viewnotifyTemplates">Select Template</button> -->
 
-          <button mdbBtn color="info" type="submit">Send</button>
-
-      </form>
+      <button mdbBtn color="info" type="submit">Send</button>
+      <p style="color:red">* On clicking check box push notification will be sent otherwise bulksms will be sent</p>
+    </form>
 
   </div>
 </div>

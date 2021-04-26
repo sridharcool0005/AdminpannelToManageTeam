@@ -19,6 +19,8 @@ export class SendnotificationComponent implements OnInit {
   preview: string;
   form: FormGroup;
   percentDone: any = 0;
+  message;
+  title;
   constructor(private apiCall: ApiCallService, private router: Router, public fb: FormBuilder) {
     this.form = this.fb.group({
       avatar: [null, Validators.required],
@@ -57,19 +59,18 @@ export class SendnotificationComponent implements OnInit {
     data.user_tokens = this.user_tokens;
 
     if (this.boolean) {
+      this.apiCall.sendPushnotifySMS(data).subscribe((res: any) => {
+        alert('BULK SMS sent to selected clients');
+        this.router.navigate(['campaignManage'])
+      })
+
+    } else {
       this.apiCall.send_fcm_notifications(data).subscribe((res: any) => {
-        alert(res.message)
+        alert('Push Notifications sent to selected clients')
         this.router.navigate(['campaignManage'])
       })
       this.submitForm();
       this.uplaodimagefile();
-
-    } else {
-
-      this.apiCall.sendPushnotifySMS(data).subscribe((res: any) => {
-        alert('Bulksms sent successfully');
-        this.router.navigate(['campaignManage'])
-      })
     }
 
 

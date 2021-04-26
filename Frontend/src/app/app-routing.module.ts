@@ -65,6 +65,8 @@ import { ViewdigitalcardsComponent } from './DigitalCards/viewdigitalcards/viewd
 import { Vcard01Component } from './DigitalCards/vcard01/vcard01.component';
 import { Vcard02Component } from './DigitalCards/vcard02/vcard02.component';
 import { Vcard03Component } from './DigitalCards/vcard03/vcard03.component';
+import { ViewdltapprovelistComponent } from './viewdltapprovelist/viewdltapprovelist.component';
+import { PromotionsComponent } from './promotions/promotions.component';
 
 
 const routes: Routes = [{
@@ -114,6 +116,9 @@ const routes: Routes = [{
 {path:'downloadapksendsms/:mobilenumber',component:DwnldapksendsmsComponent},
 {path:'viewusersfeedback',component:ViewusersfeedbackComponent},
 {path:'sendpushnotification',component:SendpushnotificationComponent},
+{path:'viewdltapprovals', component:ViewdltapprovelistComponent},
+{path:'promotions',component:PromotionsComponent},
+
 
 {path:'analytics',component:AnalyticComponent,children:[
   {path:'purchaseAnalysis',component:PurchaseAnalysisComponent},

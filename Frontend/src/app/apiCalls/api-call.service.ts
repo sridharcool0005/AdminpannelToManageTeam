@@ -387,6 +387,31 @@ imagefileupload(profileImage: File): Observable<any> {
     observe: 'events'
   });
 }
+
+
+getdltlist(data){
+  return this.http.post(environment.apiBaseUrl +  '/getdltlist',data);
+}
+
+getdltdocmentdetails(data){
+  return this.http.post(environment.apiBaseUrl +  '/getdltdocmentdetails',data);
+
+}
+
+
+updatedltstatus(data){
+  return this.http.post(environment.apiBaseUrl +  '/updatedltstatus',data);
+}
+
+getdltcumulativelist(){
+  return this.http.get(environment.apiBaseUrl +  '/getdltcumulativelist');
+
+}
+
+getdltcertificate(data){
+  return this.http.post(environment.apiBaseUrl +  '/getdltcertificate',data);
+
+}
   // Helper Methods
 
   setToken(token: string) {

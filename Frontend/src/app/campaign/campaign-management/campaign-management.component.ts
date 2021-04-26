@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiCallService } from 'src/app/apiCalls/api-call.service';
 import { ExcelService } from 'src/app/apiCalls/excel.service';
-import { FilterPipe} from './filter.pipe';
+import { FilterPipe } from './filter.pipe';
 
 @Component({
   selector: 'app-campaign-management',
@@ -10,7 +10,7 @@ import { FilterPipe} from './filter.pipe';
   styleUrls: ['./campaign-management.component.scss']
 })
 export class CampaignManagementComponent implements OnInit {
-  public searchText : string;
+  public searchText: string;
   personList;
   editField: string;
   client_firstname: string;
@@ -26,7 +26,7 @@ export class CampaignManagementComponent implements OnInit {
   constructor(private apiCall: ApiCallService, private excelservice: ExcelService, private router: Router) { }
 
   ngOnInit() {
-    this.partner_id=this.apiCall.getPartner_id();
+    this.partner_id = this.apiCall.getPartner_id();
     this.getClients();
 
   }
@@ -56,7 +56,7 @@ export class CampaignManagementComponent implements OnInit {
 
 
   getClients() {
-    const partner_id ={partner_id:this.partner_id}
+    const partner_id = { partner_id: this.partner_id }
     this.apiCall.getplanexpirycontactsAll(partner_id).subscribe((res: any) => {
       this.personList = res.data;
     });
@@ -65,7 +65,7 @@ export class CampaignManagementComponent implements OnInit {
 
 
   exportAsXLSX(): void {
-    this.excelservice.exportAsExcelFile(this.personList, 'sample');
+    this.excelservice.exportAsExcelFile(this.personList, 'Campaignmgmt_Clientslist');
   }
 
   search() {
@@ -80,7 +80,7 @@ export class CampaignManagementComponent implements OnInit {
   }
 
   getplanexpirycontacts(data) {
-    data.partner_id=this.partner_id;
+    data.partner_id = this.partner_id;
     this.apiCall.getplanexpirycontacts(data).subscribe((res: any) => {
       this.personList = res.data;
     });
@@ -93,12 +93,11 @@ export class CampaignManagementComponent implements OnInit {
     this.apiCall.updatePaymentStatus(userData).subscribe((res: any) => {
       alert('Data updated Sucessfully');
     });
-
   }
 
 
   insertnotifications() {
-    const agree = confirm('Are sure to add push notifications ?');
+    const agree = confirm('Are you sure to add push notifications ?');
     if (agree) {
       const data = this.personList.map(person => person.client_id);
       const userData = { client_ids: data };
@@ -144,11 +143,15 @@ export class CampaignManagementComponent implements OnInit {
   }
 
   selectclients() {
-    const notify=confirm("Are you sure you want to send notification");
-    if(notify){
-      this.apiCall.getclientids(this.selectedclients);
-      this.router.navigate(['/pushnotify']);
+    if (!this.selectedclients) {
+      alert('Please select contacts to send push notification')
     }
-
+    else if (this.selectclients) {
+      const notify = confirm("Are you sure want to send push notification/Bulksms");
+      if (notify) {
+        this.apiCall.getclientids(this.selectedclients);
+        this.router.navigate(['/pushnotify']);
+      }
+    }
   }
 }
