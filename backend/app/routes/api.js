@@ -16,6 +16,8 @@ const billingcontroller = require('../controllers/billingcontroller');
 const bulksmsController = require('../controllers/bulksmsController');
 const notificationController = require('../controllers/notificationcontroller');
 const dltapprovalcontroller = require('../controllers/dltapprovalcontroller');
+const promotionscontroller = require('../controllers/promotionscontroller');
+
 
 
 var APIRoutes = function (passport) {
@@ -87,19 +89,13 @@ var APIRoutes = function (passport) {
   router.post('/updatedltstatus', dltapprovalcontroller.updatedltstatus);
   router.get('/getdltcumulativelist', dltapprovalcontroller.getdltcumulativelist);
   router.post('/getdltcertificate', dltapprovalcontroller.getdltcertificate);
-
-
-  
-  
-  
+  router.get('/getAllbannerpromotions', promotionscontroller.getAllbannerpromotions);
+  router.post('/getpromotiondatadetailed', promotionscontroller.getpromotiondatadetailed);
+  router.post('/updatebannerpromotions', promotionscontroller.updatebannerpromotions);
 
   
   
   
-  
-
-
-
   // GET Routes.
   router.get('/profile', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.user, UserController.index));
   router.get('/admin', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.admin, AdminController.index));

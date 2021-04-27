@@ -412,6 +412,19 @@ getdltcertificate(data){
   return this.http.post(environment.apiBaseUrl +  '/getdltcertificate',data);
 
 }
+
+getAllbannerpromotions(){
+  return this.http.get(environment.apiBaseUrl +  '/getAllbannerpromotions');
+}
+
+getpromotiondatadetailed(data){
+  return this.http.post(environment.apiBaseUrl +  '/getpromotiondatadetailed',data);
+}
+
+updatebannerpromotions(data){
+  return this.http.post(environment.apiBaseUrl +  '/updatebannerpromotions',data);
+
+}
   // Helper Methods
 
   setToken(token: string) {
