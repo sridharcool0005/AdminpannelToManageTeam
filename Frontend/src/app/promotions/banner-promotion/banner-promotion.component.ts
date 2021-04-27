@@ -10,8 +10,9 @@ import { ExcelService } from '../../apiCalls/excel.service';
 export class BannerPromotionComponent implements OnInit {
   bannerdata: any=[];
   bannerdatadetails:any=[];
-  notes;
   dltcertificate
+  to_date: any;
+  from_date: any;
   constructor(private apicall: ApiCallService, private excelservice: ExcelService, private router: Router) { }
 
 
@@ -37,18 +38,36 @@ this.bannerdata=res.data;
   }
 
   exportAsXLSX(): void {
-    this.excelservice.exportAsExcelFile(this.bannerdata, 'DLTTemplates');
+    const date =new Date()
+    const title="BannerPromotions"+date
+    this.excelservice.exportAsExcelFile(this.bannerdata,title );
   }
 
-  getdltlist(){
-
+  getbannersdatabydate(data){
+    this.from_date=data.from_date;
+    this.to_date=data.to_date;
+this.apicall.getbannersbydate(data).subscribe((res: any)=>{
+  this.bannerdata=res.data;
+})
   }
 
   updatedltstatus(status,order_id): void {
-    const data={status:status,order_id:order_id,comments:this.notes}
+    const data={status:status,order_id:order_id,comments:this.bannerdatadetails.review_comments}
 this.apicall.updatebannerpromotions(data).subscribe((res: any)=>{
 alert(res.message);
 this.getAllbannerpromotions()
 })
   }
+
+  getbannerpromotionsbystatus(status: string){
+    if(!this.from_date||!this.to_date||!status){
+      alert('plz select date range first')
+    }else{
+      const data={from_date:this.from_date,to_date:this.to_date,status:status}
+      this.apicall.getbannerpromotionsbystatus(data).subscribe((res: any)=>{
+        this.bannerdata=res.data;
+      })
+    }
+    }
+
 }

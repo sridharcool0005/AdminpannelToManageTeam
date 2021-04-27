@@ -92,7 +92,19 @@ var APIRoutes = function (passport) {
   router.get('/getAllbannerpromotions', promotionscontroller.getAllbannerpromotions);
   router.post('/getpromotiondatadetailed', promotionscontroller.getpromotiondatadetailed);
   router.post('/updatebannerpromotions', promotionscontroller.updatebannerpromotions);
+  router.get('/getallbeontopdata', promotionscontroller.getallbeontopdata);
+  router.post('/getbeondatadetailed', promotionscontroller.getbeondatadetailed);
+  router.post('/updatebeontopstatus', promotionscontroller.updatebeontopstatus);
+  router.post('/getbannersdatabydate', promotionscontroller.getAllbannerpromotionsbydatefilter);
+  router.post('/getbeondatabydate', promotionscontroller.getbeondatabydate);
+  router.post('/getbannerpromotionsbystatus', promotionscontroller.getbannerpromotionsbystatus);
 
+  router.post('/getbeondatabystatus', promotionscontroller.getbeondatabystatus);
+
+  
+  
+  
+  
   
   
   

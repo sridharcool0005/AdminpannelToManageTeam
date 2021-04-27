@@ -425,6 +425,37 @@ updatebannerpromotions(data){
   return this.http.post(environment.apiBaseUrl +  '/updatebannerpromotions',data);
 
 }
+
+getallbeontopdata(){
+  return this.http.get(environment.apiBaseUrl +  '/getallbeontopdata');
+}
+
+getbeondatadetailed(data){
+  return this.http.post(environment.apiBaseUrl +  '/getbeondatadetailed',data);
+}
+
+updatebeontopstatus(data){
+  return this.http.post(environment.apiBaseUrl +  '/updatebeontopstatus',data);
+
+}
+
+getbannersbydate(data){
+  return this.http.post(environment.apiBaseUrl +  '/getbannersdatabydate',data);
+}
+
+getbeonbydate(data){
+  return this.http.post(environment.apiBaseUrl +  '/getbeondatabydate',data);
+
+}
+
+getbannerpromotionsbystatus(data){
+  return this.http.post(environment.apiBaseUrl +  '/getbannerpromotionsbystatus',data);
+
+}
+
+getbeondatabystatus(data){
+  return this.http.post(environment.apiBaseUrl +  '/getbeondatabystatus',data);
+}
   // Helper Methods
 
   setToken(token: string) {

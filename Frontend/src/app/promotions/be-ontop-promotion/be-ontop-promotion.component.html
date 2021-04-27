@@ -3,29 +3,27 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <form (ngSubmit)="regform.form.valid&&getdltlist(regform.form.value)" #regform="ngForm">
-          <input type="date" name="fromDate" placeholder="FromDate" ngModel>&nbsp;
-          <input type="date" name="toDate" placeholder="ToDate" ngModel>&nbsp;
+        <form (ngSubmit)="regform.form.valid&&getbeonbydate(regform.form.value)" #regform="ngForm">
+          <input type="date" name="from_date" placeholder="FromDate" [(ngModel)]="from_date">&nbsp;
+          <input type="date" name="to_date" placeholder="ToDate" [(ngModel)]="to_date">&nbsp;
           <input type="submit">
         </form>
       </div>
       <div class="col-md-6 mubutn">
-        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
-          <mdb-icon fas icon="sync-alt"></mdb-icon>
 
-        </button>
-        &nbsp;
-
-        <select class="browser-default custom-select filter">
+        <select class="browser-default custom-select filter" (change)="getbeondatabystatus($event.target.value)">
           <option selected value="">select</option>
-          <option  value="All">ALL</option>
-          <option value="review" >Review</option>
-          <option value="active">Active</option>
-          <option value="pending">Pending</option>
-          <option value="disable">Disable</option>
+          <option value="1">Active</option>
+          <option value="0">Expired</option>
+          <option value="2">Suspended</option>
         </select>
 
         &nbsp;
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="getallbeontopdata()">
+          <mdb-icon fas icon="sync-alt"></mdb-icon>
+        </button>
+        &nbsp;
+
 
         <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
       </div>
@@ -37,14 +35,13 @@
       <table class="table table-bordered table-responsive-md table-striped text-center table-media">
         <tr style="background-color: darkblue;color:white">
           <th class="text-center">
-            Date Posted  </th>
+            Date Posted </th>
           <th class="text-center">
             ClientId</th>
           <th class="text-center">Mobile#</th>
           <th class="text-center">Name </th>
           <th class="text-center">Status</th>
-          <th class="text-center">Package Name</th>
-          <th class="text-center">From Date   </th>
+          <th class="text-center">From Date </th>
           <th class="text-center"> ToDate</th>
 
           <th class="text-center">Whatsapp</th>
@@ -52,15 +49,15 @@
           </th>
 
         </tr>
-        <tr *ngFor="let el of dltlist" #loaded>
+        <tr *ngFor="let el of beondata" #loaded>
           <td>
-{{el.DateSubmitted|date: 'yyyy/MM/dd'}}
+            {{el.DateSubmitted|date: 'yyyy/MM/dd'}}
           </td>
           <td>
-{{el.ClientID}}
+            {{el.ClientID}}
           </td>
           <td>
-{{el.MobileNumber}}
+            {{el.MobileNumber}}
           </td>
           <td>
             {{el.ClientName}}
@@ -70,19 +67,21 @@
           <td>
             {{el.Status}}
           </td>
+          <td>{{el.from_datetime|date: 'dd/MM/yyyy'}}</td>
+          <td>{{el.to_datetime| date: 'dd/MM/yyyy'}}</td>
 
 
           <td>
-            <img class="pointer" src="assets/img/whatsaapicon.webp" width="100%">
+            <a href="https://wa.me/+91{{el.MobileNumber}}/?text=Hi i reviewed your request for beontop promotions" target="_blank"><img class="pointer" src="assets/img/whatsaapicon.webp" width="100%"></a>
 
           </td>
 
 
           <td>
 
-            <a data-toggle="modal" data-backdrop="" data-target="#modalContactForm" > <span class="material-icons"
-                matTooltip="View Detailed" matTooltipClass="example-tooltip-red"
-                aria-label="Button that shows a red tooltip">
+            <a data-toggle="modal" data-backdrop="" data-target="#modalContactForm"
+              (click)="getbeondatadetailed(el.order_id)"> <span class="material-icons" matTooltip="View Detailed"
+                matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip">
                 visibility
               </span>
             </a>
@@ -100,37 +99,40 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content" *ngIf="documentdetails">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Review DLT Certificate</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Review Be On Top</h4>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
 
       </div>
-      <div class="modal-body mx-3">
-        <P *ngIf="documentdetails">Date:&nbsp;{{documentdetails.DateSubmitted|date: 'yyyy-MM-dd'}}<p>
 
+      <div class="modal-body mx-3">
+        <P *ngIf="documentdetails">Date Posted:&nbsp;{{documentdetails.DateSubmitted|date: 'yyyy-MM-dd'}}
+        <p>
+        <P *ngIf="documentdetails"> FromDate:&nbsp;{{documentdetails.from_datetime|date: 'dd/MM/yyyy'}} &nbsp;
+          ToDate:&nbsp;{{documentdetails.to_datetime|date: 'yyyy-MM-dd'}}
+        <p>
 
         <div class="md-form">
           <i class="fas fa-pencil prefix grey-text"></i>
-          <h6>Message:</h6>
-          <p type="text" id="form8" class="md-textarea form-control" rows="4" placeholder="Enter your Message">&nbsp;{{documentdetails.Message}}<p>
-          <!-- <label data-error="wrong" data-success="right" for="form8">Your message</label> -->
+          <h6>Package Name:&nbsp;{{documentdetails.package_name}}
+          </h6>
+          <h6>Status: &nbsp;{{documentdetails.Status}}
+          </h6>
         </div>
-        <embed [src]="dltcertificate| safePipe: 'resourceUrl'" width="450" height="350"
- type="application/pdf">
         <p style="color:red">* &nbsp;Review Comments:</p>
         <div class="md-form">
           <i class="fas fa-pencil prefix grey-text"></i>
-          <textarea type="text" id="form8" class="md-textarea form-control" rows="4" placeholder="Enter your Message" name="notes" [(ngModel)]="notes">{{documentdetails.ReviewComments}}</textarea>
-          <!-- <label data-error="wrong" data-success="right" for="form8">Your message</label> -->
+          <textarea type="text" id="form8" class="md-textarea form-control" rows="2" placeholder="Enter your Message"
+     [(ngModel)]="documentdetails.review_comments">{{documentdetails.review_comments}}</textarea>
+            ReviewedOn: {{documentdetails.reviewed_on|date:'yyyy/mm/dd'}}
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success" data-dismiss="modal" (click)="updatedltstatus('1')">Approve <i class="fas fa-paper-plane-o ml-1"></i></button>        <button class="btn btn-unique" data-dismiss="modal" (click)="updatedltstatus('2')">Reject <i class="fas fa-paper-plane-o ml-1"></i></button>
-
+        <button class="btn btn-success" data-dismiss="modal" (click)="updatedltstatus('2',documentdetails.order_id)">Suspend <i
+            class="fas fa-paper-plane-o ml-1"></i></button> <button class="btn btn-unique" data-dismiss="modal">Cancel <i class="fas fa-paper-plane-o ml-1"></i></button>
       </div>
     </div>
   </div>
 </div>
-

@@ -3,26 +3,25 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <form (ngSubmit)="regform.form.valid&&getdltlist(regform.form.value)" #regform="ngForm">
-          <input type="date" name="fromDate" placeholder="FromDate" ngModel>&nbsp;
-          <input type="date" name="toDate" placeholder="ToDate" ngModel>&nbsp;
+        <form (ngSubmit)="regform.form.valid&&getbannersdatabydate(regform.form.value)" #regform="ngForm">
+          <input type="date" name="from_date" placeholder="FromDate" [(ngModel)]="from_date">&nbsp;
+          <input type="date" name="to_date" placeholder="ToDate" [(ngModel)]="to_date">&nbsp;
           <input type="submit">
         </form>
       </div>
       <div class="col-md-6 mubutn">
+        <select class="browser-default custom-select filter" (change)="getbannerpromotionsbystatus($event.target.value)">
+          <option selected value="">select</option>
+          <option value="1">Active</option>
+          <option value="0">Expired</option>
+          <option value="2">Suspended</option>
+        </select>
+
+        &nbsp;
         <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="getAllbannerpromotions()">
           <mdb-icon fas icon="sync-alt"></mdb-icon>
 
         </button>
-        &nbsp;
-
-        <select class="browser-default custom-select filter">
-          <option selected value="">select</option>
-          <option value="All">Active</option>
-          <option value="review">Expired</option>
-          <option value="active">Suspended</option>
-        </select>
-
         &nbsp;
 
         <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
@@ -41,7 +40,6 @@
           <th class="text-center">Mobile#</th>
           <th class="text-center">Name </th>
           <th class="text-center">Status</th>
-          <th class="text-center">Package Name</th>
           <th class="text-center">From Date </th>
           <th class="text-center"> ToDate</th>
 
@@ -66,10 +64,9 @@
           </td>
 
           <td>
-            {{el.status}}
+            {{el.Status}}
           </td>
 
-          <td>{{el.package_name}}</td>
           <td>
             {{el.from_datetime|date: 'dd/MM/yyyy'}}
           </td>
@@ -80,13 +77,10 @@
           </td>
 
           <td>
-            <img class="pointer" src="assets/img/whatsaapicon.webp" width="100%">
-
+            <a href="https://wa.me/+91{{el.MobileNumber}}/?text=Hi i reviewed your request for banner promotions" target="_blank"><img class="pointer" src="assets/img/whatsaapicon.webp" width="100%"></a>
           </td>
 
-
           <td>
-
             <a data-toggle="modal" data-backdrop="" data-target="#modalContactForm"
               (click)="getpromotiondatadetailed(el.order_id)"> <span class="material-icons"
                 matTooltip="View Detailed" matTooltipClass="example-tooltip-red"
@@ -108,7 +102,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content" *ngIf="bannerdatadetails">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Review  Status</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Review  Banner Promotions</h4>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -123,16 +117,23 @@
 
         <div class="md-form">
           <i class="fas fa-pencil prefix grey-text"></i>
-          <h6>Status:            &nbsp;{{bannerdatadetails.status}}
+          <h6>Package Name:&nbsp;{{bannerdatadetails.package_name}}
           </h6>
-
+          <h6>Status: &nbsp;{{bannerdatadetails.Status}}
+          </h6>
+<img [src]="bannerdatadetails.banner_path" width="300">
+<a href="{{bannerdatadetails.banner_path }}" target="_blank" class="btn btn-primary" download>
+  Download Image
+</a>
         </div>
         <p style="color:red">* &nbsp;Review Comments:</p>
         <div class="md-form">
           <i class="fas fa-pencil prefix grey-text"></i>
           <textarea type="text" id="form8" class="md-textarea form-control" rows="2" placeholder="Enter your Message"
-            name="notes" [(ngModel)]="notes">{{bannerdatadetails.review_comments}}</textarea>
-        </div>
+            name="notes" [(ngModel)]="bannerdatadetails.review_comments">{{bannerdatadetails.review_comments}}</textarea>
+           ReviewedOn: {{bannerdatadetails.reviewed_on|date:'dd/mm/yyyy'}}
+          </div>
+
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button class="btn btn-success" data-dismiss="modal" (click)="updatedltstatus('2',bannerdatadetails.order_id)">Suspend <i
